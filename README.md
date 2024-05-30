@@ -45,8 +45,8 @@ filters (13):
    check-duplicate-filenames, discard-negatives, metadata, 
    metadata-from-name, passthrough, pyfunc-filter, randomize-records, 
    record-window, rename, sample, split, strip-annotations, tee
-writers (3):
-   to-data, to-festvox-sp, to-pyfunc
+writers (4):
+   to-audioinfo, to-data, to-festvox-sp, to-pyfunc
 
 optional arguments:
   -h, --help            show basic help message and exit
