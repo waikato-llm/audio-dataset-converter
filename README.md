@@ -21,9 +21,9 @@ pip install git+https://github.com/waikato-datamining/audio-dataset-converter.gi
 
 The following dataset formats are supported:
 
-| Domain               | Format                                                                        | Read                                       | Write                                | 
-|:---------------------|:------------------------------------------------------------------------------|:-------------------------------------------|:-------------------------------------| 
-| Speech               | ...                                                                           | ...                                        | ...                                  | 
+| Domain               | Format                        | Read | Write | 
+|:---------------------|:------------------------------|:-----|:------| 
+| Speech               | [Festvox](formats/festvox.md) | Y    | Y     | 
 
 
 ## Tools
@@ -39,14 +39,14 @@ usage: adc-convert [-h|--help|--help-all|--help-plugin NAME] [-u INTERVAL]
 
 Tool for converting between audio dataset formats.
 
-readers (3):
-   from-data, from-pyfunc, poll-dir
+readers (4):
+   from-data, from-festvox-sp, from-pyfunc, poll-dir
 filters (13):
    check-duplicate-filenames, discard-negatives, metadata, 
    metadata-from-name, passthrough, pyfunc-filter, randomize-records, 
    record-window, rename, sample, split, strip-annotations, tee
-writers (2):
-   to-data, to-pyfunc
+writers (3):
+   to-data, to-festvox-sp, to-pyfunc
 
 optional arguments:
   -h, --help            show basic help message and exit

@@ -4,6 +4,7 @@ import io
 import logging
 import os.path
 import shutil
+import soundfile as sf
 from typing import Dict, Optional, List
 
 import numpy as np
@@ -61,7 +62,7 @@ class AudioData(MetaDataHandler, LoggingHandler):
         self._data = data
         """ the binary audio data. """
         self._audio = audio
-        """ the audio format. """
+        """ the audio data structure. """
         self._audio_format = audio_format
         """ the format of the audio. """
         self._duration = duration
@@ -106,14 +107,15 @@ class AudioData(MetaDataHandler, LoggingHandler):
         """
         if self._audio is not None:
             return self._audio
-        if self._data is not None:
-            self._audio = load_audio_from_bytes(self._data)
-            self._audio_format = self._audio.format
+        if (self._data is not None) and (self._audio_name is not None):
+            audio_format = determine_audio_format(self._audio_name)
+            self._audio = load_audio_from_bytes(self._data, audio_format)
+            self._audio_format = audio_format
             return self._audio
         if self._source is not None:
             self._audio_name = os.path.basename(self._source)
             self._audio = load_audio_from_file(self._source)
-            self._audio_format = self._audio.format
+            self._audio_format = determine_audio_format(self._source)
             return self._audio
         return None
 
@@ -126,7 +128,7 @@ class AudioData(MetaDataHandler, LoggingHandler):
         """
         buffer = io.BytesIO()
         if self.audio is not None:
-            self.audio.save(buffer, format=self.audio_format)
+            sf.write(buffer, self.audio, self.sample_rate)
         return buffer.getvalue()
 
     @property
@@ -203,12 +205,12 @@ class AudioData(MetaDataHandler, LoggingHandler):
         return self._duration
 
     @property
-    def sample_rate(self) -> Optional[float]:
+    def sample_rate(self) -> Optional[int]:
         """
         Returns the sample rate of the audio file.
 
         :return: the sample rate, None if failed to determine
-        :rtype: float
+        :rtype: int
         """
         if self._sample_rate is None:
             self._read_tags()
@@ -237,7 +239,7 @@ class AudioData(MetaDataHandler, LoggingHandler):
         self._sample_rate = None
         self._data = data
 
-    def save_image(self, path: str, make_dirs: bool = False) -> bool:
+    def save_audio(self, path: str, make_dirs: bool = False) -> bool:
         """
         Saves the audio under the specified path.
 
@@ -256,7 +258,7 @@ class AudioData(MetaDataHandler, LoggingHandler):
             shutil.copy(self._source, path)
             return True
         if self._audio is not None:
-            self._audio.save(path)
+            sf.write(path, self._audio, self.sample_rate)
             return True
         if self._data is not None:
             with open(path, "wb") as fp:

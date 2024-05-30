@@ -1,8 +1,13 @@
 import importlib
 import inspect
+import io
 import numpy as np
 import os
-from typing import Optional, Union, List, Callable
+import soundfile as sf
+import tempfile
+import traceback
+
+from typing import Optional, Union, List, Callable, Tuple
 
 
 def strip_suffix(path: str, suffix: str) -> str:
@@ -105,25 +110,45 @@ def load_function(function: str) -> Callable:
         raise Exception("Function '%s' not found in module '%s'!" % (func_name, module_name))
 
 
-def load_audio_from_file(path: str) -> Optional[np.ndarray]:
+def load_audio_from_file(path: str) -> Optional[Tuple[np.ndarray, int]]:
     """
     Loads the audio from the file.
 
     :param path: the file to load the audio from
     :type path: str
-    :return: the audio data, None if failed to load
-    :rtype: np.ndarray
+    :return: the audio data tuple (audio/np.ndarray, sample_rate/int), None if failed to load
+    :rtype: tuple
     """
+    try:
+        return sf.read(path)
+    except:
+        print("Failed to read: %s" % path)
+        traceback.print_exc()
+        return None
 
 
-
-def load_audio_from_bytes(data: bytes) -> Optional[np.ndarray]:
+def load_audio_from_bytes(data: bytes, ext: str) -> Optional[Tuple[np.ndarray, int]]:
     """
     Loads the audio from the bytes. Falls back loading from disk, if not possible.
 
     :param data: the bytes to load the audio from
     :type data: bytes
+    :param ext: the audio extension to use
+    :type ext: str
     :return: the audio data, None if failed to load
     :rtype: np.ndarray
     """
-    # TODO
+    path = None
+    try:
+        buf = io.BytesIO(data)
+        result = sf.read(buf)
+    except:
+        with tempfile.NamedTemporaryFile(suffix=ext, delete_on_close=False) as fp:
+            fp.write(data)
+            fp.close()
+            path = fp.name
+            result = load_audio_from_file(path)
+    finally:
+        if path is not None:
+            os.remove(path)
+    return result

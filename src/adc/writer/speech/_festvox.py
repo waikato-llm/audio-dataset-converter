@@ -1,21 +1,21 @@
 import argparse
 import os
-from typing import List
+from typing import List, Iterable
 
 from wai.logging import LOGGING_WARNING
 
-from adc.api import AudioData, SplittableStreamWriter, make_list
+from adc.api import SpeechData, SplittableBatchWriter
 
 
-class DataWriter(SplittableStreamWriter):
+class FestVoxSpeechWriter(SplittableBatchWriter):
 
     def __init__(self, output_dir: str = None,
                  split_names: List[str] = None, split_ratios: List[int] = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
-        Initializes the reader.
+        Initializes the writer.
 
-        :param output_dir: the output directory to save the audio/report in
+        :param output_dir: the output directory to save the image/report in
         :type output_dir: str
         :param split_names: the names of the splits, no splitting if None
         :type split_names: list
@@ -28,6 +28,7 @@ class DataWriter(SplittableStreamWriter):
         """
         super().__init__(split_names=split_names, split_ratios=split_ratios, logger_name=logger_name, logging_level=logging_level)
         self.output_dir = output_dir
+        self._splits = None
 
     def name(self) -> str:
         """
@@ -36,7 +37,7 @@ class DataWriter(SplittableStreamWriter):
         :return: the name
         :rtype: str
         """
-        return "to-data"
+        return "to-festvox-sp"
 
     def description(self) -> str:
         """
@@ -45,7 +46,7 @@ class DataWriter(SplittableStreamWriter):
         :return: the description
         :rtype: str
         """
-        return "Saves just the images."
+        return "Saves the speech data in Festvox format."
 
     def _create_argparser(self) -> argparse.ArgumentParser:
         """
@@ -55,7 +56,7 @@ class DataWriter(SplittableStreamWriter):
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-o", "--output", type=str, help="The directory to store the images in. Any defined splits get added beneath there.", required=True)
+        parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.txt files in. Any defined splits get added beneath there.", required=True)
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -75,24 +76,28 @@ class DataWriter(SplittableStreamWriter):
         :return: the list of classes
         :rtype: list
         """
-        return [AudioData]
+        return [SpeechData]
 
     def initialize(self):
         """
         Initializes the processing, e.g., for opening files or databases.
         """
         super().initialize()
+
         if not os.path.exists(self.output_dir):
             self.logger().info("Creating output dir: %s" % self.output_dir)
             os.makedirs(self.output_dir)
 
-    def write_stream(self, data):
-        """
-        Saves the data one by one.
+        self._splits = dict()
 
-        :param data: the data to write (single record or iterable of records)
+    def write_batch(self, data: Iterable):
         """
-        for item in make_list(data):
+        Saves the data in one go.
+
+        :param data: the data to write
+        :type data: Iterable
+        """
+        for item in data:
             sub_dir = self.output_dir
             if self.splitter is not None:
                 split = self.splitter.next()
@@ -101,6 +106,29 @@ class DataWriter(SplittableStreamWriter):
                 self.logger().info("Creating sub dir: %s" % sub_dir)
                 os.makedirs(sub_dir)
 
+            # write audio
             path = os.path.join(sub_dir, item.audio_name)
             self.logger().info("Writing audio to: %s" % path)
             item.save_audio(path)
+
+            # append annotations
+            if sub_dir not in self._splits:
+                self._splits[sub_dir] = []
+            if item.has_annotation():
+                wav_filename = os.path.splitext(item.audio_name)[0]
+                transcript = item.annotation
+                self._splits[sub_dir].append("( %s \"%s\" )" % (wav_filename, transcript))
+
+    def finalize(self):
+        """
+        Finishes the processing, e.g., for closing files or databases.
+        """
+        super().finalize()
+
+        for sub_dir, annotations in self._splits.items():
+            # save annotations
+            path = os.path.join(sub_dir, "annotations.txt")
+            with open(path, "w") as fp:
+                for line in annotations:
+                    fp.write(line)
+                    fp.write("\n")

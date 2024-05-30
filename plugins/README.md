@@ -1,6 +1,7 @@
 # audio-dataset-converter plugins
 ## Readers
 * [from-data](from-data.md)
+* [from-festvox-sp](from-festvox-sp.md)
 * [from-pyfunc](from-pyfunc.md)
 * [poll-dir](poll-dir.md)
 
@@ -21,4 +22,5 @@
 
 ## Writers
 * [to-data](to-data.md)
+* [to-festvox-sp](to-festvox-sp.md)
 * [to-pyfunc](to-pyfunc.md)
