@@ -10,7 +10,7 @@ from adc.core import ENV_ADC_LOGLEVEL
 from adc.registry import available_generators
 from adc.tool.convert import main as convert_main, CONVERT
 
-EXEC = "idc-exec"
+EXEC = "adc-exec"
 
 _logger = logging.getLogger(EXEC)
 
@@ -28,7 +28,7 @@ def execute_pipeline(pipeline: str, generator: str, dry_run: bool = False, prefi
     :param prefix: the prefix to use when in dry-run mode
     :type prefix: str
     """
-    # remove whitespaces, idc-convert from pipeline
+    # remove whitespaces, adc-convert from pipeline
     pipeline = pipeline.strip()
     if pipeline.startswith(CONVERT):
         pipeline = pipeline[len(CONVERT):].strip()

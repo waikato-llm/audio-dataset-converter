@@ -62,7 +62,7 @@ optional arguments:
 ### Executing pipeline multiple times
 
 ```
-usage: idc-exec [-h] -p PIPELINE -g GENERATOR [-n] [-P PREFIX]
+usage: adc-exec [-h] -p PIPELINE -g GENERATOR [-n] [-P PREFIX]
                 [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
 
 Tool for executing a pipeline multiple times, each time with a different set
@@ -222,7 +222,7 @@ optional arguments:
 You can find help screens for the plugins here:
 
 * [Pipeline plugins](plugins/README.md) (reades/filters/writers)
-* [Generator plugins](generators/README.md) (used by `idc-exec`)
+* [Generator plugins](generators/README.md) (used by `adc-exec`)
 
 
 ## Class listers
