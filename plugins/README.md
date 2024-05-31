@@ -9,6 +9,7 @@
 
 ## Filters
 * [check-duplicate-filenames](check-duplicate-filenames.md)
+* [convert-to-mono](convert-to-mono.md)
 * [discard-negatives](discard-negatives.md)
 * [max-records](max-records.md)
 * [metadata](metadata.md)
@@ -22,7 +23,6 @@
 * [split](split.md)
 * [strip-annotations](strip-annotations.md)
 * [tee](tee.md)
-* [to-mono](to-mono.md)
 
 ## Writers
 * [to-adams-ac](to-adams-ac.md)

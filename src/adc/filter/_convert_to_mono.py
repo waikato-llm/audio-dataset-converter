@@ -7,7 +7,7 @@ from wai.logging import LOGGING_WARNING
 from adc.api import AudioData, AudioClassificationData, SpeechData, make_list, flatten_list
 
 
-class ToMono(Filter):
+class ConvertToMono(Filter):
     """
     Turns the audio into mono.
     """
@@ -30,7 +30,7 @@ class ToMono(Filter):
         :return: the name
         :rtype: str
         """
-        return "to-mono"
+        return "convert-to-mono"
 
     def description(self) -> str:
         """

@@ -1,4 +1,4 @@
-# to-mono
+# convert-to-mono
 
 * accepts: adc.api.AudioData
 * generates: adc.api.AudioClassificationData, adc.api.SpeechData
@@ -6,7 +6,8 @@
 Turns the audio into mono.
 
 ```
-usage: to-mono [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-N LOGGER_NAME]
+usage: convert-to-mono [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                       [-N LOGGER_NAME]
 
 Turns the audio into mono.
 
