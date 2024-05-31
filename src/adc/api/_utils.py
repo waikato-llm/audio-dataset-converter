@@ -1,6 +1,7 @@
 import importlib
 import inspect
 import io
+import librosa
 import numpy as np
 import os
 import soundfile as sf
@@ -110,7 +111,7 @@ def load_function(function: str) -> Callable:
         raise Exception("Function '%s' not found in module '%s'!" % (func_name, module_name))
 
 
-def load_audio_from_file(path: str) -> Optional[Tuple[np.ndarray, int]]:
+def load_audio_from_file(path: str) -> Union[Tuple[np.ndarray, int], Tuple[Optional, Optional]]:
     """
     Loads the audio from the file.
 
@@ -122,12 +123,15 @@ def load_audio_from_file(path: str) -> Optional[Tuple[np.ndarray, int]]:
     try:
         return sf.read(path)
     except:
-        print("Failed to read: %s" % path)
-        traceback.print_exc()
-        return None
+        try:
+            return librosa.load(path)
+        except:
+            print("Failed to read: %s" % path)
+            traceback.print_exc()
+            return None, None
 
 
-def load_audio_from_bytes(data: bytes, ext: str) -> Optional[Tuple[np.ndarray, int]]:
+def load_audio_from_bytes(data: bytes, ext: str) -> Union[Tuple[np.ndarray, int], Tuple[Optional, Optional]]:
     """
     Loads the audio from the bytes. Falls back loading from disk, if not possible.
 
