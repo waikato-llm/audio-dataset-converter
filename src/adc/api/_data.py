@@ -109,12 +109,12 @@ class AudioData(MetaDataHandler, LoggingHandler):
             return self._audio
         if (self._data is not None) and (self._audio_name is not None):
             audio_format = determine_audio_format(self._audio_name)
-            self._audio = load_audio_from_bytes(self._data, audio_format)
+            self._audio, self._sample_rate = load_audio_from_bytes(self._data, audio_format)
             self._audio_format = audio_format
             return self._audio
         if self._source is not None:
             self._audio_name = os.path.basename(self._source)
-            self._audio = load_audio_from_file(self._source)
+            self._audio, self._sample_rate = load_audio_from_file(self._source)
             self._audio_format = determine_audio_format(self._source)
             return self._audio
         return None
