@@ -111,7 +111,7 @@ def load_function(function: str) -> Callable:
         raise Exception("Function '%s' not found in module '%s'!" % (func_name, module_name))
 
 
-def load_audio_from_file(path: str) -> Union[Tuple[np.ndarray, int], Tuple[Optional, Optional]]:
+def load_audio_from_file(path: str) -> Union[Tuple[np.ndarray, int], Tuple[None, None]]:
     """
     Loads the audio from the file.
 
@@ -131,7 +131,7 @@ def load_audio_from_file(path: str) -> Union[Tuple[np.ndarray, int], Tuple[Optio
             return None, None
 
 
-def load_audio_from_bytes(data: bytes, ext: str) -> Union[Tuple[np.ndarray, int], Tuple[Optional, Optional]]:
+def load_audio_from_bytes(data: bytes, ext: str) -> Union[Tuple[np.ndarray, int], Tuple[None, None]]:
     """
     Loads the audio from the bytes. Falls back loading from disk, if not possible.
 
