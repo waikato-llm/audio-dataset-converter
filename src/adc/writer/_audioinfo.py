@@ -228,7 +228,7 @@ class AudioInfoWriter(BatchWriter):
                     item.audio_name,
                     self._file_size(item),
                     item.sample_rate,
-                    len(item.audio[0].shape) == 1,
+                    item.is_mono,
                     item.duration,
                     item.annotation)
                 if self._additional_label is None:
@@ -238,7 +238,7 @@ class AudioInfoWriter(BatchWriter):
                     item.audio_name,
                     self._file_size(item),
                     item.sample_rate,
-                    len(item.audio[0].shape) == 1,
+                    item.is_mono,
                     item.duration,
                     item.annotation)
                 if self._additional_label is None:

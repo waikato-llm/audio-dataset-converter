@@ -217,6 +217,19 @@ class AudioData(MetaDataHandler, LoggingHandler):
         return self._sample_rate
 
     @property
+    def is_mono(self) -> bool:
+        """
+        Returns whether the audio data is mono or stereo.
+
+        :return: True if mono
+        :rtype: bool
+        """
+        if self.source is not None:
+            return TinyTag.get(self.source).channels == 1
+        else:
+            return len(self.audio[0].shape) == 1
+
+    @property
     def data(self) -> bytes:
         """
         Returns the internal data, if any.
