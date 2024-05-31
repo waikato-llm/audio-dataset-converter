@@ -2,14 +2,14 @@
 
 * accepts: adc.api.AudioData
 
-Saves just the images.
+Saves just the audio files.
 
 ```
 usage: to-data [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-N LOGGER_NAME]
                [-r SPLIT_RATIOS [SPLIT_RATIOS ...]]
                [-n SPLIT_NAMES [SPLIT_NAMES ...]] -o OUTPUT
 
-Saves just the images.
+Saves just the audio files.
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -25,6 +25,6 @@ optional arguments:
                         The split names to use for the generated splits.
                         (default: None)
   -o OUTPUT, --output OUTPUT
-                        The directory to store the images in. Any defined
+                        The directory to store the audio files in. Any defined
                         splits get added beneath there. (default: None)
 ```

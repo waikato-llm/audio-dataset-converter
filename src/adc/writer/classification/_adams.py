@@ -15,7 +15,7 @@ class AdamsAudioClassificationWriter(SplittableStreamWriter):
         """
         Initializes the reader.
 
-        :param output_dir: the output directory to save the image/report in
+        :param output_dir: the output directory to save the audio file/report in
         :type output_dir: str
         :param class_field: the name of the field to store the classification label in
         :type class_field: str

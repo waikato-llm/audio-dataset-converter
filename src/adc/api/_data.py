@@ -362,14 +362,14 @@ class AudioData(MetaDataHandler, LoggingHandler):
         """
         raise NotImplementedError()
 
-    def to_dict(self, source: bool = True, image: bool = True, annotation: bool = True, metadata: bool = True):
+    def to_dict(self, source: bool = True, audio: bool = True, annotation: bool = True, metadata: bool = True):
         """
         Returns itself as a dictionary that can be saved as JSON.
 
         :param source: whether to include the source
         :type source: bool
-        :param image: whether to include the audio
-        :type image: bool
+        :param audio: whether to include the audio
+        :type audio: bool
         :param annotation: whether to include the annotations
         :type annotation: bool
         :param metadata: whether to include the metadata
@@ -388,7 +388,7 @@ class AudioData(MetaDataHandler, LoggingHandler):
             result["duration"] = self.duration
         if self.sample_rate is not None:
             result["sample_rate"] = self.sample_rate
-        if image:
+        if audio:
             result["audio"] = base64.encodebytes(self.audio_bytes).decode("ascii")
         if annotation and (self.annotation is not None):
             result["annotation"] = self._annotation_to_dict()

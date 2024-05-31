@@ -19,7 +19,7 @@ class PythonFunctionFilter(Filter):
 
         :param function: the function to use (module_name:function_name)
         :type function: str
-        :param input_data_type: the type of output to generate from the images
+        :param input_data_type: the type of output to generate from the audio files
         :type input_data_type: str
         :param logger_name: the name to use for the logger
         :type logger_name: str

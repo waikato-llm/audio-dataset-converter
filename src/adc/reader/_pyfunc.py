@@ -19,7 +19,7 @@ class PythonFunctionReader(Reader):
         :param source_list: the file(s) with filename(s)
         :param function: the function to use (module_name:function_name)
         :type function: str
-        :param data_type: the type of output to generate from the images
+        :param data_type: the type of output to generate from the audio files
         :type data_type: str
         :param logger_name: the name to use for the logger
         :type logger_name: str
@@ -52,7 +52,7 @@ class PythonFunctionReader(Reader):
         :return: the description
         :rtype: str
         """
-        return "Loads the images via the declared function and forwards them as the specified data type. The function must take a string as input and output an iterable of audio containers matching the data type."
+        return "Loads the audio files via the declared function and forwards them as the specified data type. The function must take a string as input and output an iterable of audio containers matching the data type."
 
     def _create_argparser(self) -> argparse.ArgumentParser:
         """

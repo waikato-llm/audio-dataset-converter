@@ -2,14 +2,14 @@
 
 * generates: adc.api.AudioData
 
-Loads the images and forwards them as the specified data type.
+Loads the audio files and forwards them as the specified data type.
 
 ```
 usage: from-data [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                  [-N LOGGER_NAME] [-i [INPUT [INPUT ...]]]
                  [-I [INPUT_LIST [INPUT_LIST ...]]] -t {cl,sp}
 
-Loads the images and forwards them as the specified data type.
+Loads the audio files and forwards them as the specified data type.
 
 optional arguments:
   -h, --help            show this help message and exit

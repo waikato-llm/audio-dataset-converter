@@ -44,8 +44,8 @@ Tool for converting between audio dataset formats.
 readers (6):
    from-adams-ac, from-data, from-festvox-sp, from-pyfunc, 
    from-subdir-ac, poll-dir
-filters (13):
-   check-duplicate-filenames, discard-negatives, metadata, 
+filters (14):
+   check-duplicate-filenames, discard-negatives, max-records, metadata, 
    metadata-from-name, passthrough, pyfunc-filter, randomize-records, 
    record-window, rename, sample, split, strip-annotations, tee
 writers (6):
@@ -280,5 +280,4 @@ Each variable is a comma-separated list of `module_name:function_name`, defining
 
 ## Additional libraries
 
-* ...
-
+* [Faster whisper](https://github.com/waikato-datamining/audio-dataset-converter-faster-whisper)

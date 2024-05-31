@@ -45,7 +45,7 @@ class DataWriter(SplittableStreamWriter):
         :return: the description
         :rtype: str
         """
-        return "Saves just the images."
+        return "Saves just the audio files."
 
     def _create_argparser(self) -> argparse.ArgumentParser:
         """
@@ -55,7 +55,7 @@ class DataWriter(SplittableStreamWriter):
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-o", "--output", type=str, help="The directory to store the images in. Any defined splits get added beneath there.", required=True)
+        parser.add_argument("-o", "--output", type=str, help="The directory to store the audio files in. Any defined splits get added beneath there.", required=True)
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):

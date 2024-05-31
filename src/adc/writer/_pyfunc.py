@@ -16,7 +16,7 @@ class PythonFunctionWriter(SplittableStreamWriter):
 
         :param function: the function to use (module_name:function_name)
         :type function: str
-        :param data_type: the type of output to generate from the images
+        :param data_type: the type of output to generate from the audio files
         :type data_type: str
         :param split_names: the names of the splits, no splitting if None
         :type split_names: list
@@ -49,7 +49,7 @@ class PythonFunctionWriter(SplittableStreamWriter):
         :return: the description
         :rtype: str
         """
-        return "Processes the images of the specified data type via the declared Python function. The function must take an audio container as input (matching the data type class) and an optional 'split' string parameter."
+        return "Processes the audio files of the specified data type via the declared Python function. The function must take an audio container as input (matching the data type class) and an optional 'split' string parameter."
 
     def _create_argparser(self) -> argparse.ArgumentParser:
         """

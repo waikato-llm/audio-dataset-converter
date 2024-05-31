@@ -2,14 +2,14 @@
 
 * accepts: adc.api.AudioData
 
-Processes the images of the specified data type via the declared Python function. The function must take an audio container as input (matching the data type class) and an optional 'split' string parameter.
+Processes the audio files of the specified data type via the declared Python function. The function must take an audio container as input (matching the data type class) and an optional 'split' string parameter.
 
 ```
 usage: to-pyfunc [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                  [-N LOGGER_NAME] [-r SPLIT_RATIOS [SPLIT_RATIOS ...]]
                  [-n SPLIT_NAMES [SPLIT_NAMES ...]] -f FUNCTION -t {cl,sp}
 
-Processes the images of the specified data type via the declared Python
+Processes the audio files of the specified data type via the declared Python
 function. The function must take an audio container as input (matching the
 data type class) and an optional 'split' string parameter.
 

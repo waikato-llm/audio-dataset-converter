@@ -15,7 +15,7 @@ class FestVoxSpeechWriter(SplittableBatchWriter):
         """
         Initializes the writer.
 
-        :param output_dir: the output directory to save the image/report in
+        :param output_dir: the output directory to save the audio file/annotations in
         :type output_dir: str
         :param split_names: the names of the splits, no splitting if None
         :type split_names: list

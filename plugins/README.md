@@ -10,6 +10,7 @@
 ## Filters
 * [check-duplicate-filenames](check-duplicate-filenames.md)
 * [discard-negatives](discard-negatives.md)
+* [max-records](max-records.md)
 * [metadata](metadata.md)
 * [metadata-from-name](metadata-from-name.md)
 * [passthrough](passthrough.md)

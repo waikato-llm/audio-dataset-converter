@@ -2,16 +2,16 @@
 
 * generates: adc.api.AudioData
 
-Loads the images via the declared function and forwards them as the specified data type. The function must take a string as input and output an iterable of audio containers matching the data type.
+Loads the audio files via the declared function and forwards them as the specified data type. The function must take a string as input and output an iterable of audio containers matching the data type.
 
 ```
 usage: from-pyfunc [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    [-N LOGGER_NAME] [-i [INPUT [INPUT ...]]]
                    [-I [INPUT_LIST [INPUT_LIST ...]]] -f FUNCTION -t {cl,sp}
 
-Loads the images via the declared function and forwards them as the specified
-data type. The function must take a string as input and output an iterable of
-audio containers matching the data type.
+Loads the audio files via the declared function and forwards them as the
+specified data type. The function must take a string as input and output an
+iterable of audio containers matching the data type.
 
 optional arguments:
   -h, --help            show this help message and exit

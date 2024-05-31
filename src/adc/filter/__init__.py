@@ -1,5 +1,6 @@
 from ._check_duplicate_filenames import CheckDuplicateFilenames
 from ._discard_negatives import DiscardNegatives
+from ._max_records import MaxRecords
 from ._metadata import MetaData
 from ._metadata_from_name import MetaDataFromName
 from ._passthrough import PassThrough

@@ -17,7 +17,7 @@ class DataReader(Reader):
 
         :param source: the filename(s)
         :param source_list: the file(s) with filename(s)
-        :param data_type: the type of output to generate from the images
+        :param data_type: the type of output to generate from the audio files
         :type data_type: str
         :param logger_name: the name to use for the logger
         :type logger_name: str
@@ -48,7 +48,7 @@ class DataReader(Reader):
         :return: the description
         :rtype: str
         """
-        return "Loads the images and forwards them as the specified data type."
+        return "Loads the audio files and forwards them as the specified data type."
 
     def _create_argparser(self) -> argparse.ArgumentParser:
         """

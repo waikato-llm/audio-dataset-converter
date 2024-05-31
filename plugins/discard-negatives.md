@@ -3,13 +3,13 @@
 * accepts: adc.api.AudioData
 * generates: seppl.AnyData
 
-Discards negative images, i.e., ones without annotations.
+Discards negative audio files, i.e., ones without annotations.
 
 ```
 usage: discard-negatives [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                          [-N LOGGER_NAME]
 
-Discards negative images, i.e., ones without annotations.
+Discards negative audio files, i.e., ones without annotations.
 
 optional arguments:
   -h, --help            show this help message and exit

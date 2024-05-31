@@ -137,8 +137,8 @@ class CheckDuplicateFilenames(Filter):
                     raise Exception("Unhandled action: %s" % self.action)
 
             if item is not None:
-                self._names.add(item.image_name)
+                self._names.add(item.audio_name)
                 if item.source is not None:
-                    self._paths[item.image_name] = item.source
+                    self._paths[item.audio_name] = item.source
 
         return flatten_list(result)

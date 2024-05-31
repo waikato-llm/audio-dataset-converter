@@ -9,7 +9,7 @@ from adc.api import AudioData, flatten_list, make_list
 
 class DiscardNegatives(Filter):
     """
-    Discards negative images, i.e., ones without annotations.
+    Discards negative audio files, i.e., ones without annotations.
     """
 
     def __init__(self, logger_name: str = None, logging_level: str = LOGGING_WARNING):
@@ -39,7 +39,7 @@ class DiscardNegatives(Filter):
         :return: the description
         :rtype: str
         """
-        return "Discards negative images, i.e., ones without annotations."
+        return "Discards negative audio files, i.e., ones without annotations."
 
     def accepts(self) -> List:
         """
