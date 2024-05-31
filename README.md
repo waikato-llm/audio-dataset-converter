@@ -17,6 +17,14 @@ The latest code straight from the repository:
 pip install git+https://github.com/waikato-datamining/audio-dataset-converter.git
 ```
 
+
+## Docker
+
+Docker images are available as well. Please see the following page por more information:
+
+https://github.com/waikato-datamining/audio-dataset-converter-all/tree/main/docker
+
+
 ## Dataset formats
 
 The following dataset formats are supported:
