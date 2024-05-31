@@ -1,5 +1,6 @@
 from ._check_duplicate_filenames import CheckDuplicateFilenames
 from ._convert_to_mono import ConvertToMono
+from ._convert_to_wav import ConvertToWav
 from ._discard_negatives import DiscardNegatives
 from ._max_records import MaxRecords
 from ._metadata import MetaData
