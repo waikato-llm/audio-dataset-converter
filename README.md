@@ -237,6 +237,12 @@ You can find help screens for the plugins here:
 * [Generator plugins](generators/README.md) (used by `adc-exec`)
 
 
+## Command-line examples
+
+Examples can be found on the [audio-dataset-converter-examples](https://waikato-datamining.github.io/audio-dataset-converter-examples/)
+website.
+
+
 ## Class listers
 
 The *adc-dataset-converter* uses the *class lister registry* provided 
