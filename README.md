@@ -52,10 +52,11 @@ Tool for converting between audio dataset formats.
 readers (6):
    from-adams-ac, from-data, from-festvox-sp, from-pyfunc, 
    from-subdir-ac, poll-dir
-filters (14):
+filters (15):
    check-duplicate-filenames, discard-negatives, max-records, metadata, 
    metadata-from-name, passthrough, pyfunc-filter, randomize-records, 
-   record-window, rename, sample, split, strip-annotations, tee
+   record-window, rename, sample, split, strip-annotations, tee, 
+   to-mono
 writers (6):
    to-adams-ac, to-audioinfo, to-data, to-festvox-sp, to-pyfunc, 
    to-subdir-ac

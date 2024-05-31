@@ -12,3 +12,4 @@ from ._sample import Sample
 from ._split import Split
 from ._strip_annotations import StripAnnotations
 from ._tee import Tee
+from ._to_mono import ToMono
