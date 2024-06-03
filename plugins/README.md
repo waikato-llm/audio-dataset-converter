@@ -26,6 +26,7 @@
 * [split](split.md)
 * [strip-annotations](strip-annotations.md)
 * [tee](tee.md)
+* [time-stretch](time-stretch.md)
 
 ## Writers
 * [to-adams-ac](to-adams-ac.md)
