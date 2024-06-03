@@ -12,7 +12,7 @@ class PythonFunctionWriter(SplittableStreamWriter):
                  split_names: List[str] = None, split_ratios: List[int] = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
-        Initializes the reader.
+        Initializes the writer.
 
         :param function: the function to use (module_name:function_name)
         :type function: str

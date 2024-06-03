@@ -12,7 +12,7 @@ class SubDirWriter(SplittableStreamWriter):
                  split_names: List[str] = None, split_ratios: List[int] = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
-        Initializes the reader.
+        Initializes the writer.
 
         :param output_dir: the output directory to create the sub-dirs in
         :type output_dir: str
