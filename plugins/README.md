@@ -16,6 +16,7 @@
 * [metadata](metadata.md)
 * [metadata-from-name](metadata-from-name.md)
 * [passthrough](passthrough.md)
+* [pitch-shift](pitch-shift.md)
 * [pyfunc-filter](pyfunc-filter.md)
 * [randomize-records](randomize-records.md)
 * [record-window](record-window.md)
