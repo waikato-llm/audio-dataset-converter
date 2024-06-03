@@ -152,5 +152,5 @@ class TimeStretch(BaseAudioAugmentationFilter):
         else:
             # apply shift
             audio_new = librosa.effects.time_stretch(item.audio, rate=rate)
-            item_new = AudioData(audio=audio_new, audio_format=FORMAT_WAV, audio_name=audio_name, sample_rate=item.sample_rate, metadata=item.get_metadata(), annotation=item.annotation)
+            item_new = type(item)(audio=audio_new, audio_format=FORMAT_WAV, audio_name=audio_name, sample_rate=item.sample_rate, metadata=item.get_metadata(), annotation=item.annotation)
             return item_new

@@ -174,5 +174,5 @@ class PitchShift(BaseAudioAugmentationFilter):
         else:
             # apply shift
             audio_new = librosa.effects.pitch_shift(item.audio, sr=item.sample_rate, n_steps=steps, bins_per_octave=self.bins_per_octave, res_type=self.resample_type)
-            item_new = AudioData(audio=audio_new, audio_format=FORMAT_WAV, audio_name=audio_name, sample_rate=item.sample_rate, metadata=item.get_metadata(), annotation=item.annotation)
+            item_new = type(item)(audio=audio_new, audio_format=FORMAT_WAV, audio_name=audio_name, sample_rate=item.sample_rate, metadata=item.get_metadata(), annotation=item.annotation)
             return item_new
