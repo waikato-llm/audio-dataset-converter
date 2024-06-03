@@ -36,6 +36,7 @@ setup(
         "wai.common>=0.0.44",
         "librosa",
         "numpy",
+        "resampy",
         "soundfile",
         "tinytag",
     ],

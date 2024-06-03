@@ -20,6 +20,7 @@
 * [randomize-records](randomize-records.md)
 * [record-window](record-window.md)
 * [rename](rename.md)
+* [resample](resample.md)
 * [sample](sample.md)
 * [split](split.md)
 * [strip-annotations](strip-annotations.md)

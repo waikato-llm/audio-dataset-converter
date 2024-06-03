@@ -10,6 +10,7 @@ from ._pyfunc_filter import PythonFunctionFilter
 from ._randomize_records import RandomizeRecords
 from ._record_window import RecordWindow
 from ._rename import Rename
+from ._resample import Resample, RESAMPLE_TYPES
 from ._sample import Sample
 from ._split import Split
 from ._strip_annotations import StripAnnotations
