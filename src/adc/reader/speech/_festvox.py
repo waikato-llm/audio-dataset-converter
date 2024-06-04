@@ -80,6 +80,7 @@ class FestVoxSpeechReader(Reader):
         super()._apply_args(ns)
         self.source = ns.input
         self.source_list = ns.input_list
+        self.rel_path = ns.rel_path
 
     def generates(self) -> List:
         """
