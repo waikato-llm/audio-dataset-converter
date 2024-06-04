@@ -9,7 +9,7 @@ from adc.api import SpeechData, SplittableBatchWriter
 
 class FestVoxSpeechWriter(SplittableBatchWriter):
 
-    def __init__(self, output_dir: str = None,
+    def __init__(self, output_dir: str = None, rel_path: str = None,
                  split_names: List[str] = None, split_ratios: List[int] = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
@@ -17,6 +17,8 @@ class FestVoxSpeechWriter(SplittableBatchWriter):
 
         :param output_dir: the output directory to save the audio file/annotations in
         :type output_dir: str
+        :param rel_path: the path for the audio files relative to the annotation file
+        :type rel_path: str
         :param split_names: the names of the splits, no splitting if None
         :type split_names: list
         :param split_ratios: the integer ratios of the splits (must sum up to 100)
@@ -28,6 +30,7 @@ class FestVoxSpeechWriter(SplittableBatchWriter):
         """
         super().__init__(split_names=split_names, split_ratios=split_ratios, logger_name=logger_name, logging_level=logging_level)
         self.output_dir = output_dir
+        self.rel_path = rel_path
         self._splits = None
 
     def name(self) -> str:
@@ -57,6 +60,7 @@ class FestVoxSpeechWriter(SplittableBatchWriter):
         """
         parser = super()._create_argparser()
         parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.txt files in. Any defined splits get added beneath there.", required=True)
+        parser.add_argument("--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -68,6 +72,7 @@ class FestVoxSpeechWriter(SplittableBatchWriter):
         """
         super()._apply_args(ns)
         self.output_dir = ns.output
+        self.rel_path = ns.rel_path
 
     def accepts(self) -> List:
         """
@@ -88,6 +93,9 @@ class FestVoxSpeechWriter(SplittableBatchWriter):
             self.logger().info("Creating output dir: %s" % self.output_dir)
             os.makedirs(self.output_dir)
 
+        if self.rel_path is None:
+            self.rel_path = "."
+
         self._splits = dict()
 
     def write_batch(self, data: Iterable):
@@ -107,9 +115,9 @@ class FestVoxSpeechWriter(SplittableBatchWriter):
                 os.makedirs(sub_dir)
 
             # write audio
-            path = os.path.join(sub_dir, item.audio_name)
+            path = os.path.join(sub_dir, self.rel_path, item.audio_name)
             self.logger().info("Writing audio to: %s" % path)
-            item.save_audio(path)
+            item.save_audio(path, make_dirs=True)
 
             # append annotations
             if sub_dir not in self._splits:
