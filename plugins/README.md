@@ -2,6 +2,7 @@
 ## Readers
 * [from-adams-ac](from-adams-ac.md)
 * [from-adams-sp](from-adams-sp.md)
+* [from-commonvoice-sp](from-commonvoice-sp.md)
 * [from-data](from-data.md)
 * [from-festvox-sp](from-festvox-sp.md)
 * [from-pyfunc](from-pyfunc.md)
@@ -34,6 +35,7 @@
 * [to-adams-ac](to-adams-ac.md)
 * [to-adams-sp](to-adams-sp.md)
 * [to-audioinfo](to-audioinfo.md)
+* [to-commonvoice-sp](to-commonvoice-sp.md)
 * [to-data](to-data.md)
 * [to-festvox-sp](to-festvox-sp.md)
 * [to-pyfunc](to-pyfunc.md)

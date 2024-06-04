@@ -5,4 +5,4 @@ Filters can be supplied as well, e.g., for cleaning up the data.
 Dataset formats:
 
 - classification: ADAMS (r/w), sub-dir (r/w)
-- speech: ADAMS (r/w), Festvox (r/w)
+- speech: ADAMS (r/w), CommonVoice (r/w), Festvox (r/w)
