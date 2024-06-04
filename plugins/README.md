@@ -1,6 +1,7 @@
 # audio-dataset-converter plugins
 ## Readers
 * [from-adams-ac](from-adams-ac.md)
+* [from-adams-sp](from-adams-sp.md)
 * [from-data](from-data.md)
 * [from-festvox-sp](from-festvox-sp.md)
 * [from-pyfunc](from-pyfunc.md)
@@ -31,6 +32,7 @@
 
 ## Writers
 * [to-adams-ac](to-adams-ac.md)
+* [to-adams-sp](to-adams-sp.md)
 * [to-audioinfo](to-audioinfo.md)
 * [to-data](to-data.md)
 * [to-festvox-sp](to-festvox-sp.md)

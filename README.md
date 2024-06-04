@@ -33,6 +33,7 @@ The following dataset formats are supported:
 |:---------------|:------------------------------|:-----|:------| 
 | Classification | [ADAMS](formats/adams.md)     | Y    | Y     | 
 | Classification | [subdir](formats/subdir.md)   | Y    | Y     | 
+| Speech         | [ADAMS](formats/adams.md)     | Y    | Y     | 
 | Speech         | [Festvox](formats/festvox.md) | Y    | Y     | 
 
 
@@ -49,18 +50,18 @@ usage: adc-convert [-h|--help|--help-all|--help-plugin NAME] [-u INTERVAL]
 
 Tool for converting between audio dataset formats.
 
-readers (6):
-   from-adams-ac, from-data, from-festvox-sp, from-pyfunc, 
-   from-subdir-ac, poll-dir
+readers (7):
+   from-adams-ac, from-adams-sp, from-data, from-festvox-sp, 
+   from-pyfunc, from-subdir-ac, poll-dir
 filters (20):
    check-duplicate-filenames, convert-to-mono, convert-to-wav, 
    discard-negatives, max-records, metadata, metadata-from-name, 
    passthrough, pitch-shift, pyfunc-filter, randomize-records, 
    record-window, rename, resample, sample, split, strip-annotations, 
    tee, time-stretch, trim-silence
-writers (6):
-   to-adams-ac, to-audioinfo, to-data, to-festvox-sp, to-pyfunc, 
-   to-subdir-ac
+writers (7):
+   to-adams-ac, to-adams-sp, to-audioinfo, to-data, to-festvox-sp, 
+   to-pyfunc, to-subdir-ac
 
 optional arguments:
   -h, --help            show basic help message and exit
