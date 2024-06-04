@@ -31,7 +31,7 @@ FORMAT_EXTENSIONS = {
 }
 
 
-def determine_audio_format(s: str) -> Optional[str]:
+def determine_audio_format_from_ext(s: str) -> Optional[str]:
     """
     Determines the file format from the extension.
 
@@ -44,6 +44,27 @@ def determine_audio_format(s: str) -> Optional[str]:
     for f, e in FORMAT_EXTENSIONS.items():
         if s.endswith(e):
             return f
+    return None
+
+
+def determine_audio_format_from_bytes(b: bytes) -> Optional[str]:
+    """
+    Determines the file format from the binary audio data.
+
+    :param b: the bytes of the audio file
+    :type b: bytes
+    :return: the file format, None if failed to determine
+    :rtype: str
+    """
+    if len(b) > 4:
+        if b[0:3].decode("utf-8") == "ID3":
+            return FORMAT_MP3
+        elif b[0:4].decode("utf-8") == "RIFF":
+            return FORMAT_WAV
+        elif b[0:4].decode("utf-8") == "OggS":
+            return FORMAT_OGG
+        elif b[0:4].decode("utf-8") == "fLaC":
+            return FORMAT_FLAC
     return None
 
 
@@ -108,14 +129,14 @@ class AudioData(MetaDataHandler, LoggingHandler):
         if self._audio is not None:
             return self._audio
         if (self._data is not None) and (self._audio_name is not None):
-            audio_format = determine_audio_format(self._audio_name)
+            audio_format = determine_audio_format_from_ext(self._audio_name)
             self._audio, self._sample_rate = load_audio_from_bytes(self._data, audio_format)
             self._audio_format = audio_format
             return self._audio
         if self._source is not None:
             self._audio_name = os.path.basename(self._source)
             self._audio, self._sample_rate = load_audio_from_file(self._source)
-            self._audio_format = determine_audio_format(self._source)
+            self._audio_format = determine_audio_format_from_ext(self._source)
             return self._audio
         return None
 
@@ -128,7 +149,7 @@ class AudioData(MetaDataHandler, LoggingHandler):
         """
         buffer = io.BytesIO()
         if self.audio is not None:
-            sf.write(buffer, self.audio, self.sample_rate)
+            sf.write(buffer, self.audio, self.sample_rate, format=self.audio_format)
         return buffer.getvalue()
 
     @property
@@ -166,7 +187,7 @@ class AudioData(MetaDataHandler, LoggingHandler):
         """
         if self._audio_format is None:
             if self._audio_name is not None:
-                self._audio_format = determine_audio_format(self._audio_name)
+                self._audio_format = determine_audio_format_from_ext(self._audio_name)
         return self._audio_format
 
     def _read_tags(self):

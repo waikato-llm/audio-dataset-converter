@@ -299,4 +299,5 @@ Each variable is a comma-separated list of `module_name:function_name`, defining
 ## Additional libraries
 
 * [Faster whisper](https://github.com/waikato-datamining/audio-dataset-converter-faster-whisper)
+* [Redis](https://github.com/waikato-datamining/audio-dataset-converter-redis)
 * [Visualization](https://github.com/waikato-datamining/audio-dataset-converter-visualization)
