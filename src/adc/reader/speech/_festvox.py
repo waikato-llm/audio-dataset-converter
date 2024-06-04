@@ -65,8 +65,8 @@ class FestVoxSpeechReader(Reader):
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-i", "--input", type=str, help="Path to the report file(s) to read; glob syntax is supported", required=False, nargs="*")
-        parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the JSON files to use", required=False, nargs="*")
+        parser.add_argument("-i", "--input", type=str, help="Path to the text file(s) to read; glob syntax is supported", required=False, nargs="*")
+        parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the text files to use", required=False, nargs="*")
         parser.add_argument("-r", "--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
         return parser
 
