@@ -14,7 +14,7 @@ pip install audio-dataset-converter
 The latest code straight from the repository:
 
 ```bash
-pip install git+https://github.com/waikato-datamining/audio-dataset-converter.git
+pip install git+https://github.com/waikato-llm/audio-dataset-converter.git
 ```
 
 
@@ -22,7 +22,7 @@ pip install git+https://github.com/waikato-datamining/audio-dataset-converter.gi
 
 Docker images are available as well. Please see the following page por more information:
 
-https://github.com/waikato-datamining/audio-dataset-converter-all/tree/main/docker
+https://github.com/waikato-llm/audio-dataset-converter-all/tree/main/docker
 
 
 ## Dataset formats
@@ -298,6 +298,6 @@ Each variable is a comma-separated list of `module_name:function_name`, defining
 
 ## Additional libraries
 
-* [Faster whisper](https://github.com/waikato-datamining/audio-dataset-converter-faster-whisper)
-* [Redis](https://github.com/waikato-datamining/audio-dataset-converter-redis)
-* [Visualization](https://github.com/waikato-datamining/audio-dataset-converter-visualization)
+* [Faster whisper](https://github.com/waikato-llm/audio-dataset-converter-faster-whisper)
+* [Redis](https://github.com/waikato-llm/audio-dataset-converter-redis)
+* [Visualization](https://github.com/waikato-llm/audio-dataset-converter-visualization)
