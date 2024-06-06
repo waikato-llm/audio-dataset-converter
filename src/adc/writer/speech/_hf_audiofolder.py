@@ -6,10 +6,10 @@ from typing import List, Iterable
 from wai.logging import LOGGING_WARNING
 
 from adc.api import SpeechData, SplittableBatchWriter
-from adc.reader.speech import COMONVOICE_EXPECTED_HEADER, CommonVoiceDialect
+from adc.reader.speech import HF_AUDIOFOLDER_EXPECTED_HEADER
 
 
-class CommonVoiceSpeechWriter(SplittableBatchWriter):
+class HuggingFaceAudioFolderSpeechWriter(SplittableBatchWriter):
 
     def __init__(self, output_dir: str = None, rel_path: str = None,
                  split_names: List[str] = None, split_ratios: List[int] = None,
@@ -42,7 +42,7 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter):
         :return: the name
         :rtype: str
         """
-        return "to-commonvoice-sp"
+        return "to-hf-audiofolder-sp"
 
     def description(self) -> str:
         """
@@ -51,7 +51,7 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter):
         :return: the description
         :rtype: str
         """
-        return "Saves the speech data in CommonVoice format (https://commonvoice.mozilla.org/)."
+        return "Saves the speech data in the Huggingface AudioFolder format (https://huggingface.co/docs/datasets/audio_dataset#audiofolder)."
 
     def _create_argparser(self) -> argparse.ArgumentParser:
         """
@@ -61,7 +61,7 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter):
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.txt files in. Any defined splits get added beneath there.", required=True)
+        parser.add_argument("-o", "--output", type=str, help="The directory to store the data. Any defined splits get added beneath there.", required=True)
         parser.add_argument("--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
         return parser
 
@@ -124,18 +124,13 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter):
             # append annotations
             if sub_dir not in self._splits:
                 self._splits[sub_dir] = []
+            file_name = item.audio_name
+            if (len(self.rel_path) > 0) and (self.rel_path != "."):
+                file_name = self.rel_path + "/" + file_name
             if item.has_annotation():
                 row = {
-                    "client_id": "",
-                    "path": item.audio_name,
-                    "sentence": item.annotation,
-                    "up_votes": 0,
-                    "down_votes": 0,
-                    "age": None,
-                    "gender": None,
-                    "accents": None,
-                    "locale": "",
-                    "segment": ""
+                    "file_name": file_name,
+                    "transcription": item.annotation,
                 }
                 self._splits[sub_dir].append(row)
 
@@ -147,9 +142,9 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter):
 
         for sub_dir, annotations in self._splits.items():
             # save annotations
-            path = os.path.join(sub_dir, "annotations.tsv")
+            path = os.path.join(sub_dir, "metadata.csv")
             with open(path, "w") as fp:
-                csv_writer = csv.DictWriter(fp, COMONVOICE_EXPECTED_HEADER.split("\t"), dialect=CommonVoiceDialect)
+                csv_writer = csv.DictWriter(fp, HF_AUDIOFOLDER_EXPECTED_HEADER.split(","))
                 csv_writer.writeheader()
                 for row in annotations:
                     csv_writer.writerow(row)

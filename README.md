@@ -29,13 +29,14 @@ https://github.com/waikato-llm/audio-dataset-converter-all/tree/main/docker
 
 The following dataset formats are supported:
 
-| Domain         | Format                                | Read | Write | 
-|:---------------|:--------------------------------------|:-----|:------| 
-| Classification | [ADAMS](formats/adams.md)             | Y    | Y     | 
-| Classification | [subdir](formats/subdir.md)           | Y    | Y     | 
-| Speech         | [ADAMS](formats/adams.md)             | Y    | Y     | 
-| Speech         | [CommonVoice](formats/commonvoice.md) | Y    | Y     | 
-| Speech         | [Festvox](formats/festvox.md)         | Y    | Y     | 
+| Domain         | Format                                                       | Read | Write | 
+|:---------------|:-------------------------------------------------------------|:-----|:------| 
+| Classification | [ADAMS](formats/adams.md)                                    | Y    | Y     | 
+| Classification | [subdir](formats/subdir.md)                                  | Y    | Y     | 
+| Speech         | [ADAMS](formats/adams.md)                                    | Y    | Y     | 
+| Speech         | [CommonVoice](formats/commonvoice.md)                        | Y    | Y     | 
+| Speech         | [Festvox](formats/festvox.md)                                | Y    | Y     | 
+| Speech         | [Hugginface AudioFolder](formats/huggingface_audiofolder.md) | Y    | Y     | 
 
 
 ## Tools

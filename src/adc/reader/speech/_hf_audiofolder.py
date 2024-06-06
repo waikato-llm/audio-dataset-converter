@@ -3,40 +3,23 @@ import csv
 import os
 from typing import List, Iterable, Union
 
-from seppl.io import locate_files
 from wai.logging import LOGGING_WARNING
+from seppl.io import locate_files
 
-from adc.api import Reader
-from adc.api import SpeechData
+from adc.api import Reader, SpeechData
 
-COMONVOICE_EXPECTED_HEADER = "client_id	path	sentence	up_votes	down_votes	age	gender	accents	locale	segment"
-COMONVOICE_EXPECTED_HEADER_OLD = "client_id	path	sentence	up_votes	down_votes	age	gender	accent	locale	segment"
-
-
-class CommonVoiceDialect(csv.Dialect):
-    """
-    The dialect of Common-Voice TSV files.
-    """
-    delimiter = '\t'
-    quotechar = None
-    escapechar = None
-    doublequote = None
-    skipinitialspace = False
-    lineterminator = '\n'
-    quoting = csv.QUOTE_NONE
+HF_AUDIOFOLDER_EXPECTED_HEADER = "file_name,transcription"
 
 
-class CommonVoiceSpeechReader(Reader):
+class HuggingFaceAudioFolderSpeechReader(Reader):
 
     def __init__(self, source: Union[str, List[str]] = None, source_list: Union[str, List[str]] = None,
-                 rel_path: str = None, logger_name: str = None, logging_level: str = LOGGING_WARNING):
+                 logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
         Initializes the reader.
 
         :param source: the filename(s)
         :param source_list: the file(s) with filename(s)
-        :param rel_path: the relative path to the audio files
-        :type rel_path: str
         :param logger_name: the name to use for the logger
         :type logger_name: str
         :param logging_level: the logging level to use
@@ -45,7 +28,6 @@ class CommonVoiceSpeechReader(Reader):
         super().__init__(logger_name=logger_name, logging_level=logging_level)
         self.source = source
         self.source_list = source_list
-        self.rel_path = rel_path
         self._inputs = None
         self._current_input = None
 
@@ -56,7 +38,7 @@ class CommonVoiceSpeechReader(Reader):
         :return: the name
         :rtype: str
         """
-        return "from-commonvoice-sp"
+        return "from-hf-audiofolder-sp"
 
     def description(self) -> str:
         """
@@ -65,7 +47,7 @@ class CommonVoiceSpeechReader(Reader):
         :return: the description
         :rtype: str
         """
-        return "Reads the speech data in CommonVoice format (https://commonvoice.mozilla.org/)."
+        return "Reads the speech data in the Huggingface AudioFolder format (https://huggingface.co/docs/datasets/audio_dataset#audiofolder)."
 
     def _create_argparser(self) -> argparse.ArgumentParser:
         """
@@ -77,7 +59,6 @@ class CommonVoiceSpeechReader(Reader):
         parser = super()._create_argparser()
         parser.add_argument("-i", "--input", type=str, help="Path to the TSV file(s) to read; glob syntax is supported", required=False, nargs="*")
         parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the TSV files to use", required=False, nargs="*")
-        parser.add_argument("-r", "--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -90,7 +71,6 @@ class CommonVoiceSpeechReader(Reader):
         super()._apply_args(ns)
         self.source = ns.input
         self.source_list = ns.input_list
-        self.rel_path = ns.rel_path
 
     def generates(self) -> List:
         """
@@ -107,8 +87,6 @@ class CommonVoiceSpeechReader(Reader):
         """
         super().initialize()
         self._inputs = locate_files(self.source, input_lists=self.source_list, fail_if_empty=True)
-        if self.rel_path is None:
-            self.rel_path = "."
 
     def read(self) -> Iterable:
         """
@@ -123,31 +101,25 @@ class CommonVoiceSpeechReader(Reader):
 
         basedir = os.path.dirname(self.session.current_input)
 
-        with open(self.session.current_input, 'r', newline='') as fp:
+        with open(os.path.join(self.session.current_input), 'r', newline='') as fp:
             # Consume the header
-            header = fp.readline()
+            header = fp.readline().strip()
 
             # is the header as expected?
-            if header == COMONVOICE_EXPECTED_HEADER + '\n':
-                reader = csv.DictReader(fp,
-                                        COMONVOICE_EXPECTED_HEADER.split('\t'),
-                                        dialect=CommonVoiceDialect)
-            elif header == COMONVOICE_EXPECTED_HEADER_OLD + '\n':
-                reader = csv.DictReader(fp,
-                                        COMONVOICE_EXPECTED_HEADER_OLD.split('\t'),
-                                        dialect=CommonVoiceDialect)
+            if header == HF_AUDIOFOLDER_EXPECTED_HEADER:
+                reader = csv.DictReader(fp, HF_AUDIOFOLDER_EXPECTED_HEADER.split(','))
             else:
-                raise ValueError(f"Expected header: {COMONVOICE_EXPECTED_HEADER} or {COMONVOICE_EXPECTED_HEADER_OLD}\n"
+                raise ValueError(f"Expected header: {HF_AUDIOFOLDER_EXPECTED_HEADER}\n"
                                  f"Seen header: {header}")
 
             # Yield rows from the file
             for row in reader:
-                audio = os.path.join(basedir, self.rel_path, row["path"])
+                audio = os.path.join(basedir, row["file_name"])
                 if not os.path.exists(audio):
                     self.logger().warning("Audio file not found: %s" % audio)
                     yield None
 
-                yield SpeechData(source=audio, annotation=row['sentence'])
+                yield SpeechData(source=audio, annotation=row['transcription'])
 
     def has_finished(self) -> bool:
         """
