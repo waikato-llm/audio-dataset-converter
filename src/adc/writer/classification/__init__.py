@@ -1,2 +1,3 @@
 from ._adams import AdamsAudioClassificationWriter
 from ._subdir import SubDirAudioClassificationWriter
+from ._txt import TxtAudioClassificationWriter

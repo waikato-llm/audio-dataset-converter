@@ -33,6 +33,7 @@ The following dataset formats are supported:
 |:---------------|:-------------------------------------------------------------|:-----|:------| 
 | Classification | [ADAMS](formats/adams.md)                                    | Y    | Y     | 
 | Classification | [subdir](formats/subdir.md)                                  | Y    | Y     | 
+| Classification | [TXT](formats/txt.md)                                        | Y    | Y     | 
 | Speech         | [ADAMS](formats/adams.md)                                    | Y    | Y     | 
 | Speech         | [CommonVoice](formats/commonvoice.md)                        | Y    | Y     | 
 | Speech         | [Festvox](formats/festvox.md)                                | Y    | Y     | 
@@ -53,18 +54,30 @@ usage: adc-convert [-h|--help|--help-all|--help-plugin NAME] [-u INTERVAL]
 
 Tool for converting between audio dataset formats.
 
-readers (8):
+readers (11):
    from-adams-ac, from-adams-sp, from-commonvoice-sp, from-data, 
-   from-festvox-sp, from-pyfunc, from-subdir-ac, poll-dir
+   from-festvox-sp, from-hf-audiofolder-sp, from-pyfunc, from-subdir-ac, 
+   from-txt-ac, from-txt-sp, poll-dir
 filters (20):
    check-duplicate-filenames, convert-to-mono, convert-to-wav, 
    discard-negatives, max-records, metadata, metadata-from-name, 
    passthrough, pitch-shift, pyfunc-filter, randomize-records, 
    record-window, rename, resample, sample, split, strip-annotations, 
    tee, time-stretch, trim-silence
-writers (8):
+writers (11):
    to-adams-ac, to-adams-sp, to-audioinfo, to-commonvoice-sp, to-data, 
-   to-festvox-sp, to-pyfunc, to-subdir-ac
+   to-festvox-sp, to-hf-audiofolder-sp, to-pyfunc, to-subdir-ac, 
+   to-txt-ac, to-txt-sp
+
+optional arguments:
+  -h, --help            show basic help message and exit
+  --help-all            show basic help message plus help on all plugins and exit
+  --help-plugin NAME    show help message for plugin NAME and exit
+  -u INTERVAL, --update_interval INTERVAL
+                        outputs the progress every INTERVAL records (default: 1000)
+  -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
+                        the logging level to use (default: WARN)
+  -b, --force_batch     processes the data in batches
 
 optional arguments:
   -h, --help            show basic help message and exit
