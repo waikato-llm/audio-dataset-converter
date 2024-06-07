@@ -37,6 +37,7 @@ The following dataset formats are supported:
 | Speech         | [CommonVoice](formats/commonvoice.md)                        | Y    | Y     | 
 | Speech         | [Festvox](formats/festvox.md)                                | Y    | Y     | 
 | Speech         | [Hugginface AudioFolder](formats/huggingface_audiofolder.md) | Y    | Y     | 
+| Speech         | [TXT](formats/txt.md)                                        | Y    | Y     | 
 
 
 ## Tools

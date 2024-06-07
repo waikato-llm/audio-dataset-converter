@@ -8,6 +8,7 @@
 * [from-hf-audiofolder-sp](from-hf-audiofolder-sp.md)
 * [from-pyfunc](from-pyfunc.md)
 * [from-subdir-ac](from-subdir-ac.md)
+* [from-txt-sp](from-txt-sp.md)
 * [poll-dir](poll-dir.md)
 
 ## Filters
@@ -42,3 +43,4 @@
 * [to-hf-audiofolder-sp](to-hf-audiofolder-sp.md)
 * [to-pyfunc](to-pyfunc.md)
 * [to-subdir-ac](to-subdir-ac.md)
+* [to-txt-sp](to-txt-sp.md)
