@@ -1,2 +1,2 @@
 from ._adams import AdamsAudioClassificationReader
-from ._subdir import SubDirReader
+from ._subdir import SubDirAudioClassificationReader

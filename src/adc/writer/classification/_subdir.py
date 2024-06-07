@@ -6,7 +6,7 @@ from wai.logging import LOGGING_WARNING
 from adc.api import AudioClassificationData, SplittableStreamWriter, make_list
 
 
-class SubDirWriter(SplittableStreamWriter):
+class SubDirAudioClassificationWriter(SplittableStreamWriter):
 
     def __init__(self, output_dir: str = None,
                  split_names: List[str] = None, split_ratios: List[int] = None,

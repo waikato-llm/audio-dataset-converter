@@ -6,7 +6,7 @@ from wai.logging import LOGGING_WARNING
 from adc.api import AudioClassificationData, Reader
 
 
-class SubDirReader(Reader):
+class SubDirAudioClassificationReader(Reader):
 
     def __init__(self, source: Union[str, List[str]] = None, source_list: Union[str, List[str]] = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
