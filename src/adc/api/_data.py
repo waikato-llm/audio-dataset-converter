@@ -336,7 +336,8 @@ class AudioData(MetaDataHandler, LoggingHandler):
         """
         self._metadata = metadata
 
-    def duplicate(self, source: str = None, name: str = None, data: bytes = None,
+    def duplicate(self, source: str = None, force_no_source: bool = None,
+                  name: str = None, data: bytes = None,
                   audio: np.ndarray = None, audio_format: str = None,
                   duration: float = None, sample_rate: float = None,
                   metadata: Dict = None, annotation=None):
@@ -345,6 +346,8 @@ class AudioData(MetaDataHandler, LoggingHandler):
 
         :param source: the source to use
         :type source: str
+        :param force_no_source: if True, then source is set to None
+        :type force_no_source: bool
         :param name: the name to use
         :type name: str
         :param data: the data to use
@@ -362,8 +365,11 @@ class AudioData(MetaDataHandler, LoggingHandler):
         :param annotation: the annotations
         :return: the duplicated container
         """
-        if source is None:
-            source = self._source
+        if (force_no_source is not None) and force_no_source:
+            source = None
+        else:
+            if source is None:
+                source = self._source
         if name is None:
             name = self._audio_name
         if (data is None) and (self._data is not None):
