@@ -4,12 +4,12 @@ from typing import List
 
 from wai.logging import LOGGING_WARNING
 
-from adc.api import AudioClassificationData, SplittableStreamWriter, make_list
+from adc.api import AudioClassificationData, SplittableStreamWriter, make_list, AnnotationsOnlyWriter, add_annotations_only_param
 
 
-class TxtAudioClassificationWriter(SplittableStreamWriter):
+class TxtAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter):
 
-    def __init__(self, output_dir: str = None,
+    def __init__(self, output_dir: str = None, annotations_only: bool = None,
                  split_names: List[str] = None, split_ratios: List[int] = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
@@ -17,6 +17,8 @@ class TxtAudioClassificationWriter(SplittableStreamWriter):
 
         :param output_dir: the output directory to save the audio file/report in
         :type output_dir: str
+        :param annotations_only: whether to output only the annotations and not the images
+        :type annotations_only: bool
         :param split_names: the names of the splits, no splitting if None
         :type split_names: list
         :param split_ratios: the integer ratios of the splits (must sum up to 100)
@@ -28,6 +30,7 @@ class TxtAudioClassificationWriter(SplittableStreamWriter):
         """
         super().__init__(split_names=split_names, split_ratios=split_ratios, logger_name=logger_name, logging_level=logging_level)
         self.output_dir = output_dir
+        self.annotations_only = annotations_only
 
     def name(self) -> str:
         """
@@ -56,6 +59,7 @@ class TxtAudioClassificationWriter(SplittableStreamWriter):
         """
         parser = super()._create_argparser()
         parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.report files in. Any defined splits get added beneath there.", required=True)
+        add_annotations_only_param(parser)
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -67,6 +71,7 @@ class TxtAudioClassificationWriter(SplittableStreamWriter):
         """
         super()._apply_args(ns)
         self.output_dir = ns.output
+        self.annotations_only = ns.annotations_only
 
     def accepts(self) -> List:
         """
@@ -85,6 +90,8 @@ class TxtAudioClassificationWriter(SplittableStreamWriter):
         if not os.path.exists(self.output_dir):
             self.logger().info("Creating output dir: %s" % self.output_dir)
             os.makedirs(self.output_dir)
+        if self.annotations_only is None:
+            self.annotations_only = False
 
     def write_stream(self, data):
         """
@@ -102,8 +109,9 @@ class TxtAudioClassificationWriter(SplittableStreamWriter):
                 os.makedirs(sub_dir)
 
             path = os.path.join(sub_dir, item.audio_name)
-            self.logger().info("Writing audio file to: %s" % path)
-            item.save_audio(path)
+            if not self.annotations_only:
+                self.logger().info("Writing audio file to: %s" % path)
+                item.save_audio(path)
 
             if item.has_annotation:
                 path = os.path.splitext(path)[0] + ".txt"

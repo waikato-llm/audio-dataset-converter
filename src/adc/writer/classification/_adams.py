@@ -4,12 +4,12 @@ from typing import List
 
 from wai.logging import LOGGING_WARNING
 from wai.common.file.report import Report, Field, save
-from adc.api import AudioClassificationData, SplittableStreamWriter, make_list
+from adc.api import AudioClassificationData, SplittableStreamWriter, make_list, AnnotationsOnlyWriter, add_annotations_only_param
 
 
-class AdamsAudioClassificationWriter(SplittableStreamWriter):
+class AdamsAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter):
 
-    def __init__(self, output_dir: str = None, class_field: str = None,
+    def __init__(self, output_dir: str = None, class_field: str = None, annotations_only: bool = None,
                  split_names: List[str] = None, split_ratios: List[int] = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
@@ -19,6 +19,8 @@ class AdamsAudioClassificationWriter(SplittableStreamWriter):
         :type output_dir: str
         :param class_field: the name of the field to store the classification label in
         :type class_field: str
+        :param annotations_only: whether to output only the annotations and not the images
+        :type annotations_only: bool
         :param split_names: the names of the splits, no splitting if None
         :type split_names: list
         :param split_ratios: the integer ratios of the splits (must sum up to 100)
@@ -31,6 +33,7 @@ class AdamsAudioClassificationWriter(SplittableStreamWriter):
         super().__init__(split_names=split_names, split_ratios=split_ratios, logger_name=logger_name, logging_level=logging_level)
         self.output_dir = output_dir
         self.class_field = class_field
+        self.annotations_only = annotations_only
 
     def name(self) -> str:
         """
@@ -60,6 +63,7 @@ class AdamsAudioClassificationWriter(SplittableStreamWriter):
         parser = super()._create_argparser()
         parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.report files in. Any defined splits get added beneath there.", required=True)
         parser.add_argument("-c", "--class_field", metavar="FIELD", type=str, default=None, help="The report field containing the audio classification label", required=True)
+        add_annotations_only_param(parser)
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -72,6 +76,7 @@ class AdamsAudioClassificationWriter(SplittableStreamWriter):
         super()._apply_args(ns)
         self.output_dir = ns.output
         self.class_field = ns.class_field
+        self.annotations_only = ns.annotations_only
 
     def accepts(self) -> List:
         """
@@ -90,6 +95,8 @@ class AdamsAudioClassificationWriter(SplittableStreamWriter):
         if not os.path.exists(self.output_dir):
             self.logger().info("Creating output dir: %s" % self.output_dir)
             os.makedirs(self.output_dir)
+        if self.annotations_only is None:
+            self.annotations_only = False
 
     def write_stream(self, data):
         """
@@ -117,8 +124,9 @@ class AdamsAudioClassificationWriter(SplittableStreamWriter):
                     report.set_value(Field.parse_field(k), item.get_metadata()[k])
 
             path = os.path.join(sub_dir, item.audio_name)
-            self.logger().info("Writing audio file to: %s" % path)
-            item.save_audio(path)
+            if not self.annotations_only:
+                self.logger().info("Writing audio file to: %s" % path)
+                item.save_audio(path)
 
             if not empty:
                 path = os.path.splitext(path)[0] + ".report"
