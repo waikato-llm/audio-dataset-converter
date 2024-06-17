@@ -284,7 +284,7 @@ class AudioData(MetaDataHandler, LoggingHandler):
         :return: whether the file was saved
         :rtype: bool
         """
-        if os.path.samefile(path, self._source):
+        if os.path.exists(path) and os.path.exists(self._source) and os.path.samefile(path, self._source):
             self.logger().warning("Input/output audio file are the same, skipping!")
             return False
         if make_dirs:
