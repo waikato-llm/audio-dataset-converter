@@ -57,8 +57,8 @@ class HuggingFaceAudioFolderSpeechReader(Reader):
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-i", "--input", type=str, help="Path to the TSV file(s) to read; glob syntax is supported", required=False, nargs="*")
-        parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the TSV files to use", required=False, nargs="*")
+        parser.add_argument("-i", "--input", type=str, help="Path to the CSV file(s) to read; glob syntax is supported", required=False, nargs="*")
+        parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the CSV files to use", required=False, nargs="*")
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -86,7 +86,7 @@ class HuggingFaceAudioFolderSpeechReader(Reader):
         Initializes the processing, e.g., for opening files or databases.
         """
         super().initialize()
-        self._inputs = locate_files(self.source, input_lists=self.source_list, fail_if_empty=True)
+        self._inputs = locate_files(self.source, input_lists=self.source_list, fail_if_empty=True, default_glob="*.csv")
 
     def read(self) -> Iterable:
         """

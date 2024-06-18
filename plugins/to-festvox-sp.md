@@ -8,7 +8,7 @@ Saves the speech data in Festvox format.
 usage: to-festvox-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                      [-N LOGGER_NAME] [-r SPLIT_RATIOS [SPLIT_RATIOS ...]]
                      [-n SPLIT_NAMES [SPLIT_NAMES ...]] -o OUTPUT
-                     [--rel_path REL_PATH]
+                     [--rel_path REL_PATH] [--annotations_only]
 
 Saves the speech data in Festvox format.
 
@@ -30,4 +30,6 @@ optional arguments:
                         defined splits get added beneath there. (default:
                         None)
   --rel_path REL_PATH   The relative path to the audio files. (default: .)
+  --annotations_only    Outputs only the annotations and skips the audio file.
+                        (default: False)
 ```
