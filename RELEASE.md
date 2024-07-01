@@ -35,3 +35,9 @@ Steps:
 * enter release notes, i.e., significant changes since last release
 * upload `audio-dataset-converter-X.Y.Z.tar.gz` previously generated with `setup.py`
 * publish
+
+
+audio-dataset-converter-all
+===========================
+
+* increment minimum version to newly released one in `setup.py`
