@@ -28,7 +28,7 @@
 * [rename](rename.md)
 * [resample](resample.md)
 * [sample](sample.md)
-* [split](split.md)
+* [split-records](split-records.md)
 * [strip-annotations](strip-annotations.md)
 * [tee](tee.md)
 * [time-stretch](time-stretch.md)
