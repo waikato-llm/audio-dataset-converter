@@ -62,22 +62,12 @@ filters (20):
    check-duplicate-filenames, convert-to-mono, convert-to-wav, 
    discard-negatives, max-records, metadata, metadata-from-name, 
    passthrough, pitch-shift, pyfunc-filter, randomize-records, 
-   record-window, rename, resample, sample, split, strip-annotations, 
-   tee, time-stretch, trim-silence
+   record-window, rename, resample, sample, split-records, 
+   strip-annotations, tee, time-stretch, trim-silence
 writers (11):
    to-adams-ac, to-adams-sp, to-audioinfo, to-commonvoice-sp, to-data, 
    to-festvox-sp, to-hf-audiofolder-sp, to-pyfunc, to-subdir-ac, 
    to-txt-ac, to-txt-sp
-
-optional arguments:
-  -h, --help            show basic help message and exit
-  --help-all            show basic help message plus help on all plugins and exit
-  --help-plugin NAME    show help message for plugin NAME and exit
-  -u INTERVAL, --update_interval INTERVAL
-                        outputs the progress every INTERVAL records (default: 1000)
-  -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
-                        the logging level to use (default: WARN)
-  -b, --force_batch     processes the data in batches
 
 optional arguments:
   -h, --help            show basic help message and exit
