@@ -13,7 +13,7 @@ def _read(f):
 
 
 setup(
-    name="audio-dataset-converter",
+    name="audio_dataset_converter",
     description="Python3 library for converting between various audio dataset formats.",
     long_description=(
             _read('DESCRIPTION.rst') + b'\n' +
