@@ -7,7 +7,7 @@ Changelog
 - added `setuptools` as dependency
 - switched to underscores in project name
 - added `discard-by-name` filter
-- requiring seppl>=0.2.9 now
+- requiring seppl>=0.2.10 now
 - added support for aliases
 
 
