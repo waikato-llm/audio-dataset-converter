@@ -4,11 +4,12 @@ from typing import List, Iterable, Union
 from wai.logging import LOGGING_WARNING
 from wai.common.file.report import loadf
 from seppl.io import locate_files
+from seppl.placeholders import PlaceholderSupporter, placeholder_list
 from adc.api import SpeechData, locate_audio
 from adc.api import Reader
 
 
-class AdamsSpeechReader(Reader):
+class AdamsSpeechReader(Reader, PlaceholderSupporter):
 
     def __init__(self, source: Union[str, List[str]] = None, source_list: Union[str, List[str]] = None,
                  transcript_field: str = None, logger_name: str = None, logging_level: str = LOGGING_WARNING):
@@ -57,8 +58,8 @@ class AdamsSpeechReader(Reader):
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-i", "--input", type=str, help="Path to the report file(s) to read; glob syntax is supported", required=False, nargs="*")
-        parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the report files to use", required=False, nargs="*")
+        parser.add_argument("-i", "--input", type=str, help="Path to the report file(s) to read; glob syntax is supported; " + placeholder_list(obj=self), required=False, nargs="*")
+        parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the report files to use; " + placeholder_list(obj=self), required=False, nargs="*")
         parser.add_argument("-t", "--transcript_field", metavar="FIELD", type=str, default=None, help="The report field containing the audio transcription", required=True)
         return parser
 

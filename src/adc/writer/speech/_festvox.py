@@ -5,9 +5,10 @@ from typing import List, Iterable
 from wai.logging import LOGGING_WARNING
 
 from adc.api import SpeechData, SplittableBatchWriter, AnnotationsOnlyWriter, add_annotations_only_param
+from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
 
 
-class FestVoxSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter):
+class FestVoxSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, InputBasedPlaceholderSupporter):
 
     def __init__(self, output_dir: str = None, rel_path: str = None, annotations_only: bool = None,
                  split_names: List[str] = None, split_ratios: List[int] = None,
@@ -62,7 +63,7 @@ class FestVoxSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter):
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.txt files in. Any defined splits get added beneath there.", required=True)
+        parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.txt files in. Any defined splits get added beneath there. " + placeholder_list(obj=self), required=True)
         parser.add_argument("--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
         add_annotations_only_param(parser)
         return parser
@@ -94,9 +95,6 @@ class FestVoxSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter):
         """
         super().initialize()
 
-        if not os.path.exists(self.output_dir):
-            self.logger().info("Creating output dir: %s" % self.output_dir)
-            os.makedirs(self.output_dir)
         if self.rel_path is None:
             self.rel_path = "."
         if self.annotations_only is None:
@@ -111,12 +109,12 @@ class FestVoxSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter):
         :type data: Iterable
         """
         for item in data:
-            sub_dir = self.output_dir
+            sub_dir = self.session.expand_placeholders(self.output_dir)
             if self.splitter is not None:
                 split = self.splitter.next()
                 sub_dir = os.path.join(sub_dir, split)
             if not os.path.exists(sub_dir):
-                self.logger().info("Creating sub dir: %s" % sub_dir)
+                self.logger().info("Creating dir: %s" % sub_dir)
                 os.makedirs(sub_dir)
 
             # write audio

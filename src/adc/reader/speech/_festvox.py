@@ -4,6 +4,7 @@ import re
 from typing import List, Iterable, Union
 
 from seppl.io import locate_files
+from seppl.placeholders import PlaceholderSupporter, placeholder_list
 from wai.logging import LOGGING_WARNING
 
 from adc.api import Reader
@@ -16,7 +17,7 @@ LINE_REGEX = '^\\( (?P<filename>.*) "(?P<transcription>.*)" \\)$'
 LINE_PATTERN = re.compile(LINE_REGEX)
 
 
-class FestVoxSpeechReader(Reader):
+class FestVoxSpeechReader(Reader, PlaceholderSupporter):
 
     def __init__(self, source: Union[str, List[str]] = None, source_list: Union[str, List[str]] = None,
                  rel_path: str = None, logger_name: str = None, logging_level: str = LOGGING_WARNING):
@@ -65,8 +66,8 @@ class FestVoxSpeechReader(Reader):
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-i", "--input", type=str, help="Path to the text file(s) to read; glob syntax is supported", required=False, nargs="*")
-        parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the text files to use", required=False, nargs="*")
+        parser.add_argument("-i", "--input", type=str, help="Path to the text file(s) to read; glob syntax is supported; " + placeholder_list(obj=self), required=False, nargs="*")
+        parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the text files to use; " + placeholder_list(obj=self), required=False, nargs="*")
         parser.add_argument("-r", "--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
         return parser
 

@@ -14,7 +14,7 @@ usage: pitch-shift [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
 
 Augmentation method for shifting the pitch of audio files.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
                         The logging level to use. (default: WARN)

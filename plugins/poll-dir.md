@@ -7,13 +7,12 @@ Polls a directory for files and presents them to the base reader.
 ```
 usage: poll-dir [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-N LOGGER_NAME]
                 -i DIR_IN -o DIR_OUT [-w POLL_WAIT] [-W PROCESS_WAIT] [-d] -e
-                EXTENSIONS [EXTENSIONS ...]
-                [-O [OTHER_INPUT_FILES [OTHER_INPUT_FILES ...]]]
+                EXTENSIONS [EXTENSIONS ...] [-O [OTHER_INPUT_FILES ...]]
                 [-m MAX_FILES] [-b BASE_READER]
 
 Polls a directory for files and presents them to the base reader.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
                         The logging level to use. (default: WARN)
@@ -21,9 +20,11 @@ optional arguments:
                         The custom name to use for the logger, uses the plugin
                         name by default (default: None)
   -i DIR_IN, --dir_in DIR_IN
-                        The directory to poll (default: None)
+                        The directory to poll; Supported placeholders: {HOME},
+                        {CWD}, {TMP} (default: None)
   -o DIR_OUT, --dir_out DIR_OUT
-                        The directory to move the files to (default: None)
+                        The directory to move the files to; Supported
+                        placeholders: {HOME}, {CWD}, {TMP} (default: None)
   -w POLL_WAIT, --poll_wait POLL_WAIT
                         The poll interval in seconds (default: 1.0)
   -W PROCESS_WAIT, --process_wait PROCESS_WAIT
@@ -35,7 +36,7 @@ optional arguments:
   -e EXTENSIONS [EXTENSIONS ...], --extensions EXTENSIONS [EXTENSIONS ...]
                         The extensions of the files to poll (incl. dot)
                         (default: None)
-  -O [OTHER_INPUT_FILES [OTHER_INPUT_FILES ...]], --other_input_files [OTHER_INPUT_FILES [OTHER_INPUT_FILES ...]]
+  -O [OTHER_INPUT_FILES ...], --other_input_files [OTHER_INPUT_FILES ...]
                         The glob expression(s) for capturing other files apart
                         from the input files; use {NAME} in the glob
                         expression for the current name (default: None)

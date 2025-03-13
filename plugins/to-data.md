@@ -11,7 +11,7 @@ usage: to-data [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-N LOGGER_NAME]
 
 Saves just the audio files.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
                         The logging level to use. (default: WARN)
@@ -26,5 +26,8 @@ optional arguments:
                         (default: None)
   -o OUTPUT, --output OUTPUT
                         The directory to store the audio files in. Any defined
-                        splits get added beneath there. (default: None)
+                        splits get added beneath there. Supported
+                        placeholders: {INPUT_PATH}, {INPUT_NAMEEXT},
+                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
+                        {INPUT_PARENT_NAME} (default: None)
 ```

@@ -8,6 +8,7 @@ from typing import List, Iterable
 from wai.logging import LOGGING_WARNING
 
 from adc.api import AudioData, AudioClassificationData, SpeechData, BatchWriter
+from seppl.placeholders import placeholder_list, PlaceholderSupporter, expand_placeholders
 
 OUTPUT_FORMAT_TEXT = "text"
 OUTPUT_FORMAT_CSV = "csv"
@@ -18,7 +19,7 @@ OUTPUT_FORMATS = [
 ]
 
 
-class AudioInfoWriter(BatchWriter):
+class AudioInfoWriter(BatchWriter, PlaceholderSupporter):
 
     def __init__(self, output_file: str = None, output_format: str = OUTPUT_FORMAT_TEXT,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
@@ -66,7 +67,7 @@ class AudioInfoWriter(BatchWriter):
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-o", "--output_file", type=str, help="The file to store the audio information in; outputs to stdout if no file provided.", required=False, default=None)
+        parser.add_argument("-o", "--output_file", type=str, help="The file to store the audio information in; outputs to stdout if no file provided. " + placeholder_list(obj=self), required=False, default=None)
         parser.add_argument("-f", "--output_format", choices=OUTPUT_FORMATS, help="The format to use for the output.", required=False, default=OUTPUT_FORMAT_TEXT)
         return parser
 
@@ -129,7 +130,7 @@ class AudioInfoWriter(BatchWriter):
         if use_stdout:
             print("\n".join(info))
         else:
-            with open(self.output_file, "w") as fp:
+            with open(expand_placeholders(self.output_file), "w") as fp:
                 fp.write("\n".join(info))
 
     def output_csv(self, use_stdout, additional_label):
@@ -145,7 +146,7 @@ class AudioInfoWriter(BatchWriter):
             writer = csv.writer(sys.stdout)
             f = None
         else:
-            f = open(self.output_file, "w")
+            f = open(expand_placeholders(self.output_file), "w")
             writer = csv.writer(f)
 
         writer.writerow(["file_name", "file_size", "sample_rate", "mono", "duration_seconds", additional_label])
@@ -179,7 +180,7 @@ class AudioInfoWriter(BatchWriter):
         if use_stdout:
             print(json.dumps(data, indent=2))
         else:
-            with open(self.output_file, "w") as f:
+            with open(expand_placeholders(self.output_file), "w") as f:
                 json.dump(data, f, indent=2)
 
     def output_info(self):

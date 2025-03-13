@@ -10,7 +10,7 @@ usage: to-audioinfo [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
 
 Outputs information about the audio files.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
                         The logging level to use. (default: WARN)
@@ -19,7 +19,8 @@ optional arguments:
                         name by default (default: None)
   -o OUTPUT_FILE, --output_file OUTPUT_FILE
                         The file to store the audio information in; outputs to
-                        stdout if no file provided. (default: None)
+                        stdout if no file provided. Supported placeholders:
+                        {HOME}, {CWD}, {TMP} (default: None)
   -f {csv,json}, --output_format {csv,json}
                         The format to use for the output. (default: text)
 ```

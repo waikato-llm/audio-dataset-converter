@@ -46,7 +46,8 @@ The following dataset formats are supported:
 ### Dataset conversion
 
 ```
-usage: adc-convert [-h|--help|--help-all|--help-plugin NAME] [-u INTERVAL]
+usage: adc-convert [-h|--help|--help-all|--help-plugin NAME]
+                   [-u INTERVAL] [-b|--force_batch] [--placeholders FILE]
                    [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    reader
                    [filter [filter [...]]]
@@ -58,12 +59,12 @@ readers (11):
    from-adams-ac, from-adams-sp, from-commonvoice-sp, from-data, 
    from-festvox-sp, from-hf-audiofolder-sp, from-pyfunc, from-subdir-ac, 
    from-txt-ac, from-txt-sp, poll-dir
-filters (20):
+filters (21):
    check-duplicate-filenames, convert-to-mono, convert-to-wav, 
-   discard-negatives, max-records, metadata, metadata-from-name, 
-   passthrough, pitch-shift, pyfunc-filter, randomize-records, 
-   record-window, rename, resample, sample, split-records, 
-   strip-annotations, tee, time-stretch, trim-silence
+   discard-by-name, discard-negatives, max-records, metadata, 
+   metadata-from-name, passthrough, pitch-shift, pyfunc-filter, 
+   randomize-records, record-window, rename, resample, sample, 
+   split-records, strip-annotations, tee, time-stretch, trim-silence
 writers (11):
    to-adams-ac, to-adams-sp, to-audioinfo, to-commonvoice-sp, to-data, 
    to-festvox-sp, to-hf-audiofolder-sp, to-pyfunc, to-subdir-ac, 
@@ -78,20 +79,22 @@ optional arguments:
   -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
                         the logging level to use (default: WARN)
   -b, --force_batch     processes the data in batches
+  --placeholders FILE
+                        The file with custom placeholders to load (format: key=value).
 ```
 
 ### Executing pipeline multiple times
 
 ```
 usage: adc-exec [-h] -p PIPELINE -g GENERATOR [-n] [-P PREFIX]
-                [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                [--placeholders FILE] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
 
 Tool for executing a pipeline multiple times, each time with a different set
 of variables expanded. A variable is surrounded by curly quotes (e.g.,
 variable 'i' gets referenced with '{i}'). Available generators: dirs, list,
 null, range
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -p PIPELINE, --pipeline PIPELINE
                         The pipeline template with variables to expand and
@@ -103,6 +106,8 @@ optional arguments:
   -P PREFIX, --prefix PREFIX
                         The string to prefix the pipeline with when in dry-run
                         mode. (default: None)
+  --placeholders FILE   The file with custom placeholders to load (format:
+                        key=value). (default: None)
   -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
                         The logging level to use. (default: WARN)
 ```

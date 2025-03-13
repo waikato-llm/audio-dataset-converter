@@ -1,5 +1,6 @@
 import argparse
 import logging
+import os
 import sys
 import traceback
 
@@ -7,6 +8,7 @@ from typing import List, Tuple, Optional, Dict
 
 from seppl import enumerate_plugins, is_help_requested, split_args, args_to_objects, Plugin, check_compatibility
 from seppl.io import execute, Reader, Filter, MultiFilter, Writer
+from seppl.placeholders import load_user_defined_placeholders
 from wai.logging import init_logging, set_logging_level, add_logging_level, LOGGING_LEVELS
 from adc.core import Session, ENV_ADC_LOGLEVEL
 from adc.help import generate_plugin_usage
@@ -44,7 +46,8 @@ def _print_usage(plugin_details: bool = False):
     cmd = "usage: " + CONVERT
     prefix = " " * (len(cmd) + 1)
     logging_levels = ",".join(LOGGING_LEVELS)
-    print(cmd + " [-h|--help|--help-all|--help-plugin NAME] [-u INTERVAL]")
+    print(cmd + " [-h|--help|--help-all|--help-plugin NAME]")
+    print(prefix + "[-u INTERVAL] [-b|--force_batch] [--placeholders FILE]")
     print(prefix + "[-l {%s}]" % logging_levels)
     print(prefix + "reader")
     print(prefix + "[filter [filter [...]]]")
@@ -65,6 +68,8 @@ def _print_usage(plugin_details: bool = False):
     print("  -l {%s}, --logging_level {%s}" % (logging_levels, logging_levels))
     print("                        the logging level to use (default: WARN)")
     print("  -b, --force_batch     processes the data in batches")
+    print("  --placeholders FILE")
+    print("                        The file with custom placeholders to load (format: key=value).")
     print()
     if plugin_details:
         for plugin in sorted(_available_plugins().keys()):
@@ -144,9 +149,16 @@ def _parse_args(args: List[str], require_reader: bool = True, require_writer: bo
     add_logging_level(parser)
     parser.add_argument("-u", "--update_interval", type=int, default=DEFAULT_UPDATE_INTERVAL)
     parser.add_argument("-b", "--force_batch", action="store_true")
+    parser.add_argument("--placeholders")
     session = Session(options=parser.parse_args(parsed[""] if ("" in parsed) else []))
     session.logger = logging.getLogger(CONVERT)
     set_logging_level(session.logger, session.options.logging_level)
+    if session.options.placeholders is not None:
+        if not os.path.exists(session.options.placeholders):
+            session.logger.error("Placeholder file not found: %s" % session.options.placeholders)
+        else:
+            session.logger.info("Loading custom placeholders from: %s" % session.options.placeholders)
+            load_user_defined_placeholders(session.options.placeholders)
 
     return reader, filter_, writer, session
 
