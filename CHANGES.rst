@@ -7,7 +7,7 @@ Changelog
 - added `setuptools` as dependency
 - switched to underscores in project name
 - added `discard-by-name` filter
-- requiring seppl>=0.2.12 now
+- requiring seppl>=0.2.13 now
 - added support for aliases
 - added placeholder support to tools: `adc-convert`, `adc-exec`
 - added placeholder support to readers: `from-adams-ac`, `from-subdir-ac`, `from-txt-ac`, `from-adams-sp`,
