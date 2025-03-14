@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.0.2 (????-??-??)
+0.0.2 (2025-03-14)
 ------------------
 
 - added `setuptools` as dependency
