@@ -8,6 +8,7 @@ Reads the speech data in the Huggingface AudioFolder format (https://huggingface
 usage: from-hf-audiofolder-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                               [-N LOGGER_NAME] [-i [INPUT ...]]
                               [-I [INPUT_LIST ...]]
+                              [--resume_from RESUME_FROM]
 
 Reads the speech data in the Huggingface AudioFolder format
 (https://huggingface.co/docs/datasets/audio_dataset#audiofolder).
@@ -27,4 +28,7 @@ options:
                         Path to the text file(s) listing the CSV files to use;
                         Supported placeholders: {HOME}, {CWD}, {TMP} (default:
                         None)
+  --resume_from RESUME_FROM
+                        Glob expression matching the file to resume from,
+                        e.g., '*/012345.csv' (default: None)
 ```

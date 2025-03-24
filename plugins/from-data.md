@@ -6,8 +6,8 @@ Loads the audio files and forwards them as the specified data type.
 
 ```
 usage: from-data [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
-                 [-N LOGGER_NAME] [-i [INPUT ...]] [-I [INPUT_LIST ...]] -t
-                 {cl,sp}
+                 [-N LOGGER_NAME] [-i [INPUT ...]] [-I [INPUT_LIST ...]]
+                 [--resume_from RESUME_FROM] -t {cl,sp}
 
 Loads the audio files and forwards them as the specified data type.
 
@@ -26,6 +26,9 @@ options:
                         Path to the text file(s) listing the audio files to
                         use; Supported placeholders: {HOME}, {CWD}, {TMP}
                         (default: None)
+  --resume_from RESUME_FROM
+                        Glob expression matching the file to resume from,
+                        e.g., '*/012345.wav' (default: None)
   -t {cl,sp}, --data_type {cl,sp}
                         The type of data to forward (default: None)
 ```

@@ -30,7 +30,8 @@ class CommonVoiceDialect(csv.Dialect):
 class CommonVoiceSpeechReader(Reader, PlaceholderSupporter):
 
     def __init__(self, source: Union[str, List[str]] = None, source_list: Union[str, List[str]] = None,
-                 rel_path: str = None, logger_name: str = None, logging_level: str = LOGGING_WARNING):
+                 rel_path: str = None, resume_from: str = None,
+                 logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
         Initializes the reader.
 
@@ -38,6 +39,8 @@ class CommonVoiceSpeechReader(Reader, PlaceholderSupporter):
         :param source_list: the file(s) with filename(s)
         :param rel_path: the relative path to the audio files
         :type rel_path: str
+        :param resume_from: the file to resume from (glob)
+        :type resume_from: str
         :param logger_name: the name to use for the logger
         :type logger_name: str
         :param logging_level: the logging level to use
@@ -47,6 +50,7 @@ class CommonVoiceSpeechReader(Reader, PlaceholderSupporter):
         self.source = source
         self.source_list = source_list
         self.rel_path = rel_path
+        self.resume_from = resume_from
         self._inputs = None
         self._current_input = None
 
@@ -78,6 +82,7 @@ class CommonVoiceSpeechReader(Reader, PlaceholderSupporter):
         parser = super()._create_argparser()
         parser.add_argument("-i", "--input", type=str, help="Path to the TSV file(s) to read; glob syntax is supported; " + placeholder_list(obj=self), required=False, nargs="*")
         parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the TSV files to use; " + placeholder_list(obj=self), required=False, nargs="*")
+        parser.add_argument("--resume_from", type=str, help="Glob expression matching the file to resume from, e.g., '*/012345.tsv'", required=False)
         parser.add_argument("-r", "--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
         return parser
 
@@ -92,6 +97,7 @@ class CommonVoiceSpeechReader(Reader, PlaceholderSupporter):
         self.source = ns.input
         self.source_list = ns.input_list
         self.rel_path = ns.rel_path
+        self.resume_from = ns.resume_from
 
     def generates(self) -> List:
         """
@@ -107,7 +113,7 @@ class CommonVoiceSpeechReader(Reader, PlaceholderSupporter):
         Initializes the processing, e.g., for opening files or databases.
         """
         super().initialize()
-        self._inputs = locate_files(self.source, input_lists=self.source_list, fail_if_empty=True, default_glob="*.tsv")
+        self._inputs = locate_files(self.source, input_lists=self.source_list, fail_if_empty=True, default_glob="*.tsv", resume_from=self.resume_from)
         if self.rel_path is None:
             self.rel_path = "."
 

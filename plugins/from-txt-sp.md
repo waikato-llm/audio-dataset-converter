@@ -7,7 +7,7 @@ Loads the transcript from the associated .txt file.
 ```
 usage: from-txt-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    [-N LOGGER_NAME] [-i [INPUT ...]] [-I [INPUT_LIST ...]]
-                   [--rel_path REL_PATH]
+                   [--resume_from RESUME_FROM] [--rel_path REL_PATH]
 
 Loads the transcript from the associated .txt file.
 
@@ -26,5 +26,8 @@ options:
                         Path to the text file(s) listing the .txt files to
                         use; Supported placeholders: {HOME}, {CWD}, {TMP}
                         (default: None)
+  --resume_from RESUME_FROM
+                        Glob expression matching the file to resume from,
+                        e.g., '*/012345.txt' (default: None)
   --rel_path REL_PATH   The relative path to the audio files. (default: .)
 ```

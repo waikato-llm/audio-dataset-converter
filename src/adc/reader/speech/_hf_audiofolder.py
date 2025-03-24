@@ -15,12 +15,14 @@ HF_AUDIOFOLDER_EXPECTED_HEADER = "file_name,transcription"
 class HuggingFaceAudioFolderSpeechReader(Reader, PlaceholderSupporter):
 
     def __init__(self, source: Union[str, List[str]] = None, source_list: Union[str, List[str]] = None,
-                 logger_name: str = None, logging_level: str = LOGGING_WARNING):
+                 resume_from: str = None, logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
         Initializes the reader.
 
         :param source: the filename(s)
         :param source_list: the file(s) with filename(s)
+        :param resume_from: the file to resume from (glob)
+        :type resume_from: str
         :param logger_name: the name to use for the logger
         :type logger_name: str
         :param logging_level: the logging level to use
@@ -29,6 +31,7 @@ class HuggingFaceAudioFolderSpeechReader(Reader, PlaceholderSupporter):
         super().__init__(logger_name=logger_name, logging_level=logging_level)
         self.source = source
         self.source_list = source_list
+        self.resume_from = resume_from
         self._inputs = None
         self._current_input = None
 
@@ -60,6 +63,7 @@ class HuggingFaceAudioFolderSpeechReader(Reader, PlaceholderSupporter):
         parser = super()._create_argparser()
         parser.add_argument("-i", "--input", type=str, help="Path to the CSV file(s) to read; glob syntax is supported; " + placeholder_list(obj=self), required=False, nargs="*")
         parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the CSV files to use; " + placeholder_list(obj=self), required=False, nargs="*")
+        parser.add_argument("--resume_from", type=str, help="Glob expression matching the file to resume from, e.g., '*/012345.csv'", required=False)
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -72,6 +76,7 @@ class HuggingFaceAudioFolderSpeechReader(Reader, PlaceholderSupporter):
         super()._apply_args(ns)
         self.source = ns.input
         self.source_list = ns.input_list
+        self.resume_from = ns.resume_from
 
     def generates(self) -> List:
         """
@@ -87,7 +92,7 @@ class HuggingFaceAudioFolderSpeechReader(Reader, PlaceholderSupporter):
         Initializes the processing, e.g., for opening files or databases.
         """
         super().initialize()
-        self._inputs = locate_files(self.source, input_lists=self.source_list, fail_if_empty=True, default_glob="*.csv")
+        self._inputs = locate_files(self.source, input_lists=self.source_list, fail_if_empty=True, default_glob="*.csv", resume_from=self.resume_from)
 
     def read(self) -> Iterable:
         """

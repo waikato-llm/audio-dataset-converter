@@ -7,7 +7,7 @@ Loads the transcript from the specified class field in the associated .report fi
 ```
 usage: from-adams-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                      [-N LOGGER_NAME] [-i [INPUT ...]] [-I [INPUT_LIST ...]]
-                     -t FIELD
+                     [--resume_from RESUME_FROM] -t FIELD
 
 Loads the transcript from the specified class field in the associated .report
 file.
@@ -27,6 +27,9 @@ options:
                         Path to the text file(s) listing the report files to
                         use; Supported placeholders: {HOME}, {CWD}, {TMP}
                         (default: None)
+  --resume_from RESUME_FROM
+                        Glob expression matching the file to resume from,
+                        e.g., '*/012345.report' (default: None)
   -t FIELD, --transcript_field FIELD
                         The report field containing the audio transcription
                         (default: None)

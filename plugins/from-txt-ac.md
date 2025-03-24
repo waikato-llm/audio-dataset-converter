@@ -7,7 +7,7 @@ Loads the audio classification from the associated .txt file.
 ```
 usage: from-txt-ac [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    [-N LOGGER_NAME] [-i [INPUT ...]] [-I [INPUT_LIST ...]]
-                   [--rel_path REL_PATH]
+                   [--resume_from RESUME_FROM] [--rel_path REL_PATH]
 
 Loads the audio classification from the associated .txt file.
 
@@ -19,12 +19,15 @@ options:
                         The custom name to use for the logger, uses the plugin
                         name by default (default: None)
   -i [INPUT ...], --input [INPUT ...]
-                        Path to the report file(s) to read; glob syntax is
+                        Path to the .txt file(s) to read; glob syntax is
                         supported; Supported placeholders: {HOME}, {CWD},
                         {TMP} (default: None)
   -I [INPUT_LIST ...], --input_list [INPUT_LIST ...]
                         Path to the text file(s) listing the report files to
                         use; Supported placeholders: {HOME}, {CWD}, {TMP}
                         (default: None)
+  --resume_from RESUME_FROM
+                        Glob expression matching the file to resume from,
+                        e.g., '*/012345.txt' (default: None)
   --rel_path REL_PATH   The relative path to the audio files. (default: .)
 ```
