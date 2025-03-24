@@ -15,6 +15,7 @@ from ._record_window import RecordWindow
 from ._rename import Rename
 from ._resample import Resample, RESAMPLE_TYPES
 from ._sample import Sample
+from ._set_placeholder import SetPlaceholder
 from ._split_records import SplitRecords
 from ._strip_annotations import StripAnnotations
 from ._tee import Tee
