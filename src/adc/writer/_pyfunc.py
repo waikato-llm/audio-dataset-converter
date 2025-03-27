@@ -101,7 +101,7 @@ class PythonFunctionWriter(SplittableStreamWriter):
             if issubclass(type(item), self._input_cls):
                 split = None
                 if self.splitter is not None:
-                    split = self.splitter.next()
+                    split = self.splitter.next(item=item.audio_name)
                 self.logger().info("Processing audio '%s' (split: %s)" % (item.audio_name, str(split)))
                 self._function(item, split)
             else:

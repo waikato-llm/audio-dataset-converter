@@ -113,7 +113,7 @@ class HuggingFaceAudioFolderSpeechWriter(SplittableBatchWriter, AnnotationsOnlyW
         for item in data:
             sub_dir = self.session.expand_placeholders(self.output_dir)
             if self.splitter is not None:
-                split = self.splitter.next()
+                split = self.splitter.next(item=item.audio_name)
                 sub_dir = os.path.join(sub_dir, split)
             if not os.path.exists(sub_dir):
                 self.logger().info("Creating dir: %s" % sub_dir)

@@ -86,7 +86,7 @@ class SubDirAudioClassificationWriter(SplittableStreamWriter, InputBasedPlacehol
         for item in make_list(data):
             sub_dir = self.session.expand_placeholders(self.output_dir)
             if self.splitter is not None:
-                split = self.splitter.next()
+                split = self.splitter.next(item=item.audio_name)
                 sub_dir = os.path.join(sub_dir, split)
             if item.has_annotation():
                 sub_dir = os.path.join(sub_dir, item.annotation)
