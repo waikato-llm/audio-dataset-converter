@@ -63,7 +63,7 @@ class AdamsSpeechWriter(SplittableStreamWriter, AnnotationsOnlyWriter, InputBase
         """
         parser = super()._create_argparser()
         parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.report files in. Any defined splits get added beneath there. " + placeholder_list(obj=self), required=True)
-        parser.add_argument("-c", "--transcript_field", metavar="FIELD", type=str, default=None, help="The report field containing the audio transcript", required=True)
+        parser.add_argument("-t", "--transcript_field", metavar="FIELD", type=str, default=None, help="The report field containing the audio transcript", required=True)
         add_annotations_only_param(parser)
         return parser
 

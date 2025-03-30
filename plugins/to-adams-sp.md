@@ -9,7 +9,7 @@ usage: to-adams-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    [-N LOGGER_NAME]
                    [--split_ratios SPLIT_RATIOS [SPLIT_RATIOS ...]]
                    [--split_names SPLIT_NAMES [SPLIT_NAMES ...]]
-                   [--split_group SPLIT_GROUP] -o OUTPUT -c FIELD
+                   [--split_group SPLIT_GROUP] -o OUTPUT -t FIELD
                    [--annotations_only]
 
 Saves the transcript in an ADAMS .report file alongside the audio file.
@@ -38,7 +38,7 @@ options:
                         placeholders: {INPUT_PATH}, {INPUT_NAMEEXT},
                         {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
                         {INPUT_PARENT_NAME} (default: None)
-  -c FIELD, --transcript_field FIELD
+  -t FIELD, --transcript_field FIELD
                         The report field containing the audio transcript
                         (default: None)
   --annotations_only    Outputs only the annotations and skips the audio file.
