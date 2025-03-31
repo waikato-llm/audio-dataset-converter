@@ -9,6 +9,8 @@ Changelog
   from the first file that matches this glob expression (e.g., `*/012345.wav`)
 - requiring seppl>=0.2.15 now for resume and split group support
 - `to-adams-sp` writer now uses `-t` short flag for the transcript like the `from-adams-sp` reader
+- added the `from-multi` meta-reader that combines multiple base readers and returns their output
+- added the `to-multi` meta-writer that forwards the data to multiple base writers
 
 
 0.0.2 (2025-03-14)
