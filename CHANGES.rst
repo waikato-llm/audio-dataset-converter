@@ -7,7 +7,7 @@ Changelog
 - added `set-placeholder` filter for dynamically setting (temporary) placeholders at runtime
 - added `--resume_from` option to relevant readers that allows resuming the data processing
   from the first file that matches this glob expression (e.g., `*/012345.wav`)
-- requiring seppl>=0.2.15 now for resume and split group support
+- requiring seppl>=0.2.16 now for resume, split group and skippable plugin support
 - `to-adams-sp` writer now uses `-t` short flag for the transcript like the `from-adams-sp` reader
 - added the `from-multi` meta-reader that combines multiple base readers and returns their output
 - added the `to-multi` meta-writer that forwards the data to multiple base writers
