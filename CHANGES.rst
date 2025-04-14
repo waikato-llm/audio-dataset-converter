@@ -11,6 +11,7 @@ Changelog
 - `to-adams-sp` writer now uses `-t` short flag for the transcript like the `from-adams-sp` reader
 - added the `from-multi` meta-reader that combines multiple base readers and returns their output
 - added the `to-multi` meta-writer that forwards the data to multiple base writers
+- using `wai_common` instead of `wai.common` now
 
 
 0.0.2 (2025-03-14)
