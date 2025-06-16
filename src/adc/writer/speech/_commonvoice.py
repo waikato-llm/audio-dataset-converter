@@ -13,7 +13,7 @@ from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
 class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, InputBasedPlaceholderSupporter):
 
     def __init__(self, output_dir: str = None, rel_path: str = None, annotations_only: bool = None,
-                 split_names: List[str] = None, split_ratios: List[int] = None,
+                 split_names: List[str] = None, split_ratios: List[int] = None, split_group: str = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
         Initializes the writer.
@@ -28,12 +28,14 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, Inpu
         :type split_names: list
         :param split_ratios: the integer ratios of the splits (must sum up to 100)
         :type split_ratios: list
+        :param split_group: the regular expression with a single group used for keeping items in the same split, e.g., for identifying the base name of a file or the ID
+        :type split_group: str
         :param logger_name: the name to use for the logger
         :type logger_name: str
         :param logging_level: the logging level to use
         :type logging_level: str
         """
-        super().__init__(split_names=split_names, split_ratios=split_ratios, logger_name=logger_name, logging_level=logging_level)
+        super().__init__(split_names=split_names, split_ratios=split_ratios, split_group=split_group, logger_name=logger_name, logging_level=logging_level)
         self.output_dir = output_dir
         self.rel_path = rel_path
         self.annotations_only = annotations_only

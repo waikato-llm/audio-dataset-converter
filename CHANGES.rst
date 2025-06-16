@@ -12,6 +12,7 @@ Changelog
 - added the `from-multi` meta-reader that combines multiple base readers and returns their output
 - added the `to-multi` meta-writer that forwards the data to multiple base writers
 - using `wai_common` instead of `wai.common` now
+- added `split_group` parameter to splittable writers (stream/batch)
 
 
 0.0.2 (2025-03-14)
