@@ -13,6 +13,7 @@ Changelog
 - added the `to-multi` meta-writer that forwards the data to multiple base writers
 - using `wai_common` instead of `wai.common` now
 - added `split_group` parameter to splittable writers (stream/batch)
+- fixed the construction of the error messages in the pyfunc reader/filter/writer classes
 
 
 0.0.2 (2025-03-14)
