@@ -22,6 +22,7 @@
 * [max-records](max-records.md)
 * [metadata](metadata.md)
 * [metadata-from-name](metadata-from-name.md)
+* [metadata-to-placeholder](metadata-to-placeholder.md)
 * [passthrough](passthrough.md)
 * [pitch-shift](pitch-shift.md)
 * [pyfunc-filter](pyfunc-filter.md)

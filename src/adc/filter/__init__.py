@@ -7,6 +7,7 @@ from ._discard_negatives import DiscardNegatives
 from ._max_records import MaxRecords
 from ._metadata import MetaData
 from ._metadata_from_name import MetaDataFromName
+from ._metadata_to_placeholder import MetaDataToPlaceholder
 from ._passthrough import PassThrough
 from ._pitch_shift import PitchShift
 from ._pyfunc_filter import PythonFunctionFilter
