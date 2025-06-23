@@ -6,7 +6,7 @@ Outputs information about the audio files.
 
 ```
 usage: to-audioinfo [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
-                    [-N LOGGER_NAME] [-o OUTPUT_FILE] [-f {csv,json}]
+                    [-N LOGGER_NAME] [--skip] [-o OUTPUT_FILE] [-f {csv,json}]
 
 Outputs information about the audio files.
 
@@ -17,6 +17,8 @@ options:
   -N LOGGER_NAME, --logger_name LOGGER_NAME
                         The custom name to use for the logger, uses the plugin
                         name by default (default: None)
+  --skip                Disables the plugin, removing it from the pipeline.
+                        (default: False)
   -o OUTPUT_FILE, --output_file OUTPUT_FILE
                         The file to store the audio information in; outputs to
                         stdout if no file provided. Supported placeholders:

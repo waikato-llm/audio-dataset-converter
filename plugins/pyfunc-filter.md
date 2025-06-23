@@ -7,7 +7,8 @@ The declared Python function processes audio containers of the specified input t
 
 ```
 usage: pyfunc-filter [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
-                     [-N LOGGER_NAME] -i {cl,sp} -f FUNCTION -o {cl,sp}
+                     [-N LOGGER_NAME] [--skip] -i {cl,sp} -f FUNCTION -o
+                     {cl,sp}
 
 The declared Python function processes audio containers of the specified input
 type and generates ones of the specified output type. The function must handle
@@ -21,6 +22,8 @@ options:
   -N LOGGER_NAME, --logger_name LOGGER_NAME
                         The custom name to use for the logger, uses the plugin
                         name by default (default: None)
+  --skip                Disables the plugin, removing it from the pipeline.
+                        (default: False)
   -i {cl,sp}, --input_data_type {cl,sp}
                         The type of data to receive (default: None)
   -f FUNCTION, --function FUNCTION

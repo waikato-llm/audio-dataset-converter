@@ -7,8 +7,9 @@ Augmentation method for shifting the pitch of audio files.
 
 ```
 usage: pitch-shift [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
-                   [-N LOGGER_NAME] [-m {replace,add}] [--suffix SUFFIX]
-                   [-s SEED] [-a] [-T THRESHOLD] [-f FROM_STEPS] [-t TO_STEPS]
+                   [-N LOGGER_NAME] [--skip] [-m {replace,add}]
+                   [--suffix SUFFIX] [-s SEED] [-a] [-T THRESHOLD]
+                   [-f FROM_STEPS] [-t TO_STEPS]
                    [--bins_per_octave BINS_PER_OCTAVE]
                    [--resample_type {kaiser_best,kaiser_fast,fft,polyphase,linear,zero_order_hold,sinc_best,sinc_medium,sinc_fastest,soxr_vhq,soxr_hq,soxr_mq,soxr_lq,soxr_qq}]
 
@@ -21,6 +22,8 @@ options:
   -N LOGGER_NAME, --logger_name LOGGER_NAME
                         The custom name to use for the logger, uses the plugin
                         name by default (default: None)
+  --skip                Disables the plugin, removing it from the pipeline.
+                        (default: False)
   -m {replace,add}, --mode {replace,add}
                         The augmentation mode to use. (default: replace)
   --suffix SUFFIX       The suffix to use for the file names in case of
