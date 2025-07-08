@@ -74,6 +74,12 @@ class AudioData(MetaDataHandler, LoggingHandler):
                  audio: np.ndarray = None, audio_format: str = None,
                  duration: float = None, sample_rate: float = None,
                  metadata: Dict = None, annotation=None):
+
+        # container with audio or data must have source or name
+        if (audio is not None) or (data is not None):
+            if (source is None) and (audio_name is None):
+                raise Exception("Either source or name must be provided!")
+
         self._logger = None
         """ for logging. """
         self._source = source
