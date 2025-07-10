@@ -6,3 +6,8 @@ Dataset formats:
 
 - classification: ADAMS (r/w), sub-dir (r/w), TXT (r/w)
 - speech: ADAMS (r/w), CommonVoice (r/w), Festvox (r/w), Huggingface Audiofolder (r/w), TXT (r/w)
+
+Examples can be found here:
+
+https://github.com/waikato-llm/audio-dataset-converter-examples
+
