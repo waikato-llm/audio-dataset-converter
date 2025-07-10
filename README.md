@@ -55,20 +55,21 @@ usage: adc-convert [-h|--help|--help-all|--help-plugin NAME]
 
 Tool for converting between audio dataset formats.
 
-readers (11):
+readers (12):
    from-adams-ac, from-adams-sp, from-commonvoice-sp, from-data, 
-   from-festvox-sp, from-hf-audiofolder-sp, from-pyfunc, from-subdir-ac, 
-   from-txt-ac, from-txt-sp, poll-dir
-filters (21):
+   from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-pyfunc, 
+   from-subdir-ac, from-txt-ac, from-txt-sp, poll-dir
+filters (23):
    check-duplicate-filenames, convert-to-mono, convert-to-wav, 
    discard-by-name, discard-negatives, max-records, metadata, 
-   metadata-from-name, passthrough, pitch-shift, pyfunc-filter, 
-   randomize-records, record-window, rename, resample, sample, 
-   split-records, strip-annotations, tee, time-stretch, trim-silence
-writers (11):
+   metadata-from-name, metadata-to-placeholder, passthrough, 
+   pitch-shift, pyfunc-filter, randomize-records, record-window, rename, 
+   resample, sample, set-placeholder, split-records, strip-annotations, 
+   tee, time-stretch, trim-silence
+writers (12):
    to-adams-ac, to-adams-sp, to-audioinfo, to-commonvoice-sp, to-data, 
-   to-festvox-sp, to-hf-audiofolder-sp, to-pyfunc, to-subdir-ac, 
-   to-txt-ac, to-txt-sp
+   to-festvox-sp, to-hf-audiofolder-sp, to-multi, to-pyfunc, 
+   to-subdir-ac, to-txt-ac, to-txt-sp
 
 optional arguments:
   -h, --help            show basic help message and exit
