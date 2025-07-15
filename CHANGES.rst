@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.0.4 (????-??-??)
+------------------
+
+- requiring seppl>=0.2.20 now for improved help requests in `adc-convert` tool
+
+
 0.0.3 (2025-07-10)
 ------------------
 
