@@ -19,6 +19,7 @@ from ._sample import Sample
 from ._set_placeholder import SetPlaceholder
 from ._split_records import SplitRecords
 from ._strip_annotations import StripAnnotations
+from ._sub_process import SubProcess
 from ._tee import Tee
 from ._time_stretch import TimeStretch
 from ._trim_silence import TrimSilence

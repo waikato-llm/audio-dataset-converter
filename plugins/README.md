@@ -34,6 +34,7 @@
 * [set-placeholder](set-placeholder.md)
 * [split-records](split-records.md)
 * [strip-annotations](strip-annotations.md)
+* [sub-process](sub-process.md)
 * [tee](tee.md)
 * [time-stretch](time-stretch.md)
 * [trim-silence](trim-silence.md)
