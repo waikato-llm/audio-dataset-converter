@@ -1,3 +1,6 @@
+from ._comparison import compare_values, COMPARISONS, COMPARISON_HELP, COMPARISONS_EXT, COMPARISON_EXT_HELP, \
+    COMPARISON_LESSTHAN, COMPARISON_LESSOREQUAL, COMPARISON_EQUAL, COMPARISON_NOTEQUAL, COMPARISON_GREATEROREQUAL, \
+    COMPARISON_GREATERTHAN, COMPARISON_CONTAINS, COMPARISON_MATCHES
 from ._data import AudioData, make_list, flatten_list, FORMATS, FORMAT_MP3, FORMAT_WAV, FORMAT_EXTENSIONS
 from ._data import determine_audio_format_from_ext, determine_audio_format_from_bytes
 from ._data_types import DATATYPES, DATATYPE_CLASSIFICATION, DATATYPE_SPEECH, data_type_to_class
