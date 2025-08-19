@@ -4,7 +4,8 @@ from typing import List
 from wai.logging import LOGGING_WARNING
 
 from seppl import Plugin
-from adc.api import AudioData, StreamWriter, DATATYPES, data_type_to_class, BatchWriter, make_list
+from kasperl.api import StreamWriter, BatchWriter, make_list
+from adc.api import AudioData, DATATYPES, data_type_to_class
 
 
 class MultiWriter(StreamWriter):

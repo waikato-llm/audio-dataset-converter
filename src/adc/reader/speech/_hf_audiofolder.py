@@ -7,7 +7,8 @@ from wai.logging import LOGGING_WARNING
 from seppl.io import locate_files
 from seppl.placeholders import PlaceholderSupporter, placeholder_list
 
-from adc.api import Reader, SpeechData
+from kasperl.api import Reader
+from adc.api import SpeechData
 
 HF_AUDIOFOLDER_EXPECTED_HEADER = "file_name,transcription"
 

@@ -28,7 +28,7 @@ options:
                         (must sum up to 100) (default: None)
   -n SPLIT_NAMES [SPLIT_NAMES ...], --split_names SPLIT_NAMES [SPLIT_NAMES ...]
                         The split names to use for the generated splits, get
-                        stored in the meta-data under the key 'split'.
+                        stored in the meta-data under the specified key.
                         (default: None)
   -f FIELD, --field FIELD
                         The meta-data field to use for storing the split

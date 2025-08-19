@@ -3,7 +3,7 @@
 * accepts: seppl.AnyData
 * generates: seppl.AnyData
 
-Forwards the data passing through to the filter/writer defined as its sub-flow.When supplying a meta-data field and a value, this can be turned into a conditional forwarding. Performs the following comparison: METADATA_VALUE COMPARISON VALUE.
+Forwards the data passing through to the filter/writer defined as its sub-flow. When supplying a meta-data field and a value, this can be turned into a conditional forwarding. Performs the following comparison: METADATA_VALUE COMPARISON VALUE.
 
 ```
 usage: tee [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-N LOGGER_NAME]
@@ -11,7 +11,7 @@ usage: tee [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-N LOGGER_NAME]
            [--comparison {lt,le,eq,ne,ge,gt,contains,matches}]
 
 Forwards the data passing through to the filter/writer defined as its sub-
-flow.When supplying a meta-data field and a value, this can be turned into a
+flow. When supplying a meta-data field and a value, this can be turned into a
 conditional forwarding. Performs the following comparison: METADATA_VALUE
 COMPARISON VALUE.
 

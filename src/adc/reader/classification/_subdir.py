@@ -3,7 +3,8 @@ import os
 from typing import List, Iterable, Union
 
 from wai.logging import LOGGING_WARNING
-from adc.api import AudioClassificationData, Reader
+from kasperl.api import Reader
+from adc.api import AudioClassificationData
 from seppl.placeholders import PlaceholderSupporter, placeholder_list
 
 

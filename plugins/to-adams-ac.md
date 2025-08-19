@@ -44,6 +44,5 @@ options:
   -c FIELD, --class_field FIELD
                         The report field containing the audio classification
                         label (default: None)
-  --annotations_only    Outputs only the annotations and skips the audio file.
-                        (default: False)
+  --annotations_only    Outputs only the annotations. (default: False)
 ```

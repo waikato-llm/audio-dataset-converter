@@ -6,7 +6,8 @@ from random import Random
 from seppl.io import Filter
 from wai.logging import LOGGING_WARNING
 
-from adc.api import flatten_list, make_list, AudioData
+from kasperl.api import flatten_list, make_list
+from adc.api import AudioData
 
 MIN_RAND = 0
 MAX_RAND = 1000

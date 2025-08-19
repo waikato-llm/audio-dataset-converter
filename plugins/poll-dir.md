@@ -1,6 +1,6 @@
 # poll-dir
 
-* generates: adc.api.AudioData
+* generates: seppl.AnyData
 
 Polls a directory for files and presents them to the base reader.
 

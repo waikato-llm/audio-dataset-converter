@@ -4,7 +4,8 @@ from typing import List
 from seppl.io import Filter
 from wai.logging import LOGGING_WARNING
 
-from adc.api import flatten_list, make_list, AudioData, DATATYPES, data_type_to_class, load_function
+from kasperl.api import flatten_list, make_list, load_function
+from adc.api import AudioData, DATATYPES, data_type_to_class
 
 
 class PythonFunctionFilter(Filter):

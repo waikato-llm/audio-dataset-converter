@@ -5,8 +5,8 @@ from seppl.io import locate_files
 from seppl.placeholders import PlaceholderSupporter, placeholder_list
 from wai.logging import LOGGING_WARNING
 
+from kasperl.api import Reader
 from adc.api import AudioClassificationData, locate_audio
-from adc.api import Reader
 
 
 class TxtAudioClassificationReader(Reader, PlaceholderSupporter):

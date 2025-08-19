@@ -4,8 +4,9 @@ from typing import List
 
 from wai.logging import LOGGING_WARNING
 from wai.common.file.report import Report, Field, save
-from adc.api import AudioClassificationData, SplittableStreamWriter, make_list, AnnotationsOnlyWriter, add_annotations_only_param
 from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
+from kasperl.api import SplittableStreamWriter, make_list, AnnotationsOnlyWriter, add_annotations_only_param
+from adc.api import AudioClassificationData
 
 
 class AdamsAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter, InputBasedPlaceholderSupporter):

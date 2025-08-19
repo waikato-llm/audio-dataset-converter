@@ -3,7 +3,8 @@ from typing import List
 from seppl import get_class_name, AnyData
 from seppl.io import Filter
 
-from adc.api import AudioData, flatten_list, make_list
+from kasperl.api import flatten_list, make_list
+from adc.api import AudioData
 
 
 class StripAnnotations(Filter):

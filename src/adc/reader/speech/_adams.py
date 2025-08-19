@@ -5,8 +5,8 @@ from wai.logging import LOGGING_WARNING
 from wai.common.file.report import loadf
 from seppl.io import locate_files
 from seppl.placeholders import PlaceholderSupporter, placeholder_list
+from kasperl.api import Reader
 from adc.api import SpeechData, locate_audio
-from adc.api import Reader
 
 
 class AdamsSpeechReader(Reader, PlaceholderSupporter):

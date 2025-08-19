@@ -41,6 +41,5 @@ options:
                         {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
                         {INPUT_PARENT_NAME} (default: None)
   --rel_path REL_PATH   The relative path to the audio files. (default: .)
-  --annotations_only    Outputs only the annotations and skips the audio file.
-                        (default: False)
+  --annotations_only    Outputs only the annotations. (default: False)
 ```

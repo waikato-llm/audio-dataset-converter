@@ -5,7 +5,7 @@ from seppl.io import locate_files
 from seppl.placeholders import PlaceholderSupporter, placeholder_list
 from wai.logging import LOGGING_WARNING
 
-from adc.api import Reader
+from kasperl.api import Reader
 from adc.api import SpeechData, locate_audio
 
 

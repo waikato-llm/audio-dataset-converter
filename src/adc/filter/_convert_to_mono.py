@@ -4,7 +4,8 @@ from typing import List
 
 from seppl.io import Filter
 from wai.logging import LOGGING_WARNING
-from adc.api import AudioData, AudioClassificationData, SpeechData, make_list, flatten_list
+from kasperl.api import make_list, flatten_list
+from adc.api import AudioData, AudioClassificationData, SpeechData
 
 
 class ConvertToMono(Filter):

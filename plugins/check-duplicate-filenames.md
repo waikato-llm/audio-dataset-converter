@@ -1,6 +1,6 @@
 # check-duplicate-filenames
 
-* accepts: adc.api.AudioData
+* accepts: seppl.AnyData
 * generates: seppl.AnyData
 
 Ensures that file names are unique (raises an exception if not).

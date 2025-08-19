@@ -5,8 +5,8 @@ from seppl.io import locate_files
 from seppl.placeholders import PlaceholderSupporter, placeholder_list
 from wai.logging import LOGGING_WARNING
 
+from kasperl.api import Reader
 from adc.api import DATATYPES, data_type_to_class, AudioData
-from adc.api import Reader
 
 
 class DataReader(Reader, PlaceholderSupporter):

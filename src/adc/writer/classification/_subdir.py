@@ -3,7 +3,8 @@ import os
 from typing import List
 
 from wai.logging import LOGGING_WARNING
-from adc.api import AudioClassificationData, SplittableStreamWriter, make_list
+from kasperl.api import SplittableStreamWriter, make_list
+from adc.api import AudioClassificationData
 from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
 
 

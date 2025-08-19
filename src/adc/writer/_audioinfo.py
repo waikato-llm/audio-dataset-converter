@@ -7,7 +7,8 @@ from typing import List, Iterable
 
 from wai.logging import LOGGING_WARNING
 
-from adc.api import AudioData, AudioClassificationData, SpeechData, BatchWriter
+from kasperl.api import BatchWriter
+from adc.api import AudioData, AudioClassificationData, SpeechData
 from seppl.placeholders import placeholder_list, PlaceholderSupporter, expand_placeholders
 
 OUTPUT_FORMAT_TEXT = "text"

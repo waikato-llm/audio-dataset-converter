@@ -4,8 +4,9 @@ from typing import List, Iterable
 
 from wai.logging import LOGGING_WARNING
 
-from adc.api import SpeechData, SplittableBatchWriter, AnnotationsOnlyWriter, add_annotations_only_param
 from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
+from kasperl.api import SplittableBatchWriter, AnnotationsOnlyWriter, add_annotations_only_param
+from adc.api import SpeechData
 
 
 class FestVoxSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, InputBasedPlaceholderSupporter):

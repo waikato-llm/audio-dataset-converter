@@ -4,7 +4,8 @@ from typing import List, Iterable
 from seppl import Plugin
 from wai.logging import LOGGING_WARNING
 
-from adc.api import DATATYPES, data_type_to_class, AudioData, Reader
+from kasperl.api import Reader
+from adc.api import DATATYPES, data_type_to_class, AudioData
 
 READ_ORDER_SEQUENTIAL = "sequential"
 READ_ORDER_INTERLEAVED = "interleaved"

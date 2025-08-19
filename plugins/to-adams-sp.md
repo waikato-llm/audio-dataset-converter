@@ -43,6 +43,5 @@ options:
   -t FIELD, --transcript_field FIELD
                         The report field containing the audio transcript
                         (default: None)
-  --annotations_only    Outputs only the annotations and skips the audio file.
-                        (default: False)
+  --annotations_only    Outputs only the annotations. (default: False)
 ```

@@ -446,31 +446,3 @@ class AudioData(MetaDataHandler, LoggingHandler):
         if metadata and (self.get_metadata() is not None):
             result["metadata"] = copy.deepcopy(self.get_metadata())
         return result
-
-
-def make_list(data, cls=AudioData) -> List:
-    """
-    Wraps the data item in a list if not already a list.
-
-    :param data: the data item to wrap if necessary
-    :param cls: the type of class to check for
-    :return: the list
-    :rtype: list
-    """
-    if isinstance(data, cls):
-        data = [data]
-    return data
-
-
-def flatten_list(data: List):
-    """
-    If the list contains only a single item, then it returns that instead of a list.
-
-    :param data: the list to check
-    :type data: list
-    :return: the list or single item
-    """
-    if len(data) == 1:
-        return data[0]
-    else:
-        return data

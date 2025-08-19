@@ -47,7 +47,7 @@ The following dataset formats are supported:
 
 ```
 usage: adc-convert [-h|--help|--help-all|--help-plugin NAME]
-                   [-u INTERVAL] [-b|--force_batch] [--placeholders FILE]
+                   [-u INTERVAL] [-b|--force_batch] [--placeholders FILE] [--dump_pipeline FILE]
                    [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    reader
                    [filter [filter [...]]]
@@ -59,13 +59,13 @@ readers (12):
    from-adams-ac, from-adams-sp, from-commonvoice-sp, from-data, 
    from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-pyfunc, 
    from-subdir-ac, from-txt-ac, from-txt-sp, poll-dir
-filters (23):
+filters (24):
    check-duplicate-filenames, convert-to-mono, convert-to-wav, 
    discard-by-name, discard-negatives, max-records, metadata, 
    metadata-from-name, metadata-to-placeholder, passthrough, 
    pitch-shift, pyfunc-filter, randomize-records, record-window, rename, 
    resample, sample, set-placeholder, split-records, strip-annotations, 
-   tee, time-stretch, trim-silence
+   sub-process, tee, time-stretch, trim-silence
 writers (12):
    to-adams-ac, to-adams-sp, to-audioinfo, to-commonvoice-sp, to-data, 
    to-festvox-sp, to-hf-audiofolder-sp, to-multi, to-pyfunc, 
@@ -82,6 +82,8 @@ optional arguments:
   -b, --force_batch     processes the data in batches
   --placeholders FILE
                         The file with custom placeholders to load (format: key=value).
+  --dump_pipeline FILE
+                        The file to dump the pipeline command in.
 ```
 
 ### Executing pipeline multiple times
@@ -120,17 +122,16 @@ Readers tend to support input via file lists. The `adc-find` tool can generate
 these.
 
 ```
-usage: adc-find [-h] -i DIR [DIR ...] [-r] -o FILE [-m [REGEXP [REGEXP ...]]]
-                [-n [REGEXP [REGEXP ...]]]
-                [--split_ratios [SPLIT_RATIOS [SPLIT_RATIOS ...]]]
-                [--split_names [SPLIT_NAMES [SPLIT_NAMES ...]]]
+usage: adc-find [-h] -i DIR [DIR ...] [-r] -o FILE [-m [REGEXP ...]]
+                [-n [REGEXP ...]] [--split_ratios [SPLIT_RATIOS ...]]
+                [--split_names [SPLIT_NAMES ...]]
                 [--split_name_separator SPLIT_NAME_SEPARATOR]
                 [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
 
 Tool for locating files in directories that match certain patterns and store
 them in files.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -i DIR [DIR ...], --input DIR [DIR ...]
                         The dir(s) to scan for files. (default: None)
@@ -139,16 +140,16 @@ optional arguments:
   -o FILE, --output FILE
                         The file to store the located file names in (default:
                         None)
-  -m [REGEXP [REGEXP ...]], --match [REGEXP [REGEXP ...]]
+  -m [REGEXP ...], --match [REGEXP ...]
                         The regular expression that the (full) file names must
                         match to be included (default: None)
-  -n [REGEXP [REGEXP ...]], --not-match [REGEXP [REGEXP ...]]
+  -n [REGEXP ...], --not-match [REGEXP ...]
                         The regular expression that the (full) file names must
                         match to be excluded (default: None)
-  --split_ratios [SPLIT_RATIOS [SPLIT_RATIOS ...]]
+  --split_ratios [SPLIT_RATIOS ...]
                         The split ratios to use for generating the splits
                         (int; must sum up to 100) (default: None)
-  --split_names [SPLIT_NAMES [SPLIT_NAMES ...]]
+  --split_names [SPLIT_NAMES ...]
                         The split names to use as filename suffixes for the
                         generated splits (before .ext) (default: None)
   --split_name_separator SPLIT_NAME_SEPARATOR
@@ -233,9 +234,9 @@ usage: adc-test-generator [-h] -g GENERATOR
                           [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
 
 Tool for testing generators by outputting the generated variables and their
-associatd values. Available generators: dirs, list, null, range
+associated values. Available generators: dirs, list, null, range
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -g GENERATOR, --generator GENERATOR
                         The generator plugin to use. (default: None)

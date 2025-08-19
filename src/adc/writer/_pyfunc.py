@@ -3,7 +3,8 @@ from typing import List
 
 from wai.logging import LOGGING_WARNING
 
-from adc.api import DATATYPES, data_type_to_class, AudioData, SplittableStreamWriter, make_list, load_function
+from kasperl.api import SplittableStreamWriter, make_list, load_function
+from adc.api import DATATYPES, data_type_to_class, AudioData
 
 
 class PythonFunctionWriter(SplittableStreamWriter):

@@ -5,7 +5,8 @@ from typing import List
 
 from seppl.io import Filter
 from wai.logging import LOGGING_WARNING
-from adc.api import AudioData, AudioClassificationData, SpeechData, make_list, flatten_list, FORMAT_WAV, FORMAT_EXTENSIONS
+from kasperl.api import make_list, flatten_list
+from adc.api import AudioData, AudioClassificationData, SpeechData, FORMAT_WAV, FORMAT_EXTENSIONS
 
 RESAMPLE_TYPE_DEFAULT = "kaiser_best"
 

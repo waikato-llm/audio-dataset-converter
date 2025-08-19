@@ -1,15 +1,15 @@
 # discard-negatives
 
-* accepts: adc.api.AudioData
+* accepts: seppl.AnyData
 * generates: seppl.AnyData
 
-Discards negative audio files, i.e., ones without annotations.
+Discards negative records, i.e., ones without annotations.
 
 ```
 usage: discard-negatives [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                          [-N LOGGER_NAME] [--skip]
 
-Discards negative audio files, i.e., ones without annotations.
+Discards negative records, i.e., ones without annotations.
 
 options:
   -h, --help            show this help message and exit

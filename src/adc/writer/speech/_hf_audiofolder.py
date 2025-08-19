@@ -5,9 +5,10 @@ from typing import List, Iterable
 
 from wai.logging import LOGGING_WARNING
 
-from adc.api import SpeechData, SplittableBatchWriter, AnnotationsOnlyWriter, add_annotations_only_param
-from adc.reader.speech import HF_AUDIOFOLDER_EXPECTED_HEADER
 from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
+from kasperl.api import SplittableBatchWriter, AnnotationsOnlyWriter, add_annotations_only_param
+from adc.api import SpeechData
+from adc.reader.speech import HF_AUDIOFOLDER_EXPECTED_HEADER
 
 
 class HuggingFaceAudioFolderSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, InputBasedPlaceholderSupporter):

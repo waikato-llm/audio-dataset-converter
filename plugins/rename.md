@@ -1,6 +1,6 @@
 # rename
 
-* accepts: adc.api.AudioData
+* accepts: seppl.AnyData
 * generates: seppl.AnyData
 
 Renames files using a user-supplied format.
@@ -23,11 +23,16 @@ options:
   -f NAME_FORMAT, --name-format NAME_FORMAT
                         The format for the new name. Available placeholders: -
                         {name}: the name of the file, without path or
-                        extension. - {ext}: the extension of the file (incl
-                        dot). - {occurrences}: the number of times this name
-                        (excl extension) has been encountered. - {count}: the
-                        number of files encountered so far. - {[p]+dir}: the
-                        parent directory of the file: 'p': immediate parent,
-                        the more the p's the higher up in the hierarchy.
-                        (default: {name}{ext})
+                        extension. - {lname}: the lower-case name of the file,
+                        without path or extension. - {uname}: the upper-case
+                        name of the file, without path or extension. - {ext}:
+                        the extension of the file (incl dot). - {lext}: the
+                        lower-case extension of the file (incl dot). - {uext}:
+                        the upper-case extension of the file (incl dot). -
+                        {occurrences}: the number of times this name (excl
+                        extension) has been encountered. - {count}: the number
+                        of files encountered so far. - {[p]+dir}: the parent
+                        directory of the file: 'p': immediate parent, the more
+                        the p's the higher up in the hierarchy. (default:
+                        {name}{ext})
 ```

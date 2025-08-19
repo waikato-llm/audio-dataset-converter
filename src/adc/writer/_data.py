@@ -4,8 +4,9 @@ from typing import List
 
 from wai.logging import LOGGING_WARNING
 
-from adc.api import AudioData, SplittableStreamWriter, make_list
 from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
+from kasperl.api import SplittableStreamWriter, make_list
+from adc.api import AudioData
 
 
 class DataWriter(SplittableStreamWriter, InputBasedPlaceholderSupporter):

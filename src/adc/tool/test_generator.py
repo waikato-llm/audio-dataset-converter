@@ -1,32 +1,13 @@
-import argparse
 import logging
 import traceback
 
-from wai.logging import init_logging, set_logging_level, add_logging_level
-
-from adc.api import Generator
 from adc.core import ENV_ADC_LOGLEVEL
 from adc.registry import available_generators
+from kasperl.api import perform_generator_test
 
 TEST_GENERATOR = "adc-test-generator"
 
 _logger = logging.getLogger(TEST_GENERATOR)
-
-
-def test_generator(generator: str):
-    """
-    Parses/executes the generator and then outputs the generated variables.
-
-    :param generator: the generator command-line to use for generating variable values
-    :type generator: str
-    """
-    # parse generator
-    generator_obj = Generator.parse_generator(generator)
-
-    # apply generator to pipeline template and execute it
-    vars_list = generator_obj.generate()
-    for vars_ in vars_list:
-        print(vars_)
 
 
 def main(args=None):
@@ -36,17 +17,7 @@ def main(args=None):
     :param args: the commandline arguments, uses sys.argv if not supplied
     :type args: list
     """
-    init_logging(env_var=ENV_ADC_LOGLEVEL)
-    generators = sorted(list(available_generators().keys()))
-    parser = argparse.ArgumentParser(
-        description="Tool for testing generators by outputting the generated variables and their associatd values. Available generators: " + ", ".join(generators),
-        prog=TEST_GENERATOR,
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-g", "--generator", help="The generator plugin to use.", default=None, type=str, required=True)
-    add_logging_level(parser)
-    parsed = parser.parse_args(args=args)
-    set_logging_level(_logger, parsed.logging_level)
-    test_generator(parsed.generator)
+    perform_generator_test(ENV_ADC_LOGLEVEL, args, TEST_GENERATOR, None, available_generators(), _logger)
 
 
 def sys_main() -> int:
