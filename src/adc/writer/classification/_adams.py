@@ -5,7 +5,7 @@ from typing import List
 from wai.logging import LOGGING_WARNING
 from wai.common.file.report import Report, Field, save
 from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
-from kasperl.api import SplittableStreamWriter, make_list, AnnotationsOnlyWriter, add_annotations_only_param
+from kasperl.api import SplittableStreamWriter, make_list, AnnotationsOnlyWriter, add_annotations_only_writer_param
 from adc.api import AudioClassificationData
 
 
@@ -67,7 +67,7 @@ class AdamsAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWrit
         parser = super()._create_argparser()
         parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.report files in. Any defined splits get added beneath there. " + placeholder_list(obj=self), required=True)
         parser.add_argument("-c", "--class_field", metavar="FIELD", type=str, default=None, help="The report field containing the audio classification label", required=True)
-        add_annotations_only_param(parser)
+        add_annotations_only_writer_param(parser)
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):

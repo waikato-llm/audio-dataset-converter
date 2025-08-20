@@ -6,7 +6,7 @@ from typing import List, Iterable
 from wai.logging import LOGGING_WARNING
 
 from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
-from kasperl.api import SplittableBatchWriter, AnnotationsOnlyWriter, add_annotations_only_param
+from kasperl.api import SplittableBatchWriter, AnnotationsOnlyWriter, add_annotations_only_writer_param
 from adc.api import SpeechData
 from adc.reader.speech import COMONVOICE_EXPECTED_HEADER, CommonVoiceDialect
 
@@ -70,7 +70,7 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, Inpu
         parser = super()._create_argparser()
         parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.txt files in. Any defined splits get added beneath there. " + placeholder_list(obj=self), required=True)
         parser.add_argument("--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
-        add_annotations_only_param(parser)
+        add_annotations_only_writer_param(parser)
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
