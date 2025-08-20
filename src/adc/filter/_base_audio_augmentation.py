@@ -97,6 +97,7 @@ class BaseAudioAugmentationFilter(Filter, abc.ABC):
             self.threshold = 0.0
         self._random = Random(self.seed)
 
+    @abc.abstractmethod
     def _default_suffix(self) -> str:
         """
         Returns the default suffix to use for audio files when using "add" rather than "replace" as mode.
@@ -127,6 +128,7 @@ class BaseAudioAugmentationFilter(Filter, abc.ABC):
         """
         return True
 
+    @abc.abstractmethod
     def _augment(self, item: AudioData, aug_seed: int, audio_name: str) -> AudioData:
         """
         Augments the audio data.
