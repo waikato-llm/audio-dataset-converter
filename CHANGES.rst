@@ -10,6 +10,10 @@ Changelog
 - the `metadata-from-name` filter can work on the path now as well (must be present)
 - switched to `kasperl` library for base API and generic pipeline plugins
 - added `@abc.abstractmethod` decorator where appropriate
+- the `adc-exec` tool now uses all remaining parameters as the pipeline components rather than having
+  to specify them via the `-p/--pipeline` parameter, making it easy to simply prefix the `adc-exec`
+  command to an existing `adc-convert` command-line
+- added the `text-file` and `csv-file` generators that work off files to populate the variable(s)
 
 
 0.0.4 (2025-07-15)
