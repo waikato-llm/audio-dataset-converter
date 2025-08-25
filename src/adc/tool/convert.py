@@ -2,7 +2,7 @@ import traceback
 
 from adc.core import ENV_ADC_LOGLEVEL
 from adc.help import generate_plugin_usage
-from adc.registry import available_readers, available_filters, available_writers
+from adc.registry import available_readers, available_filters, available_writers, REGISTRY
 from kasperl.api import perform_conversion
 
 CONVERT = "adc-convert"
@@ -18,7 +18,7 @@ def main(args=None):
     """
     perform_conversion(
         ENV_ADC_LOGLEVEL, args, CONVERT, DESCRIPTION,
-        available_readers(), available_filters(), available_writers(),
+        available_readers(), available_filters(), available_writers(), aliases=REGISTRY.all_aliases,
         require_reader=True, require_writer=False, generate_plugin_usage=generate_plugin_usage)
 
 
