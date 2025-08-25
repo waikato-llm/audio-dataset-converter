@@ -14,6 +14,7 @@ Changelog
   to specify them via the `-p/--pipeline` parameter, making it easy to simply prefix the `adc-exec`
   command to an existing `adc-convert` command-line
 - added the `text-file` and `csv-file` generators that work off files to populate the variable(s)
+- added support for class lister with ignored classes
 
 
 0.0.4 (2025-07-15)

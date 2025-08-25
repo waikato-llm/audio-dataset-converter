@@ -309,6 +309,7 @@ The following environment variables can be used to influence the class listers:
 
 * `ADC_CLASS_LISTERS`
 * `ADC_CLASS_LISTERS_EXCL`
+* `ADC_CLASS_LISTERS_IGNORED` - for class listers that provide ignored classes
 
 Each variable is a comma-separated list of `module_name:function_name`, defining the class listers.
 
