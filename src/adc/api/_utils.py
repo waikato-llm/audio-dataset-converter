@@ -1,5 +1,4 @@
 import io
-import io
 import os
 import tempfile
 import traceback
@@ -8,6 +7,8 @@ from typing import Optional, Union, Tuple
 import librosa
 import numpy as np
 import soundfile as sf
+
+from kasperl.api import locate_file
 
 
 def locate_audio(path: str, rel_path: str = None, suffix: str = None) -> Optional[str]:
