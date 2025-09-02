@@ -46,19 +46,18 @@ The following dataset formats are supported:
 ### Dataset conversion
 
 ```
-usage: adc-convert [-h|--help|--help-all|--help-plugin NAME]
-                   [-u INTERVAL] [-b|--force_batch] [--placeholders FILE]
-                   [--load_pipeline FILE] [--dump_pipeline FILE]
-                   [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
-                   [reader] [filter ...] [writer]
+usage: adc-convert [-h] [--help-all] [--help-plugin NAME] [-u INTERVAL]
+                   [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-b]
+                   [--placeholders FILE] [--load_pipeline FILE]
+                   [--dump_pipeline FILE]
 
 Tool for converting between audio dataset formats.
 
-readers (14):
+readers (15):
    from-adams-ac, from-adams-sp, from-commonvoice-sp, from-data, 
    from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-pyfunc, 
-   from-storage, from-subdir-ac, from-txt-ac, from-txt-sp, poll-dir, 
-   start
+   from-storage, from-subdir-ac, from-text-file, from-txt-ac, 
+   from-txt-sp, poll-dir, start
 filters (27):
    check-duplicate-filenames, convert-to-mono, convert-to-wav, 
    discard-by-name, discard-negatives, max-records, metadata, 
@@ -67,26 +66,23 @@ filters (27):
    resample, sample, set-metadata, set-placeholder, set-storage, 
    split-records, strip-annotations, sub-process, tee, time-stretch, 
    trigger, trim-silence
-writers (13):
+writers (14):
    to-adams-ac, to-adams-sp, to-audioinfo, to-commonvoice-sp, to-data, 
    to-festvox-sp, to-hf-audiofolder-sp, to-multi, to-pyfunc, to-storage, 
-   to-subdir-ac, to-txt-ac, to-txt-sp
+   to-subdir-ac, to-text-file, to-txt-ac, to-txt-sp
 
 options:
-  -h, --help            show basic help message and exit
-  --help-all            show basic help message plus help on all plugins and exit
-  --help-plugin NAME    show help message for plugin NAME and exit
-  -u INTERVAL, --update_interval INTERVAL
-                        outputs the progress every INTERVAL records (default: 1000)
+  -h, --help           Show basic help message and exit.
+  --help-all           Show basic help message plus help on all plugins and exit.
+  --help-plugin NAME   Show help message for plugin NAME and exit.
+  -u, --update_interval INTERVAL
+                       Outputs the progress every INTERVAL records (default: 1000).
   -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
-                        the logging level to use (default: WARN)
-  -b, --force_batch     processes the data in batches
-  --placeholders FILE
-                        The file with custom placeholders to load (format: key=value).
-  --load_pipeline FILE
-                        The file to load the pipeline command from.
-  --dump_pipeline FILE
-                        The file to dump the pipeline command in.
+                       The logging level to use (default: WARN).
+  -b, --force_batch    Processes the data in batches.
+  --placeholders FILE  The file with custom placeholders to load (format: key=value).
+  --load_pipeline FILE The file to load the pipeline command from.
+  --dump_pipeline FILE The file to dump the pipeline command in.
 ```
 
 ### Executing pipeline multiple times

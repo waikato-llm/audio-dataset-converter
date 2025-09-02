@@ -10,9 +10,11 @@
 * [from-pyfunc](from-pyfunc.md)
 * [from-storage](from-storage.md)
 * [from-subdir-ac](from-subdir-ac.md)
+* [from-text-file](from-text-file.md)
 * [from-txt-ac](from-txt-ac.md)
 * [from-txt-sp](from-txt-sp.md)
 * [poll-dir](poll-dir.md)
+* [start](start.md)
 
 ## Filters
 * [check-duplicate-filenames](check-duplicate-filenames.md)
@@ -32,6 +34,7 @@
 * [rename](rename.md)
 * [resample](resample.md)
 * [sample](sample.md)
+* [set-metadata](set-metadata.md)
 * [set-placeholder](set-placeholder.md)
 * [set-storage](set-storage.md)
 * [split-records](split-records.md)
@@ -54,5 +57,6 @@
 * [to-pyfunc](to-pyfunc.md)
 * [to-storage](to-storage.md)
 * [to-subdir-ac](to-subdir-ac.md)
+* [to-text-file](to-text-file.md)
 * [to-txt-ac](to-txt-ac.md)
 * [to-txt-sp](to-txt-sp.md)

@@ -1,0 +1,31 @@
+# to-text-file
+
+* accepts: seppl.AnyData
+
+Stores the incoming data in the specified text file.
+
+```
+usage: to-text-file [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                    [-N LOGGER_NAME] [--skip] -p FILE [-a] [-d]
+
+Stores the incoming data in the specified text file.
+
+options:
+  -h, --help            show this help message and exit
+  -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
+                        The logging level to use. (default: WARN)
+  -N LOGGER_NAME, --logger_name LOGGER_NAME
+                        The custom name to use for the logger, uses the plugin
+                        name by default (default: None)
+  --skip                Disables the plugin, removing it from the pipeline.
+                        (default: False)
+  -p FILE, --path FILE  The file to write the data to; Supported placeholders:
+                        {INPUT_PATH}, {INPUT_NAMEEXT}, {INPUT_NAMENOEXT},
+                        {INPUT_EXT}, {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME}
+                        (default: None)
+  -a, --append          Whether to append the file rather than overwrite it.
+                        (default: False)
+  -d, --delete_on_initialize
+                        Whether to remove any existing file when initializing
+                        the writer. (default: False)
+```
