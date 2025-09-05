@@ -53,23 +53,24 @@ usage: adc-convert [-h] [--help-all] [--help-plugin NAME] [-u INTERVAL]
 
 Tool for converting between audio dataset formats.
 
-readers (15):
+readers (16):
    from-adams-ac, from-adams-sp, from-commonvoice-sp, from-data, 
    from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-pyfunc, 
    from-storage, from-subdir-ac, from-text-file, from-txt-ac, 
-   from-txt-sp, poll-dir, start
-filters (27):
-   check-duplicate-filenames, convert-to-mono, convert-to-wav, 
-   discard-by-name, discard-negatives, max-records, metadata, 
-   metadata-from-name, metadata-to-placeholder, passthrough, 
+   from-txt-sp, list-files, poll-dir, start
+filters (30):
+   block, check-duplicate-filenames, convert-to-mono, convert-to-wav, 
+   discard-by-name, discard-negatives, list-to-sequence, max-records, 
+   metadata, metadata-from-name, metadata-to-placeholder, passthrough, 
    pitch-shift, pyfunc-filter, randomize-records, record-window, rename, 
    resample, sample, set-metadata, set-placeholder, set-storage, 
-   split-records, strip-annotations, sub-process, tee, time-stretch, 
-   trigger, trim-silence
-writers (14):
-   to-adams-ac, to-adams-sp, to-audioinfo, to-commonvoice-sp, to-data, 
-   to-festvox-sp, to-hf-audiofolder-sp, to-multi, to-pyfunc, to-storage, 
-   to-subdir-ac, to-text-file, to-txt-ac, to-txt-sp
+   split-records, stop, strip-annotations, sub-process, tee, 
+   time-stretch, trigger, trim-silence
+writers (15):
+   send-email, to-adams-ac, to-adams-sp, to-audioinfo, 
+   to-commonvoice-sp, to-data, to-festvox-sp, to-hf-audiofolder-sp, 
+   to-multi, to-pyfunc, to-storage, to-subdir-ac, to-text-file, 
+   to-txt-ac, to-txt-sp
 
 options:
   -h, --help           Show basic help message and exit.

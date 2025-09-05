@@ -13,15 +13,18 @@
 * [from-text-file](from-text-file.md)
 * [from-txt-ac](from-txt-ac.md)
 * [from-txt-sp](from-txt-sp.md)
+* [list-files](list-files.md)
 * [poll-dir](poll-dir.md)
 * [start](start.md)
 
 ## Filters
+* [block](block.md)
 * [check-duplicate-filenames](check-duplicate-filenames.md)
 * [convert-to-mono](convert-to-mono.md)
 * [convert-to-wav](convert-to-wav.md)
 * [discard-by-name](discard-by-name.md)
 * [discard-negatives](discard-negatives.md)
+* [list-to-sequence](list-to-sequence.md)
 * [max-records](max-records.md)
 * [metadata](metadata.md)
 * [metadata-from-name](metadata-from-name.md)
@@ -38,6 +41,7 @@
 * [set-placeholder](set-placeholder.md)
 * [set-storage](set-storage.md)
 * [split-records](split-records.md)
+* [stop](stop.md)
 * [strip-annotations](strip-annotations.md)
 * [sub-process](sub-process.md)
 * [tee](tee.md)
@@ -46,6 +50,7 @@
 * [trim-silence](trim-silence.md)
 
 ## Writers
+* [send-email](send-email.md)
 * [to-adams-ac](to-adams-ac.md)
 * [to-adams-sp](to-adams-sp.md)
 * [to-audioinfo](to-audioinfo.md)
