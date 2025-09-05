@@ -20,9 +20,9 @@ options:
   --skip                Disables the plugin, removing it from the pipeline.
                         (default: False)
   -p FILE, --path FILE  The file to write the data to; Supported placeholders:
-                        {INPUT_PATH}, {INPUT_NAMEEXT}, {INPUT_NAMENOEXT},
-                        {INPUT_EXT}, {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME}
-                        (default: None)
+                        {HOME}, {CWD}, {TMP}, {INPUT_PATH}, {INPUT_NAMEEXT},
+                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
+                        {INPUT_PARENT_NAME} (default: None)
   -a, --append          Whether to append the file rather than overwrite it.
                         (default: False)
   -d, --delete_on_initialize

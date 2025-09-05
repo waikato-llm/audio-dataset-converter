@@ -23,11 +23,15 @@ options:
   -i [INPUT ...], --input [INPUT ...]
                         Path to the CSV file(s) to read; glob syntax is
                         supported; Supported placeholders: {HOME}, {CWD},
-                        {TMP} (default: None)
+                        {TMP}, {INPUT_PATH}, {INPUT_NAMEEXT},
+                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
+                        {INPUT_PARENT_NAME} (default: None)
   -I [INPUT_LIST ...], --input_list [INPUT_LIST ...]
                         Path to the text file(s) listing the CSV files to use;
-                        Supported placeholders: {HOME}, {CWD}, {TMP} (default:
-                        None)
+                        Supported placeholders: {HOME}, {CWD}, {TMP},
+                        {INPUT_PATH}, {INPUT_NAMEEXT}, {INPUT_NAMENOEXT},
+                        {INPUT_EXT}, {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME}
+                        (default: None)
   --resume_from RESUME_FROM
                         Glob expression matching the file to resume from,
                         e.g., '*/012345.csv' (default: None)

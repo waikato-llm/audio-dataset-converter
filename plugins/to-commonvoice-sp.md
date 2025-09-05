@@ -38,9 +38,10 @@ options:
   -o OUTPUT, --output OUTPUT
                         The directory to store the audio/.txt files in. Any
                         defined splits get added beneath there. Supported
-                        placeholders: {INPUT_PATH}, {INPUT_NAMEEXT},
-                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
-                        {INPUT_PARENT_NAME} (default: None)
+                        placeholders: {HOME}, {CWD}, {TMP}, {INPUT_PATH},
+                        {INPUT_NAMEEXT}, {INPUT_NAMENOEXT}, {INPUT_EXT},
+                        {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME} (default:
+                        None)
   --rel_path REL_PATH   The relative path to the audio files. (default: .)
   --annotations_only    Outputs only the annotations. (default: False)
 ```

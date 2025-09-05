@@ -18,5 +18,7 @@ options:
                         The custom name to use for the logger, uses the plugin
                         name by default (default: None)
   -p FILE, --path FILE  The file to load; Supported placeholders: {HOME},
-                        {CWD}, {TMP} (default: None)
+                        {CWD}, {TMP}, {INPUT_PATH}, {INPUT_NAMEEXT},
+                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
+                        {INPUT_PARENT_NAME} (default: None)
 ```

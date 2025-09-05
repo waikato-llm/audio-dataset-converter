@@ -28,10 +28,10 @@ options:
                         (default: None)
   -v VALUE, --value VALUE
                         The value of the placeholder, may contain other
-                        placeholders. Supported placeholders: {INPUT_PATH},
-                        {INPUT_NAMEEXT}, {INPUT_NAMENOEXT}, {INPUT_EXT},
-                        {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME} (default:
-                        None)
+                        placeholders. Supported placeholders: {HOME}, {CWD},
+                        {TMP}, {INPUT_PATH}, {INPUT_NAMEEXT},
+                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
+                        {INPUT_PARENT_NAME} (default: None)
   -u, --use_current     Whether to use the data passing through instead of the
                         specified value. (default: False)
 ```
