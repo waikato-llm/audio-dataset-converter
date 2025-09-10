@@ -13,6 +13,7 @@
 * [from-text-file](from-text-file.md)
 * [from-txt-ac](from-txt-ac.md)
 * [from-txt-sp](from-txt-sp.md)
+* [get-email](get-email.md)
 * [list-files](list-files.md)
 * [poll-dir](poll-dir.md)
 * [start](start.md)
@@ -50,6 +51,7 @@
 * [trim-silence](trim-silence.md)
 
 ## Writers
+* [console](console.md)
 * [send-email](send-email.md)
 * [to-adams-ac](to-adams-ac.md)
 * [to-adams-sp](to-adams-sp.md)
