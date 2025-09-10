@@ -3,7 +3,7 @@ import argparse
 import os
 from random import Random
 
-from seppl.io import Filter
+from seppl.io import BatchFilter
 from wai.logging import LOGGING_WARNING
 
 from kasperl.api import flatten_list, make_list
@@ -21,7 +21,7 @@ AUG_MODES = [
 ]
 
 
-class BaseAudioAugmentationFilter(Filter, abc.ABC):
+class BaseAudioAugmentationFilter(BatchFilter, abc.ABC):
     """
     Ancestor for audio augmentation filters.
     """

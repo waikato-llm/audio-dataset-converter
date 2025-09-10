@@ -3,7 +3,7 @@ import librosa
 import os
 from typing import List
 
-from seppl.io import Filter
+from seppl.io import BatchFilter
 from wai.logging import LOGGING_WARNING
 from kasperl.api import make_list, flatten_list
 from adc.api import AudioData, AudioClassificationData, SpeechData, FORMAT_WAV, FORMAT_EXTENSIONS
@@ -28,7 +28,7 @@ RESAMPLE_TYPES = [
 ]
 
 
-class Resample(Filter):
+class Resample(BatchFilter):
     """
     Resamples the audio data with the supplied sample rate.
     """

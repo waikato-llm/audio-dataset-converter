@@ -1,14 +1,14 @@
 import argparse
 from typing import List
 
-from seppl.io import Filter
+from seppl.io import BatchFilter
 from wai.logging import LOGGING_WARNING
 
 from kasperl.api import flatten_list, make_list, load_function
 from adc.api import AudioData, DATATYPES, data_type_to_class
 
 
-class PythonFunctionFilter(Filter):
+class PythonFunctionFilter(BatchFilter):
     """
     Selects a sub-sample from the stream.
     """

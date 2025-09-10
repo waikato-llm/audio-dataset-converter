@@ -2,13 +2,13 @@ import librosa
 
 from typing import List
 
-from seppl.io import Filter
+from seppl.io import BatchFilter
 from wai.logging import LOGGING_WARNING
 from kasperl.api import make_list, flatten_list
 from adc.api import AudioData, AudioClassificationData, SpeechData
 
 
-class ConvertToMono(Filter):
+class ConvertToMono(BatchFilter):
     """
     Turns the audio into mono.
     """

@@ -1,13 +1,13 @@
 import os
 from typing import List
 
-from seppl.io import Filter
+from seppl.io import BatchFilter
 from wai.logging import LOGGING_WARNING
 from kasperl.api import make_list, flatten_list
 from adc.api import AudioData, AudioClassificationData, SpeechData, FORMAT_WAV, FORMAT_EXTENSIONS
 
 
-class ConvertToWav(Filter):
+class ConvertToWav(BatchFilter):
     """
     Turns the audio into WAV format.
     """
