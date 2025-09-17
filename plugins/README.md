@@ -17,6 +17,7 @@
 * [list-files](list-files.md)
 * [poll-dir](poll-dir.md)
 * [start](start.md)
+* [watch-dir](watch-dir.md)
 
 ## Filters
 * [block](block.md)

@@ -53,19 +53,19 @@ usage: adc-convert [-h] [--help-all] [--help-plugin NAME] [-u INTERVAL]
 
 Tool for converting between audio dataset formats.
 
-readers (17):
+readers (18):
    from-adams-ac, from-adams-sp, from-commonvoice-sp, from-data, 
    from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-pyfunc, 
    from-storage, from-subdir-ac, from-text-file, from-txt-ac, 
-   from-txt-sp, get-email, list-files, poll-dir, start
-filters (30):
+   from-txt-sp, get-email, list-files, poll-dir, start, watch-dir
+filters (31):
    block, check-duplicate-filenames, convert-to-mono, convert-to-wav, 
    discard-by-name, discard-negatives, list-to-sequence, max-records, 
-   metadata, metadata-from-name, metadata-to-placeholder, passthrough, 
-   pitch-shift, pyfunc-filter, randomize-records, record-window, rename, 
-   resample, sample, set-metadata, set-placeholder, set-storage, 
-   split-records, stop, strip-annotations, sub-process, tee, 
-   time-stretch, trigger, trim-silence
+   metadata, metadata-from-name, metadata-to-placeholder, move-files, 
+   passthrough, pitch-shift, pyfunc-filter, randomize-records, 
+   record-window, rename, resample, sample, set-metadata, 
+   set-placeholder, set-storage, split-records, stop, strip-annotations, 
+   sub-process, tee, time-stretch, trigger, trim-silence
 writers (16):
    console, send-email, to-adams-ac, to-adams-sp, to-audioinfo, 
    to-commonvoice-sp, to-data, to-festvox-sp, to-hf-audiofolder-sp, 
@@ -97,8 +97,9 @@ usage: adc-exec [-h] --exec_generator GENERATOR [--exec_dry_run]
 
 Tool for executing a pipeline multiple times, each time with a different set
 of variables expanded. A variable is surrounded by curly quotes (e.g.,
-variable 'i' gets referenced with '{i}'). Available generators: csv-file,
-dirs, list, null, range, text-file
+variable 'i' gets referenced with '{i}'). When supplying multiple generators,
+then these get treated as nested executions. Available generators: csv-file,
+dirs, list, null, prompt, range, text-file
 
 positional arguments:
   pipeline              The pipeline template with variables to expand and
@@ -107,7 +108,8 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --exec_generator GENERATOR
-                        The generator plugin to use, incl. its options.
+                        The generator plugin(s) to use, incl. their options.
+                        Flag needs to be specified for each generator.
                         (default: None)
   --exec_dry_run        Applies the generator to the pipeline template and
                         only outputs it on stdout. (default: False)
