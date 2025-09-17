@@ -118,9 +118,9 @@ class PythonFunctionReader(Reader, PlaceholderSupporter):
         :return: the data
         :rtype: Iterable
         """
-        self._inputs = locate_files(self.source, input_lists=self.source_list, fail_if_empty=True, resume_from=self.resume_from)
         if self._inputs is None:
-            self._current_input = self._inputs.pop(0)
+            self._inputs = locate_files(self.source, input_lists=self.source_list, fail_if_empty=True, resume_from=self.resume_from)
+        self._current_input = self._inputs.pop(0)
         self.session.current_input = self._current_input
         self.logger().info("Reading from: " + str(self.session.current_input))
         for item in self._function(self.session.current_input):
@@ -136,4 +136,4 @@ class PythonFunctionReader(Reader, PlaceholderSupporter):
         :return: True if finished
         :rtype: bool
         """
-        return len(self._inputs) == 0
+        return (self._inputs is not None) and len(self._inputs) == 0
