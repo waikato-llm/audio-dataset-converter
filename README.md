@@ -66,11 +66,11 @@ filters (31):
    record-window, rename, resample, sample, set-metadata, 
    set-placeholder, set-storage, split-records, stop, strip-annotations, 
    sub-process, tee, time-stretch, trigger, trim-silence
-writers (16):
-   console, send-email, to-adams-ac, to-adams-sp, to-audioinfo, 
-   to-commonvoice-sp, to-data, to-festvox-sp, to-hf-audiofolder-sp, 
-   to-multi, to-pyfunc, to-storage, to-subdir-ac, to-text-file, 
-   to-txt-ac, to-txt-sp
+writers (17):
+   console, delete-files, send-email, to-adams-ac, to-adams-sp, 
+   to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
+   to-hf-audiofolder-sp, to-multi, to-pyfunc, to-storage, to-subdir-ac, 
+   to-text-file, to-txt-ac, to-txt-sp
 
 options:
   -h, --help           Show basic help message and exit.

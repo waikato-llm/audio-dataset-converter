@@ -28,6 +28,7 @@ Changelog
 - added `console` writer for outputting the data on stdout that is coming through
 - added `watch-dir` meta-reader that uses the watchdog library to react to file-system events
   rather than using fixed-interval polling like `poll-dir`
+- added `delete-files` writer
 
 
 0.0.4 (2025-07-15)
