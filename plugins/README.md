@@ -24,6 +24,7 @@
 * [check-duplicate-filenames](check-duplicate-filenames.md)
 * [convert-to-mono](convert-to-mono.md)
 * [convert-to-wav](convert-to-wav.md)
+* [copy-files](copy-files.md)
 * [discard-by-name](discard-by-name.md)
 * [discard-negatives](discard-negatives.md)
 * [list-to-sequence](list-to-sequence.md)
