@@ -5,10 +5,10 @@ import logging
 import os.path
 import shutil
 import soundfile as sf
-from typing import Dict, Optional, List
+from typing import Dict, Optional
 
 import numpy as np
-from seppl import MetaDataHandler, LoggingHandler
+from seppl import MetaDataHandler, LoggingHandler, get_class_name
 from tinytag import TinyTag
 
 from ._utils import load_audio_from_bytes, load_audio_from_file
@@ -446,3 +446,12 @@ class AudioData(MetaDataHandler, LoggingHandler):
         if metadata and (self.get_metadata() is not None):
             result["metadata"] = copy.deepcopy(self.get_metadata())
         return result
+
+    def __str__(self) -> str:
+        """
+        Returns a basic description of the container.
+
+        :return: the description
+        :rtype: str
+        """
+        return "name=" + self.audio_name + ", annotation=" + str(self.has_annotation()) + ", type=" + str(get_class_name(self)) + ", metadata=" + str(self.get_metadata())
