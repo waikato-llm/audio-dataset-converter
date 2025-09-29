@@ -28,11 +28,16 @@ DEFAULT_ADC_CLASS_LISTERS_IGNORED = [
     "adc.class_lister_ignored",
 ]
 
+# environment variable for managing the class cache: on|off|reset
+ENV_ADC_CLASS_CACHE = "ADC_CLASS_CACHE"
+
 REGISTRY = ClassListerRegistry(default_class_listers=DEFAULT_ADC_CLASS_LISTERS,
                                env_class_listers=ENV_ADC_CLASS_LISTERS,
                                env_excluded_class_listers=ENV_ADC_CLASS_LISTERS_EXCL,
                                ignored_class_listers=DEFAULT_ADC_CLASS_LISTERS_IGNORED,
-                               env_ignored_class_listers=ENV_ADC_CLASS_LISTERS_IGNORED)
+                               env_ignored_class_listers=ENV_ADC_CLASS_LISTERS_IGNORED,
+                               app_name="audio-dataset-converter",
+                               class_cache_env=ENV_ADC_CLASS_CACHE)
 
 IMG_REGISTRY = "adc-registry"
 

@@ -30,6 +30,7 @@ Changelog
   rather than using fixed-interval polling like `poll-dir`
 - added `delete-files` writer
 - added `copy-files` filter
+- added support for caching plugins via `ADC_CLASS_CACHE` environment variable
 
 
 0.0.4 (2025-07-15)

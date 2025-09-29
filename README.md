@@ -327,6 +327,26 @@ The following environment variables can be used to influence the class listers:
 Each variable is a comma-separated list of `module_name:function_name`, defining the class listers.
 
 
+## Caching plugins
+
+In order to speed up plugin discovery, they discovered plugins can be cached
+on disk after the initial discovery. Installing additional plugins after
+the cache has been initialized will not make them visible, the cache will
+require resetting first.
+
+The cache can be managed through the following environment variable:
+
+```
+ADC_CLASS_CACHE
+```
+
+It supports the following options:
+
+* `off`: disables the cache
+* `on`: enables the cache
+* `reset`: resets the cached plugins first and enables the cache
+
+
 ## Additional libraries
 
 * [Faster whisper](https://github.com/waikato-llm/audio-dataset-converter-faster-whisper)
