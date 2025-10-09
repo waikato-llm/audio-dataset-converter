@@ -1,3 +1,4 @@
+from ._attach_metadata import AttachMetaData
 from ._base_audio_augmentation import BaseAudioAugmentationFilter, AUG_MODES, AUG_MODE_ADD, AUG_MODE_REPLACE
 from ._convert_to_mono import ConvertToMono
 from ._convert_to_wav import ConvertToWav

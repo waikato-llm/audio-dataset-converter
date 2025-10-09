@@ -58,20 +58,20 @@ readers (18):
    from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-pyfunc, 
    from-storage, from-subdir-ac, from-text-file, from-txt-ac, 
    from-txt-sp, get-email, list-files, poll-dir, start, watch-dir
-filters (32):
-   block, check-duplicate-filenames, convert-to-mono, convert-to-wav, 
-   copy-files, discard-by-name, discard-negatives, list-to-sequence, 
-   max-records, metadata, metadata-from-name, metadata-to-placeholder, 
-   move-files, passthrough, pitch-shift, pyfunc-filter, 
-   randomize-records, record-window, rename, resample, sample, 
-   set-metadata, set-placeholder, set-storage, split-records, stop, 
-   strip-annotations, sub-process, tee, time-stretch, trigger, 
+filters (33):
+   attach-metadata, block, check-duplicate-filenames, convert-to-mono, 
+   convert-to-wav, copy-files, discard-by-name, discard-negatives, 
+   list-to-sequence, max-records, metadata, metadata-from-name, 
+   metadata-to-placeholder, move-files, passthrough, pitch-shift, 
+   pyfunc-filter, randomize-records, record-window, rename, resample, 
+   sample, set-metadata, set-placeholder, set-storage, split-records, 
+   stop, strip-annotations, sub-process, tee, time-stretch, trigger, 
    trim-silence
-writers (17):
+writers (18):
    console, delete-files, send-email, to-adams-ac, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
-   to-hf-audiofolder-sp, to-multi, to-pyfunc, to-storage, to-subdir-ac, 
-   to-text-file, to-txt-ac, to-txt-sp
+   to-hf-audiofolder-sp, to-metadata, to-multi, to-pyfunc, to-storage, 
+   to-subdir-ac, to-text-file, to-txt-ac, to-txt-sp
 
 options:
   -h, --help           Show basic help message and exit.

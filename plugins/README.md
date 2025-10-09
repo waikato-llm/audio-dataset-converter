@@ -20,6 +20,7 @@
 * [watch-dir](watch-dir.md)
 
 ## Filters
+* [attach-metadata](attach-metadata.md)
 * [block](block.md)
 * [check-duplicate-filenames](check-duplicate-filenames.md)
 * [convert-to-mono](convert-to-mono.md)
@@ -64,6 +65,7 @@
 * [to-data](to-data.md)
 * [to-festvox-sp](to-festvox-sp.md)
 * [to-hf-audiofolder-sp](to-hf-audiofolder-sp.md)
+* [to-metadata](to-metadata.md)
 * [to-multi](to-multi.md)
 * [to-pyfunc](to-pyfunc.md)
 * [to-storage](to-storage.md)

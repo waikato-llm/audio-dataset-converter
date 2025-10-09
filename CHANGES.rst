@@ -31,6 +31,8 @@ Changelog
 - added `delete-files` writer
 - added `copy-files` filter
 - added support for caching plugins via `ADC_CLASS_CACHE` environment variable
+- added `to-metadata` writer that outputs the meta-data of an image
+- added `attach-metadata` filter that loads meta-data from a directory and attaches it to the data passing through
 
 
 0.0.4 (2025-07-15)
