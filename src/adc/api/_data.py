@@ -5,7 +5,7 @@ import logging
 import os.path
 import shutil
 import soundfile as sf
-from typing import Dict, Optional
+from typing import Dict, Optional, Any
 
 import numpy as np
 from seppl import MetaDataHandler, LoggingHandler, get_class_name
@@ -98,8 +98,9 @@ class AudioData(MetaDataHandler, LoggingHandler):
         """ the sample rate (samples per second). """
         self._metadata = metadata
         """ the dictionary with optional meta-data. """
-        self.annotation = annotation
+        self._annotation = None
         """ the associated annotation data. """
+        self.annotation = annotation
         self._tag = None
         """ the metadata from the audio data. """
 
@@ -311,6 +312,45 @@ class AudioData(MetaDataHandler, LoggingHandler):
             return True
         return False
 
+    @property
+    def annotation(self) -> Optional[Any]:
+        """
+        Returns the current annotation, if any.
+
+        :return: the annotation
+        """
+        return self._annotation
+
+    @annotation.setter
+    def annotation(self, ann: Optional[Any]):
+        """
+        Sets the annotation to use.
+
+        :param ann: the annotation, can be None
+        """
+        self._annotation = self._check_annotation(ann)
+
+    def _is_correct_annotation_type(self, ann: Any):
+        """
+        Checks whether the annotation type is valid. Raises an exception if not.
+        Default annotations performs no check.
+
+        :param ann: the annotations to check
+        """
+        pass
+
+    def _check_annotation(self, ann: Optional[Any]):
+        """
+        Checks whether the annotations are valid. Raises an exception if invalid type.
+        Ignores None values.
+
+        :param ann: the annotations to check, can be None
+        :return: the annotations
+        """
+        if ann is not None:
+            self._is_correct_annotation_type(ann)
+        return ann
+
     def has_annotation(self) -> bool:
         """
         Checks whether annotations are present.
@@ -319,6 +359,22 @@ class AudioData(MetaDataHandler, LoggingHandler):
         :rtype: bool
         """
         return self.annotation is not None
+
+    def set_annotation(self, ann: Optional[Any]):
+        """
+        Sets the annotations.
+
+        :param ann: the annotations
+        """
+        self.annotation = ann
+
+    def get_annotation(self) -> Optional[Any]:
+        """
+        Returns the annotations.
+
+        :return: the annotations
+        """
+        return self.annotation
 
     def has_metadata(self) -> bool:
         """

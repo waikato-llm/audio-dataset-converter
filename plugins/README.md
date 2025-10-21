@@ -20,6 +20,8 @@
 * [watch-dir](watch-dir.md)
 
 ## Filters
+* [annotations-from-storage](annotations-from-storage.md)
+* [annotations-to-storage](annotations-to-storage.md)
 * [attach-metadata](attach-metadata.md)
 * [block](block.md)
 * [check-duplicate-filenames](check-duplicate-filenames.md)

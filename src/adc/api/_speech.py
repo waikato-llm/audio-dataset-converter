@@ -1,6 +1,6 @@
 import numpy as np
 
-from typing import Dict
+from typing import Dict, Any
 
 from ._data import AudioData
 
@@ -28,6 +28,16 @@ class SpeechData(AudioData):
         :rtype: bool
         """
         return (self.annotation is not None) and (len(self.annotation) > 0)
+
+    def _is_correct_annotation_type(self, ann: Any):
+        """
+        Checks whether the annotation type is valid. Raises an exception if not.
+        Default annotations performs no check.
+
+        :param ann: the annotations to check
+        """
+        if not isinstance(ann, str):
+            raise Exception("Unsupported annotation type: %s" % str(type(ann)))
 
     def _annotation_to_dict(self):
         """
