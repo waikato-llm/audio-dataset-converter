@@ -21,13 +21,9 @@ options:
   -i [INPUT ...], --input [INPUT ...]
                         Path to the directory with the sub-directories
                         containing the audio files; Supported placeholders:
-                        {HOME}, {CWD}, {TMP}, {INPUT_PATH}, {INPUT_NAMEEXT},
-                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
-                        {INPUT_PARENT_NAME} (default: None)
+                        {HOME}, {CWD}, {TMP} (default: None)
   -I [INPUT_LIST ...], --input_list [INPUT_LIST ...]
                         Path to the text file(s) listing the directories to
-                        use; Supported placeholders: {HOME}, {CWD}, {TMP},
-                        {INPUT_PATH}, {INPUT_NAMEEXT}, {INPUT_NAMENOEXT},
-                        {INPUT_EXT}, {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME}
+                        use; Supported placeholders: {HOME}, {CWD}, {TMP}
                         (default: None)
 ```

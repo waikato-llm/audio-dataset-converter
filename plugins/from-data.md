@@ -21,14 +21,10 @@ options:
   -i [INPUT ...], --input [INPUT ...]
                         Path to the audio file(s) to read; glob syntax is
                         supported; Supported placeholders: {HOME}, {CWD},
-                        {TMP}, {INPUT_PATH}, {INPUT_NAMEEXT},
-                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
-                        {INPUT_PARENT_NAME} (default: None)
+                        {TMP} (default: None)
   -I [INPUT_LIST ...], --input_list [INPUT_LIST ...]
                         Path to the text file(s) listing the audio files to
-                        use; Supported placeholders: {HOME}, {CWD}, {TMP},
-                        {INPUT_PATH}, {INPUT_NAMEEXT}, {INPUT_NAMENOEXT},
-                        {INPUT_EXT}, {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME}
+                        use; Supported placeholders: {HOME}, {CWD}, {TMP}
                         (default: None)
   --resume_from RESUME_FROM
                         Glob expression matching the file to resume from,

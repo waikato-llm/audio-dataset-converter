@@ -30,15 +30,10 @@ options:
                         (default: None)
   -i DIR_IN, --dir_in DIR_IN
                         The directory to poll; Supported placeholders: {HOME},
-                        {CWD}, {TMP}, {INPUT_PATH}, {INPUT_NAMEEXT},
-                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
-                        {INPUT_PARENT_NAME} (default: None)
+                        {CWD}, {TMP} (default: None)
   -o DIR_OUT, --dir_out DIR_OUT
                         The directory to move the files to; Supported
-                        placeholders: {HOME}, {CWD}, {TMP}, {INPUT_PATH},
-                        {INPUT_NAMEEXT}, {INPUT_NAMENOEXT}, {INPUT_EXT},
-                        {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME} (default:
-                        None)
+                        placeholders: {HOME}, {CWD}, {TMP} (default: None)
   -w CHECK_WAIT, --check_wait CHECK_WAIT
                         The number of seconds to wait before checking whether
                         any files were discovered. (default: 0.01)

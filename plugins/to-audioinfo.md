@@ -22,9 +22,7 @@ options:
   -o OUTPUT_FILE, --output_file OUTPUT_FILE
                         The file to store the audio information in; outputs to
                         stdout if no file provided. Supported placeholders:
-                        {HOME}, {CWD}, {TMP}, {INPUT_PATH}, {INPUT_NAMEEXT},
-                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
-                        {INPUT_PARENT_NAME} (default: None)
+                        {HOME}, {CWD}, {TMP} (default: None)
   -f {csv,json}, --output_format {csv,json}
                         The format to use for the output. (default: text)
 ```

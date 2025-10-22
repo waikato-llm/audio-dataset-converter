@@ -24,15 +24,10 @@ options:
                         (default: None)
   -i DIR_IN, --dir_in DIR_IN
                         The directory to poll; Supported placeholders: {HOME},
-                        {CWD}, {TMP}, {INPUT_PATH}, {INPUT_NAMEEXT},
-                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
-                        {INPUT_PARENT_NAME} (default: None)
+                        {CWD}, {TMP} (default: None)
   -o DIR_OUT, --dir_out DIR_OUT
                         The directory to move the files to; Supported
-                        placeholders: {HOME}, {CWD}, {TMP}, {INPUT_PATH},
-                        {INPUT_NAMEEXT}, {INPUT_NAMENOEXT}, {INPUT_EXT},
-                        {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME} (default:
-                        None)
+                        placeholders: {HOME}, {CWD}, {TMP} (default: None)
   -w POLL_WAIT, --poll_wait POLL_WAIT
                         The poll interval in seconds (default: 1.0)
   -W PROCESS_WAIT, --process_wait PROCESS_WAIT
