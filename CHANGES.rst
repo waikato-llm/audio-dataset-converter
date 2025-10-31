@@ -35,6 +35,7 @@ Changelog
 - added `attach-metadata` filter that loads meta-data from a directory and attaches it to the data passing through
 - added `annotation-to-storage` and `annotation-from-storage` filters
 - annotation data is now being type-checked when setting it
+- requiring seppl>=0.3.0 now
 
 
 0.0.4 (2025-07-15)
