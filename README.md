@@ -58,9 +58,10 @@ readers (18):
    from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-pyfunc, 
    from-storage, from-subdir-ac, from-text-file, from-txt-ac, 
    from-txt-sp, get-email, list-files, poll-dir, start, watch-dir
-filters (33):
-   attach-metadata, block, check-duplicate-filenames, convert-to-mono, 
-   convert-to-wav, copy-files, discard-by-name, discard-negatives, 
+filters (36):
+   annotations-from-storage, annotations-to-storage, attach-metadata, 
+   block, check-duplicate-filenames, convert-to-mono, convert-to-wav, 
+   copy-files, delete-storage, discard-by-name, discard-negatives, 
    list-to-sequence, max-records, metadata, metadata-from-name, 
    metadata-to-placeholder, move-files, passthrough, pitch-shift, 
    pyfunc-filter, randomize-records, record-window, rename, resample, 
