@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.1.0 (????-??-??)
+0.1.0 (2025-10-31)
 ------------------
 
 - `split-records` filter now allows specifying the meta-data field in which to store the split name
