@@ -21,7 +21,6 @@ setup(
     url="https://github.com/waikato-llm/audio-dataset-converter",
     classifiers=[
         'Development Status :: 4 - Beta',
-        'License :: OSI Approved :: MIT License',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Topic :: Multimedia :: Sound/Audio :: Conversion',
     ],
