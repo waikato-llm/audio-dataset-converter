@@ -156,7 +156,15 @@ class CommonVoiceSpeechReader(Reader, PlaceholderSupporter):
                     self.logger().warning("Audio file not found: %s" % audio)
                     yield None
 
-                yield SpeechData(source=audio, annotation=row['sentence'])
+                meta = {
+                    "client_id": row["client_id"],
+                    "up_votes": row["up_votes"],
+                    "down_votes": row["down_votes"],
+                    "age": row["age"],
+                    "gender": row["gender"],
+                    "locale": row["locale"],
+                }
+                yield SpeechData(source=audio, annotation=row['sentence'], metadata=meta)
 
     def has_finished(self) -> bool:
         """

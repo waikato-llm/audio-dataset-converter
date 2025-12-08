@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - `to-commonvoice-sp` writer now creates output directories automatically
+- `from-commonvoice-sp` reader now adds the additional columns from its .tsv file into meta-data
 
 
 0.1.0 (2025-10-31)
