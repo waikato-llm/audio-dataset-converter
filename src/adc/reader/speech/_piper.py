@@ -1,0 +1,178 @@
+import argparse
+import csv
+import os
+from typing import List, Iterable, Union
+
+from seppl.io import locate_files
+from seppl.placeholders import PlaceholderSupporter, placeholder_list
+from wai.logging import LOGGING_WARNING
+
+from kasperl.api import Reader
+from adc.api import SpeechData
+
+COMONVOICE_EXPECTED_HEADER = "client_id	path	sentence	up_votes	down_votes	age	gender	accents	locale	segment"
+COMONVOICE_EXPECTED_HEADER_OLD = "client_id	path	sentence	up_votes	down_votes	age	gender	accent	locale	segment"
+
+
+class CommonVoiceDialect(csv.Dialect):
+    """
+    The dialect of Common-Voice TSV files.
+    """
+    delimiter = '\t'
+    quotechar = None
+    escapechar = None
+    doublequote = None
+    skipinitialspace = False
+    lineterminator = '\n'
+    quoting = csv.QUOTE_NONE
+
+
+class PiperSpeechReader(Reader, PlaceholderSupporter):
+
+    def __init__(self, source: Union[str, List[str]] = None, source_list: Union[str, List[str]] = None,
+                 rel_path: str = None, speaker_key: str = None, resume_from: str = None,
+                 logger_name: str = None, logging_level: str = LOGGING_WARNING):
+        """
+        Initializes the reader.
+
+        :param source: the filename(s)
+        :param source_list: the file(s) with filename(s)
+        :param rel_path: the relative path to the audio files
+        :type rel_path: str
+        :param speaker_key: the key for the speaker name/id in the meta-data
+        :type speaker_key: str
+        :param resume_from: the file to resume from (glob)
+        :type resume_from: str
+        :param logger_name: the name to use for the logger
+        :type logger_name: str
+        :param logging_level: the logging level to use
+        :type logging_level: str
+        """
+        super().__init__(logger_name=logger_name, logging_level=logging_level)
+        self.source = source
+        self.source_list = source_list
+        self.rel_path = rel_path
+        self.speaker_key = speaker_key
+        self.resume_from = resume_from
+        self._inputs = None
+        self._current_input = None
+
+    def name(self) -> str:
+        """
+        Returns the name of the handler, used as sub-command.
+
+        :return: the name
+        :rtype: str
+        """
+        return "from-piper-sp"
+
+    def description(self) -> str:
+        """
+        Returns a description of the reader.
+
+        :return: the description
+        :rtype: str
+        """
+        return "Reads the speech data in Piper format (https://github.com/rhasspy/piper/blob/master/TRAINING.md#dataset-format). When encountering "
+
+    def _create_argparser(self) -> argparse.ArgumentParser:
+        """
+        Creates an argument parser. Derived classes need to fill in the options.
+
+        :return: the parser
+        :rtype: argparse.ArgumentParser
+        """
+        parser = super()._create_argparser()
+        parser.add_argument("-i", "--input", type=str, help="Path to the metadata CSV file(s) to read; glob syntax is supported; " + placeholder_list(obj=self), required=False, nargs="*")
+        parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the CSV files to use; " + placeholder_list(obj=self), required=False, nargs="*")
+        parser.add_argument("--resume_from", type=str, help="Glob expression matching the file to resume from, e.g., '*/012345.csv'", required=False)
+        parser.add_argument("--speaker_key", type=str, help="The key in the meta-data with the speaker name/ID.", required=False, default="speaker")
+        parser.add_argument("-r", "--rel_path", type=str, help="The relative path to the audio files.", required=False, default="wav")
+        return parser
+
+    def _apply_args(self, ns: argparse.Namespace):
+        """
+        Initializes the object with the arguments of the parsed namespace.
+
+        :param ns: the parsed arguments
+        :type ns: argparse.Namespace
+        """
+        super()._apply_args(ns)
+        self.source = ns.input
+        self.source_list = ns.input_list
+        self.rel_path = ns.rel_path
+        self.speaker_key = ns.speaker_key
+        self.resume_from = ns.resume_from
+
+    def generates(self) -> List:
+        """
+        Returns the list of classes that get produced.
+
+        :return: the list of classes
+        :rtype: list
+        """
+        return [SpeechData]
+
+    def initialize(self):
+        """
+        Initializes the processing, e.g., for opening files or databases.
+        """
+        super().initialize()
+        self._inputs = None
+        if self.rel_path is None:
+            self.rel_path = "."
+        if self.speaker_key is None:
+            self.speaker_key = "speaker"
+
+    def read(self) -> Iterable:
+        """
+        Loads the data and returns the items one by one.
+
+        :return: the data
+        :rtype: Iterable
+        """
+        if self._inputs is None:
+            self._inputs = locate_files(self.source, input_lists=self.source_list, fail_if_empty=True, default_glob="*.csv", resume_from=self.resume_from)
+        self._current_input = self._inputs.pop(0)
+        self.session.current_input = self._current_input
+        self.logger().info("Reading from: " + str(self.session.current_input))
+
+        basedir = os.path.dirname(self.session.current_input)
+
+        with open(self.session.current_input, 'r') as fp:
+            for row in fp.readlines():
+                row = row.strip()
+                if len(row) == 0:
+                    continue
+                if "|" not in row:
+                    self.logger().warning("Skipping row without separator '|': %s" % row)
+                    continue
+                parts = row.split("|")
+                if len(parts) == 2:
+                    id_, text = parts
+                    speaker = None
+                elif len(parts) == 3:
+                    id_, speaker, text = parts
+                else:
+                    self.logger().warning("Expected 2 or 3 column but got %d, skipping: %s" % (len(parts), row))
+                    continue
+
+                audio = os.path.join(basedir, self.rel_path, id_ + ".wav")
+                if not os.path.exists(audio):
+                    self.logger().warning("Audio file not found: %s" % audio)
+                    yield None
+
+                meta = None
+                if speaker is not None:
+                    meta = {self.speaker_key: speaker}
+
+                yield SpeechData(source=audio, annotation=text, metadata=meta)
+
+    def has_finished(self) -> bool:
+        """
+        Returns whether reading has finished.
+
+        :return: True if finished
+        :rtype: bool
+        """
+        return (self._inputs is not None) and len(self._inputs) == 0

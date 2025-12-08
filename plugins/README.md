@@ -7,6 +7,7 @@
 * [from-festvox-sp](from-festvox-sp.md)
 * [from-hf-audiofolder-sp](from-hf-audiofolder-sp.md)
 * [from-multi](from-multi.md)
+* [from-piper-sp](from-piper-sp.md)
 * [from-pyfunc](from-pyfunc.md)
 * [from-storage](from-storage.md)
 * [from-subdir-ac](from-subdir-ac.md)

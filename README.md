@@ -38,7 +38,7 @@ The following dataset formats are supported:
 | Speech         | [CommonVoice](formats/commonvoice.md)                        | Y    | Y     | 
 | Speech         | [Festvox](formats/festvox.md)                                | Y    | Y     | 
 | Speech         | [Hugginface AudioFolder](formats/huggingface_audiofolder.md) | Y    | Y     | 
-| Speech         | [Piper](formats/piper.md)                                    | Y    | N     | 
+| Speech         | [Piper](formats/piper.md)                                    | Y    | Y     | 
 | Speech         | [TXT](formats/txt.md)                                        | Y    | Y     | 
 
 
@@ -54,11 +54,12 @@ usage: adc-convert [-h] [--help-all] [--help-plugin NAME] [-u INTERVAL]
 
 Tool for converting between audio dataset formats.
 
-readers (18):
+readers (19):
    from-adams-ac, from-adams-sp, from-commonvoice-sp, from-data, 
-   from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-pyfunc, 
-   from-storage, from-subdir-ac, from-text-file, from-txt-ac, 
-   from-txt-sp, get-email, list-files, poll-dir, start, watch-dir
+   from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-piper-sp, 
+   from-pyfunc, from-storage, from-subdir-ac, from-text-file, 
+   from-txt-ac, from-txt-sp, get-email, list-files, poll-dir, start, 
+   watch-dir
 filters (36):
    annotations-from-storage, annotations-to-storage, attach-metadata, 
    block, check-duplicate-filenames, convert-to-mono, convert-to-wav, 
