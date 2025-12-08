@@ -50,6 +50,6 @@ options:
                         The key in the meta-data with the speaker name/ID;
                         assumes single-speaker data if not supplied. (default:
                         None)
-  --rel_path REL_PATH   The relative path to the audio files. (default: ./wav)
+  --rel_path REL_PATH   The relative path to the audio files. (default: wav)
   --annotations_only    Outputs only the annotations. (default: False)
 ```
