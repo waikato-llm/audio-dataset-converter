@@ -38,6 +38,7 @@ The following dataset formats are supported:
 | Speech         | [CommonVoice](formats/commonvoice.md)                        | Y    | Y     | 
 | Speech         | [Festvox](formats/festvox.md)                                | Y    | Y     | 
 | Speech         | [Hugginface AudioFolder](formats/huggingface_audiofolder.md) | Y    | Y     | 
+| Speech         | [Piper](formats/piper.md)                                    | Y    | N     | 
 | Speech         | [TXT](formats/txt.md)                                        | Y    | Y     | 
 
 
@@ -68,11 +69,11 @@ filters (36):
    sample, set-metadata, set-placeholder, set-storage, split-records, 
    stop, strip-annotations, sub-process, tee, time-stretch, trigger, 
    trim-silence
-writers (18):
+writers (19):
    console, delete-files, send-email, to-adams-ac, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
-   to-hf-audiofolder-sp, to-metadata, to-multi, to-pyfunc, to-storage, 
-   to-subdir-ac, to-text-file, to-txt-ac, to-txt-sp
+   to-hf-audiofolder-sp, to-metadata, to-multi, to-piper-sp, to-pyfunc, 
+   to-storage, to-subdir-ac, to-text-file, to-txt-ac, to-txt-sp
 
 options:
   -h, --help           Show basic help message and exit.
