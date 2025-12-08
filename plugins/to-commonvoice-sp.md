@@ -10,7 +10,8 @@ usage: to-commonvoice-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                          [--split_ratios SPLIT_RATIOS [SPLIT_RATIOS ...]]
                          [--split_names SPLIT_NAMES [SPLIT_NAMES ...]]
                          [--split_group SPLIT_GROUP] -o OUTPUT
-                         [--rel_path REL_PATH] [--annotations_only]
+                         [--speaker_key SPEAKER_KEY] [--rel_path REL_PATH]
+                         [--annotations_only]
 
 Saves the speech data in CommonVoice format
 (https://commonvoice.mozilla.org/).
@@ -42,6 +43,9 @@ options:
                         {INPUT_NAMEEXT}, {INPUT_NAMENOEXT}, {INPUT_EXT},
                         {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME} (default:
                         None)
+  --speaker_key SPEAKER_KEY
+                        The key in the meta-data with the speaker name/ID (=
+                        client_id). (default: None)
   --rel_path REL_PATH   The relative path to the audio files. (default: .)
   --annotations_only    Outputs only the annotations. (default: False)
 ```

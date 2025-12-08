@@ -4,7 +4,7 @@ Changelog
 0.1.1 (????-??-??)
 ------------------
 
-- `to-commonvoice-sp` writer now creates output directories automatically
+- `to-commonvoice-sp` writer now creates output directories automatically, can retrieve the client_id from meta-data now
 - `from-commonvoice-sp` reader now adds the additional columns from its .tsv file into meta-data
 - added `to-piper-sp` writer (https://github.com/rhasspy/piper/blob/master/TRAINING.md#dataset-format)
 

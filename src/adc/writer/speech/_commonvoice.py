@@ -13,7 +13,7 @@ from adc.reader.speech import COMONVOICE_EXPECTED_HEADER, CommonVoiceDialect
 
 class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, InputBasedPlaceholderSupporter):
 
-    def __init__(self, output_dir: str = None, rel_path: str = None, annotations_only: bool = None,
+    def __init__(self, output_dir: str = None, rel_path: str = None, speaker_key: str = None, annotations_only: bool = None,
                  split_names: List[str] = None, split_ratios: List[int] = None, split_group: str = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
@@ -23,6 +23,8 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, Inpu
         :type output_dir: str
         :param rel_path: the path for the audio files relative to the annotation file
         :type rel_path: str
+        :param speaker_key: the key for the speaker name/id in the meta-data
+        :type speaker_key: str
         :param annotations_only: whether to output only the annotations and not the images
         :type annotations_only: bool
         :param split_names: the names of the splits, no splitting if None
@@ -38,6 +40,7 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, Inpu
         """
         super().__init__(split_names=split_names, split_ratios=split_ratios, split_group=split_group, logger_name=logger_name, logging_level=logging_level)
         self.output_dir = output_dir
+        self.speaker_key = speaker_key
         self.rel_path = rel_path
         self.annotations_only = annotations_only
         self._splits = None
@@ -69,6 +72,7 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, Inpu
         """
         parser = super()._create_argparser()
         parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.txt files in. Any defined splits get added beneath there. " + placeholder_list(obj=self), required=True)
+        parser.add_argument("--speaker_key", type=str, help="The key in the meta-data with the speaker name/ID (= client_id).", required=False, default=None)
         parser.add_argument("--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
         add_annotations_only_writer_param(parser)
         return parser
@@ -82,6 +86,7 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, Inpu
         """
         super()._apply_args(ns)
         self.output_dir = ns.output
+        self.speaker_key = ns.speaker_key
         self.rel_path = ns.rel_path
         self.annotations_only = ns.annotations_only
 
@@ -132,8 +137,11 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, Inpu
             if sub_dir not in self._splits:
                 self._splits[sub_dir] = []
             if item.has_annotation():
+                speaker = ""
+                if item.has_metadata() and (self.speaker_key in item.get_metadata()):
+                    speaker = item.get_metadata()[self.speaker_key]
                 row = {
-                    "client_id": "",
+                    "client_id": speaker,
                     "path": item.audio_name,
                     "sentence": item.annotation,
                     "up_votes": 0,
