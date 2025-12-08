@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.1.1 (????-??-??)
+------------------
+
+- `to-commonvoice-sp` writer now creates output directories automatically
+
+
 0.1.0 (2025-10-31)
 ------------------
 

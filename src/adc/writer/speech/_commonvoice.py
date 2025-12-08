@@ -126,7 +126,7 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, Inpu
             path = os.path.join(sub_dir, self.rel_path, item.audio_name)
             if not self.annotations_only:
                 self.logger().info("Writing audio to: %s" % path)
-                item.save_audio(path)
+                item.save_audio(path, make_dirs=True)
 
             # append annotations
             if sub_dir not in self._splits:
