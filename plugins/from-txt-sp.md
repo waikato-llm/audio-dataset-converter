@@ -2,14 +2,17 @@
 
 * generates: adc.api.SpeechData
 
-Loads the transcript from the associated .txt file.
+Loads the transcript from the associated .txt file. Speaker information can be loaded from a companion file by supplying a speaker suffix.
 
 ```
 usage: from-txt-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    [-N LOGGER_NAME] [-i [INPUT ...]] [-I [INPUT_LIST ...]]
                    [--resume_from RESUME_FROM] [--rel_path REL_PATH]
+                   [--speaker_suffix SPEAKER_SUFFIX]
+                   [--speaker_key SPEAKER_KEY]
 
-Loads the transcript from the associated .txt file.
+Loads the transcript from the associated .txt file. Speaker information can be
+loaded from a companion file by supplying a speaker suffix.
 
 options:
   -h, --help            show this help message and exit
@@ -30,4 +33,10 @@ options:
                         Glob expression matching the file to resume from,
                         e.g., '*/012345.txt' (default: None)
   --rel_path REL_PATH   The relative path to the audio files. (default: .)
+  --speaker_suffix SPEAKER_SUFFIX
+                        The file suffix for the companion files that contains
+                        the speaker, e.g., '.speaker'. (default: None)
+  --speaker_key SPEAKER_KEY
+                        The key in the meta-data with the speaker name/ID.
+                        (default: speaker)
 ```

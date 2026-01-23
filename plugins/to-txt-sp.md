@@ -2,7 +2,7 @@
 
 * accepts: adc.api.SpeechData
 
-Saves the transcript in a .txt file alongside the audio file.
+Saves the transcript in a .txt file alongside the audio file. If a speaker suffix is defined, then available speaker information gets stored in an additional companion file.
 
 ```
 usage: to-txt-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
@@ -10,8 +10,11 @@ usage: to-txt-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                  [--split_ratios SPLIT_RATIOS [SPLIT_RATIOS ...]]
                  [--split_names SPLIT_NAMES [SPLIT_NAMES ...]]
                  [--split_group SPLIT_GROUP] -o OUTPUT [--annotations_only]
+                 [--speaker_suffix SPEAKER_SUFFIX] [--speaker_key SPEAKER_KEY]
 
-Saves the transcript in a .txt file alongside the audio file.
+Saves the transcript in a .txt file alongside the audio file. If a speaker
+suffix is defined, then available speaker information gets stored in an
+additional companion file.
 
 options:
   -h, --help            show this help message and exit
@@ -41,4 +44,10 @@ options:
                         {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME} (default:
                         None)
   --annotations_only    Outputs only the annotations. (default: False)
+  --speaker_suffix SPEAKER_SUFFIX
+                        The file suffix for the companion files to store the
+                        speaker in, e.g., '.speaker'. (default: None)
+  --speaker_key SPEAKER_KEY
+                        The key in the meta-data with the speaker name/ID.
+                        (default: speaker)
 ```

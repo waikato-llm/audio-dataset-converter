@@ -1,4 +1,5 @@
 import argparse
+import os
 from typing import List, Iterable, Union
 
 from seppl.io import locate_files
@@ -12,7 +13,8 @@ from adc.api import SpeechData, locate_audio
 class TxtSpeechReader(Reader, PlaceholderSupporter):
 
     def __init__(self, source: Union[str, List[str]] = None, source_list: Union[str, List[str]] = None,
-                 rel_path: str = None, resume_from: str = None, logger_name: str = None, logging_level: str = LOGGING_WARNING):
+                 rel_path: str = None, speaker_suffix: str = None, speaker_key: str = None, resume_from: str = None,
+                 logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
         Initializes the reader.
 
@@ -20,6 +22,10 @@ class TxtSpeechReader(Reader, PlaceholderSupporter):
         :param source_list: the file(s) with filename(s)
         :param rel_path: the path for the audio files relative to the text files
         :type rel_path: str
+        :param speaker_suffix: the file suffix for the files containing the speaker name (incl dot)
+        :type speaker_suffix: str
+        :param speaker_key: the key for the speaker name/id in the meta-data
+        :type speaker_key: str
         :param resume_from: the file to resume from (glob)
         :type resume_from: str
         :param logger_name: the name to use for the logger
@@ -31,6 +37,8 @@ class TxtSpeechReader(Reader, PlaceholderSupporter):
         self.source = source
         self.source_list = source_list
         self.rel_path = rel_path
+        self.speaker_suffix = speaker_suffix
+        self.speaker_key = speaker_key
         self.resume_from = resume_from
         self._inputs = None
         self._current_input = None
@@ -51,7 +59,7 @@ class TxtSpeechReader(Reader, PlaceholderSupporter):
         :return: the description
         :rtype: str
         """
-        return "Loads the transcript from the associated .txt file."
+        return "Loads the transcript from the associated .txt file. Speaker information can be loaded from a companion file by supplying a speaker suffix."
 
     def _create_argparser(self) -> argparse.ArgumentParser:
         """
@@ -65,6 +73,8 @@ class TxtSpeechReader(Reader, PlaceholderSupporter):
         parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the .txt files to use; " + placeholder_list(obj=self), required=False, nargs="*")
         parser.add_argument("--resume_from", type=str, help="Glob expression matching the file to resume from, e.g., '*/012345.txt'", required=False)
         parser.add_argument("--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
+        parser.add_argument("--speaker_suffix", type=str, help="The file suffix for the companion files that contains the speaker, e.g., '.speaker'.", required=False, default=None)
+        parser.add_argument("--speaker_key", type=str, help="The key in the meta-data with the speaker name/ID.", required=False, default="speaker")
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -78,6 +88,8 @@ class TxtSpeechReader(Reader, PlaceholderSupporter):
         self.source = ns.input
         self.source_list = ns.input_list
         self.rel_path = ns.rel_path
+        self.speaker_suffix = ns.speaker_suffix
+        self.speaker_key = ns.speaker_key
         self.resume_from = ns.resume_from
 
     def generates(self) -> List:
@@ -97,6 +109,8 @@ class TxtSpeechReader(Reader, PlaceholderSupporter):
         self._inputs = None
         if self.rel_path is None:
             self.rel_path = "."
+        if self.speaker_key is None:
+            self.speaker_key = "speaker"
 
     def read(self) -> Iterable:
         """
@@ -118,7 +132,23 @@ class TxtSpeechReader(Reader, PlaceholderSupporter):
             self.logger().warning("No associated audio file found: %s" % self._current_input)
             yield None
 
-        yield SpeechData(source=audio, annotation=transcript)
+        # speaker present?
+        speaker = None
+        if self.speaker_suffix is not None:
+            path = os.path.splitext(self._current_input)[0] + self.speaker_suffix
+            if os.path.exists(path):
+                self.logger().info("Reader speaker: %s" % path)
+                with open(path, "r") as fp:
+                    speaker = "".join(fp.readlines()).strip()
+            else:
+                self.logger().warning("Speaker file not found: %s" % path)
+
+        result = SpeechData(source=audio, annotation=transcript)
+        if speaker is not None:
+            result.set_metadata({
+                self.speaker_key: speaker
+            })
+        yield result
 
     def has_finished(self) -> bool:
         """

@@ -7,6 +7,7 @@ Changelog
 - `to-commonvoice-sp` writer now creates output directories automatically, can retrieve the client_id from meta-data now
 - `from-commonvoice-sp` reader now adds the additional columns from its .tsv file into meta-data
 - added `to-piper-sp` writer and `from-piper-sp` reader (https://github.com/rhasspy/piper/blob/master/TRAINING.md#dataset-format)
+- added support for speaker companion file to TXT format (classification and speech)
 
 
 0.1.0 (2025-10-31)
