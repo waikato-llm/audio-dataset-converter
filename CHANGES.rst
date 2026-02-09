@@ -8,6 +8,7 @@ Changelog
 - `from-commonvoice-sp` reader now adds the additional columns from its .tsv file into meta-data
 - added `to-piper-sp` writer and `from-piper-sp` reader (https://github.com/rhasspy/piper/blob/master/TRAINING.md#dataset-format)
 - added support for speaker companion file to TXT format (classification and speech)
+- `AudioData` now implements mixins AnnotationHandler, SourceSupporter, and BytesSupporter
 
 
 0.1.0 (2025-10-31)
