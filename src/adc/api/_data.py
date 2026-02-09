@@ -9,6 +9,7 @@ from typing import Dict, Optional, Any
 
 import numpy as np
 from seppl import MetaDataHandler, LoggingHandler, get_class_name
+from kasperl.api import NameSupporter, SourceSupporter, AnnotationHandler, BytesSupporter
 from tinytag import TinyTag
 
 from ._utils import load_audio_from_bytes, load_audio_from_file
@@ -68,7 +69,7 @@ def determine_audio_format_from_bytes(b: bytes) -> Optional[str]:
     return None
 
 
-class AudioData(MetaDataHandler, LoggingHandler):
+class AudioData(MetaDataHandler, AnnotationHandler, SourceSupporter, BytesSupporter, LoggingHandler):
 
     def __init__(self, source: str = None, audio_name: str = None, data: bytes = None,
                  audio: np.ndarray = None, audio_format: str = None,
@@ -402,6 +403,42 @@ class AudioData(MetaDataHandler, LoggingHandler):
         :type metadata: dict
         """
         self._metadata = metadata
+
+    def get_name(self) -> str:
+        """
+        Returns the name.
+
+        :return: the name
+        :rtype: str
+        """
+        return self.audio_name
+
+    def set_name(self, name: str):
+        """
+        Sets the new name.
+
+        :param name: the new name
+        :type name: str
+        """
+        self.audio_name = name
+
+    def get_source(self) -> str:
+        """
+        Returns the source.
+
+        :return: the source
+        :rtype: str
+        """
+        return self.source
+
+    def get_bytes(self) -> bytes:
+        """
+        Returns the data as bytes.
+
+        :return: the data
+        :rtype: bytes
+        """
+        return self.audio_bytes
 
     def duplicate(self, source: str = None, force_no_source: bool = None,
                   name: str = None, data: bytes = None,
