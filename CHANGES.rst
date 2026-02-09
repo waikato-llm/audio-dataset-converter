@@ -9,6 +9,7 @@ Changelog
 - added `to-piper-sp` writer and `from-piper-sp` reader (https://github.com/rhasspy/piper/blob/master/TRAINING.md#dataset-format)
 - added support for speaker companion file to TXT format (classification and speech)
 - `AudioData` now implements mixins AnnotationHandler, SourceSupporter, and BytesSupporter
+- the `AudioData.audio_bytes` property now tries to avoid re-encoding
 
 
 0.1.0 (2025-10-31)
