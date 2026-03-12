@@ -1,11 +1,11 @@
-# from-subdir-ac
+# from-subdir-cl
 
 * generates: adc.api.AudioClassificationData
 
 Loads audio files from sub-directories, uses the name of the sub-directory as classification label.
 
 ```
-usage: from-subdir-ac [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+usage: from-subdir-cl [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                       [-N LOGGER_NAME] [-i [INPUT ...]] [-I [INPUT_LIST ...]]
 
 Loads audio files from sub-directories, uses the name of the sub-directory as

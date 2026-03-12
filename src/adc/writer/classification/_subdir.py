@@ -39,7 +39,7 @@ class SubDirAudioClassificationWriter(SplittableStreamWriter, InputBasedPlacehol
         :return: the name
         :rtype: str
         """
-        return "to-subdir-ac"
+        return "to-subdir-cl"
 
     def description(self) -> str:
         """

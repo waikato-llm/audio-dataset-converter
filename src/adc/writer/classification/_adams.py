@@ -46,7 +46,7 @@ class AdamsAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWrit
         :return: the name
         :rtype: str
         """
-        return "to-adams-ac"
+        return "to-adams-cl"
 
     def description(self) -> str:
         """

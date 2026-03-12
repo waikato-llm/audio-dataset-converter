@@ -34,7 +34,7 @@ class SubDirAudioClassificationReader(Reader, PlaceholderSupporter):
         :return: the name
         :rtype: str
         """
-        return "from-subdir-ac"
+        return "from-subdir-cl"
 
     def description(self) -> str:
         """

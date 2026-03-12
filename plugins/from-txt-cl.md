@@ -1,11 +1,11 @@
-# from-txt-ac
+# from-txt-cl
 
 * generates: adc.api.AudioClassificationData
 
 Loads the audio classification from the associated .txt file. Speaker information can be loaded from a companion file by supplying a speaker suffix.
 
 ```
-usage: from-txt-ac [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+usage: from-txt-cl [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    [-N LOGGER_NAME] [-i [INPUT ...]] [-I [INPUT_LIST ...]]
                    [--resume_from RESUME_FROM] [--rel_path REL_PATH]
                    [--speaker_suffix SPEAKER_SUFFIX]

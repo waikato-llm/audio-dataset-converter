@@ -1,11 +1,11 @@
-# from-adams-ac
+# from-adams-cl
 
 * generates: adc.api.AudioClassificationData
 
 Loads the audio classification from the specified class field in the associated .report file.
 
 ```
-usage: from-adams-ac [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+usage: from-adams-cl [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                      [-N LOGGER_NAME] [-i [INPUT ...]] [-I [INPUT_LIST ...]]
                      [--resume_from RESUME_FROM] -c FIELD
 

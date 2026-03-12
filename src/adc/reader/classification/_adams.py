@@ -43,7 +43,7 @@ class AdamsAudioClassificationReader(Reader, PlaceholderSupporter):
         :return: the name
         :rtype: str
         """
-        return "from-adams-ac"
+        return "from-adams-cl"
 
     def description(self) -> str:
         """

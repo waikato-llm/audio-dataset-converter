@@ -52,7 +52,7 @@ class TxtAudioClassificationReader(Reader, PlaceholderSupporter):
         :return: the name
         :rtype: str
         """
-        return "from-txt-ac"
+        return "from-txt-cl"
 
     def description(self) -> str:
         """

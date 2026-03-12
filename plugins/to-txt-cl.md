@@ -1,19 +1,20 @@
-# to-adams-ac
+# to-txt-cl
 
 * accepts: adc.api.AudioClassificationData
 
-Saves the classification label in an ADAMS .report file alongside the audio file.
+Saves the classification label in a .txt file alongside the audio file. If a speaker suffix is defined, then available speaker information gets stored in an additional companion file.
 
 ```
-usage: to-adams-ac [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
-                   [-N LOGGER_NAME] [--skip]
-                   [--split_ratios SPLIT_RATIOS [SPLIT_RATIOS ...]]
-                   [--split_names SPLIT_NAMES [SPLIT_NAMES ...]]
-                   [--split_group SPLIT_GROUP] -o OUTPUT -c FIELD
-                   [--annotations_only]
+usage: to-txt-cl [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                 [-N LOGGER_NAME] [--skip]
+                 [--split_ratios SPLIT_RATIOS [SPLIT_RATIOS ...]]
+                 [--split_names SPLIT_NAMES [SPLIT_NAMES ...]]
+                 [--split_group SPLIT_GROUP] -o OUTPUT [--annotations_only]
+                 [--speaker_suffix SPEAKER_SUFFIX] [--speaker_key SPEAKER_KEY]
 
-Saves the classification label in an ADAMS .report file alongside the audio
-file.
+Saves the classification label in a .txt file alongside the audio file. If a
+speaker suffix is defined, then available speaker information gets stored in
+an additional companion file.
 
 options:
   -h, --help            show this help message and exit
@@ -42,8 +43,11 @@ options:
                         {INPUT_NAMEEXT}, {INPUT_NAMENOEXT}, {INPUT_EXT},
                         {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME} (default:
                         None)
-  -c FIELD, --class_field FIELD
-                        The report field containing the audio classification
-                        label (default: None)
   --annotations_only    Outputs only the annotations. (default: False)
+  --speaker_suffix SPEAKER_SUFFIX
+                        The file suffix for the companion files to store the
+                        speaker in, e.g., '.speaker'. (default: None)
+  --speaker_key SPEAKER_KEY
+                        The key in the meta-data with the speaker name/ID.
+                        (default: speaker)
 ```

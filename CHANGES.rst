@@ -11,6 +11,7 @@ Changelog
 - `AudioData` now implements mixins AnnotationHandler, SourceSupporter, and BytesSupporter
 - the `AudioData.audio_bytes` property now tries to avoid re-encoding
 - added the `generate-chunks` filter for splitting audio data into chunks of specified length
+- changed suffix from `-ac` to `-cl` for: from-adams/subdir/txt-ac and to-adams/subdir/txt-ac
 
 
 0.1.0 (2025-10-31)

@@ -1,18 +1,19 @@
-# to-subdir-ac
+# to-adams-cl
 
 * accepts: adc.api.AudioClassificationData
 
-Saves audio files to sub-directories, using the classification label for the sub-directory.
+Saves the classification label in an ADAMS .report file alongside the audio file.
 
 ```
-usage: to-subdir-ac [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
-                    [-N LOGGER_NAME] [--skip]
-                    [--split_ratios SPLIT_RATIOS [SPLIT_RATIOS ...]]
-                    [--split_names SPLIT_NAMES [SPLIT_NAMES ...]]
-                    [--split_group SPLIT_GROUP] -o OUTPUT
+usage: to-adams-cl [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                   [-N LOGGER_NAME] [--skip]
+                   [--split_ratios SPLIT_RATIOS [SPLIT_RATIOS ...]]
+                   [--split_names SPLIT_NAMES [SPLIT_NAMES ...]]
+                   [--split_group SPLIT_GROUP] -o OUTPUT -c FIELD
+                   [--annotations_only]
 
-Saves audio files to sub-directories, using the classification label for the
-sub-directory.
+Saves the classification label in an ADAMS .report file alongside the audio
+file.
 
 options:
   -h, --help            show this help message and exit
@@ -35,11 +36,14 @@ options:
                         the base name of a file or the sample ID. (default:
                         None)
   -o OUTPUT, --output OUTPUT
-                        The directory to create the sub-directories in
-                        according to the classification labels. Any defined
-                        splits get added beneath there. Supported
+                        The directory to store the audio/.report files in. Any
+                        defined splits get added beneath there. Supported
                         placeholders: {HOME}, {CWD}, {TMP}, {INPUT_PATH},
                         {INPUT_NAMEEXT}, {INPUT_NAMENOEXT}, {INPUT_EXT},
                         {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME} (default:
                         None)
+  -c FIELD, --class_field FIELD
+                        The report field containing the audio classification
+                        label (default: None)
+  --annotations_only    Outputs only the annotations. (default: False)
 ```

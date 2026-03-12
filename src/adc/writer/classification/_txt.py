@@ -50,7 +50,7 @@ class TxtAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter
         :return: the name
         :rtype: str
         """
-        return "to-txt-ac"
+        return "to-txt-cl"
 
     def description(self) -> str:
         """
