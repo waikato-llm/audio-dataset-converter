@@ -35,6 +35,7 @@
 * [delete-storage](delete-storage.md)
 * [discard-by-name](discard-by-name.md)
 * [discard-negatives](discard-negatives.md)
+* [generate-chunks](generate-chunks.md)
 * [list-to-sequence](list-to-sequence.md)
 * [log-data](log-data.md)
 * [max-records](max-records.md)

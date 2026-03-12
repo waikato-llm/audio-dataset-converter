@@ -60,16 +60,17 @@ readers (21):
    from-pyfunc, from-storage, from-subdir-ac, from-text-file, 
    from-txt-ac, from-txt-sp, get-email, list-files, poll-dir, 
    shell-exec, start, watch-dir
-filters (38):
+filters (39):
    annotations-from-storage, annotations-to-storage, attach-metadata, 
    block, check-duplicate-filenames, convert-to-mono, convert-to-wav, 
    copy-files, count-data, delete-storage, discard-by-name, 
-   discard-negatives, list-to-sequence, log-data, max-records, metadata, 
-   metadata-from-name, metadata-to-placeholder, move-files, passthrough, 
-   pitch-shift, pyfunc-filter, randomize-records, record-window, rename, 
-   resample, sample, set-metadata, set-placeholder, set-storage, 
-   split-records, stop, strip-annotations, sub-process, tee, 
-   time-stretch, trigger, trim-silence
+   discard-negatives, generate-chunks, list-to-sequence, log-data, 
+   max-records, metadata, metadata-from-name, metadata-to-placeholder, 
+   move-files, passthrough, pitch-shift, pyfunc-filter, 
+   randomize-records, record-window, rename, resample, sample, 
+   set-metadata, set-placeholder, set-storage, split-records, stop, 
+   strip-annotations, sub-process, tee, time-stretch, trigger, 
+   trim-silence
 writers (19):
    console, delete-files, send-email, to-adams-ac, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 

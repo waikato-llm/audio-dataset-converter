@@ -10,6 +10,7 @@ Changelog
 - added support for speaker companion file to TXT format (classification and speech)
 - `AudioData` now implements mixins AnnotationHandler, SourceSupporter, and BytesSupporter
 - the `AudioData.audio_bytes` property now tries to avoid re-encoding
+- added the `generate-chunks` filter for splitting audio data into chunks of specified length
 
 
 0.1.0 (2025-10-31)

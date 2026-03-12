@@ -3,6 +3,7 @@ from ._base_audio_augmentation import BaseAudioAugmentationFilter, AUG_MODES, AU
 from ._convert_to_mono import ConvertToMono
 from ._convert_to_wav import ConvertToWav
 from ._discard_negatives import DiscardNegatives
+from ._generate_chunks import GenerateChunks
 from ._pitch_shift import PitchShift
 from ._pyfunc_filter import PythonFunctionFilter
 from ._resample import Resample, RESAMPLE_TYPES
