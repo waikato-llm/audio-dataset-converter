@@ -14,6 +14,7 @@ Changelog
 - changed suffix from `-ac` to `-cl` for: from-adams/subdir/txt-ac and to-adams/subdir/txt-ac
 - the `to-txt-sp` and `to-txt-cl` writers now call the correct method to see whether annotation data is present
 - the `convert-to-mono` filter now has a `-f/--force` flag to enforce the conversion
+- added the `change-volume` filter
 
 
 0.1.0 (2025-10-31)

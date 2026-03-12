@@ -27,6 +27,7 @@
 * [annotations-to-storage](annotations-to-storage.md)
 * [attach-metadata](attach-metadata.md)
 * [block](block.md)
+* [change-volume](change-volume.md)
 * [check-duplicate-filenames](check-duplicate-filenames.md)
 * [convert-to-mono](convert-to-mono.md)
 * [convert-to-wav](convert-to-wav.md)

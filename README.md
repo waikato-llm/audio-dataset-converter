@@ -55,27 +55,27 @@ usage: adc-convert [-h] [--help-all] [--help-plugin NAME] [-u INTERVAL]
 Tool for converting between audio dataset formats.
 
 readers (21):
-   cron, from-adams-ac, from-adams-sp, from-commonvoice-sp, from-data, 
+   cron, from-adams-cl, from-adams-sp, from-commonvoice-sp, from-data, 
    from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-piper-sp, 
-   from-pyfunc, from-storage, from-subdir-ac, from-text-file, 
-   from-txt-ac, from-txt-sp, get-email, list-files, poll-dir, 
+   from-pyfunc, from-storage, from-subdir-cl, from-text-file, 
+   from-txt-cl, from-txt-sp, get-email, list-files, poll-dir, 
    shell-exec, start, watch-dir
-filters (39):
+filters (40):
    annotations-from-storage, annotations-to-storage, attach-metadata, 
-   block, check-duplicate-filenames, convert-to-mono, convert-to-wav, 
-   copy-files, count-data, delete-storage, discard-by-name, 
-   discard-negatives, generate-chunks, list-to-sequence, log-data, 
-   max-records, metadata, metadata-from-name, metadata-to-placeholder, 
-   move-files, passthrough, pitch-shift, pyfunc-filter, 
-   randomize-records, record-window, rename, resample, sample, 
-   set-metadata, set-placeholder, set-storage, split-records, stop, 
-   strip-annotations, sub-process, tee, time-stretch, trigger, 
-   trim-silence
+   block, change-volume, check-duplicate-filenames, convert-to-mono, 
+   convert-to-wav, copy-files, count-data, delete-storage, 
+   discard-by-name, discard-negatives, generate-chunks, 
+   list-to-sequence, log-data, max-records, metadata, 
+   metadata-from-name, metadata-to-placeholder, move-files, passthrough, 
+   pitch-shift, pyfunc-filter, randomize-records, record-window, rename, 
+   resample, sample, set-metadata, set-placeholder, set-storage, 
+   split-records, stop, strip-annotations, sub-process, tee, 
+   time-stretch, trigger, trim-silence
 writers (19):
-   console, delete-files, send-email, to-adams-ac, to-adams-sp, 
+   console, delete-files, send-email, to-adams-cl, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
    to-hf-audiofolder-sp, to-metadata, to-multi, to-piper-sp, to-pyfunc, 
-   to-storage, to-subdir-ac, to-text-file, to-txt-ac, to-txt-sp
+   to-storage, to-subdir-cl, to-text-file, to-txt-cl, to-txt-sp
 
 options:
   -h, --help           Show basic help message and exit.
