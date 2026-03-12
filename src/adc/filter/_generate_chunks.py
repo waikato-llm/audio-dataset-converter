@@ -131,6 +131,8 @@ class GenerateChunks(BatchFilter):
                     block = audio[samples_written: (samples_written + buffer)]
                     audio_name_new = os.path.splitext(item.audio_name)[0] + "-" + str(time) + FORMAT_EXTENSIONS[FORMAT_WAV]
                     meta_new = safe_deepcopy(item.get_metadata())
+                    if meta_new is None:
+                        meta_new = dict()
                     meta_new[self.metadata_key] = time
                     item_new = type(item)(audio_name=audio_name_new, audio=block,
                                           audio_format=FORMAT_WAV, sample_rate=item.sample_rate,
