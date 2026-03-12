@@ -7,7 +7,7 @@ Turns the audio into mono.
 
 ```
 usage: convert-to-mono [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
-                       [-N LOGGER_NAME] [--skip]
+                       [-N LOGGER_NAME] [--skip] [-f]
 
 Turns the audio into mono.
 
@@ -20,4 +20,6 @@ options:
                         name by default (default: None)
   --skip                Disables the plugin, removing it from the pipeline.
                         (default: False)
+  -f, --force           Whether to force the conversion rather than applying
+                        smart logic. (default: False)
 ```
