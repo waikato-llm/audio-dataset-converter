@@ -12,6 +12,7 @@ Changelog
 - the `AudioData.audio_bytes` property now tries to avoid re-encoding
 - added the `generate-chunks` filter for splitting audio data into chunks of specified length
 - changed suffix from `-ac` to `-cl` for: from-adams/subdir/txt-ac and to-adams/subdir/txt-ac
+- the `to-txt-sp` and `to-txt-cl` writers now call the correct method to see whether annotation data is present
 
 
 0.1.0 (2025-10-31)

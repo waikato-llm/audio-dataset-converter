@@ -127,7 +127,7 @@ class TxtAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter
                 self.logger().info("Writing audio file to: %s" % path)
                 item.save_audio(path)
 
-            if item.has_annotation:
+            if item.has_annotation():
                 path = os.path.splitext(path)[0] + ".txt"
                 self.logger().info("Writing classification label to: %s" % path)
                 with open(path, "w") as fp:
