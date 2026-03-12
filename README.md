@@ -54,22 +54,22 @@ usage: adc-convert [-h] [--help-all] [--help-plugin NAME] [-u INTERVAL]
 
 Tool for converting between audio dataset formats.
 
-readers (19):
-   from-adams-ac, from-adams-sp, from-commonvoice-sp, from-data, 
+readers (21):
+   cron, from-adams-ac, from-adams-sp, from-commonvoice-sp, from-data, 
    from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-piper-sp, 
    from-pyfunc, from-storage, from-subdir-ac, from-text-file, 
-   from-txt-ac, from-txt-sp, get-email, list-files, poll-dir, start, 
-   watch-dir
-filters (36):
+   from-txt-ac, from-txt-sp, get-email, list-files, poll-dir, 
+   shell-exec, start, watch-dir
+filters (38):
    annotations-from-storage, annotations-to-storage, attach-metadata, 
    block, check-duplicate-filenames, convert-to-mono, convert-to-wav, 
-   copy-files, delete-storage, discard-by-name, discard-negatives, 
-   list-to-sequence, max-records, metadata, metadata-from-name, 
-   metadata-to-placeholder, move-files, passthrough, pitch-shift, 
-   pyfunc-filter, randomize-records, record-window, rename, resample, 
-   sample, set-metadata, set-placeholder, set-storage, split-records, 
-   stop, strip-annotations, sub-process, tee, time-stretch, trigger, 
-   trim-silence
+   copy-files, count-data, delete-storage, discard-by-name, 
+   discard-negatives, list-to-sequence, log-data, max-records, metadata, 
+   metadata-from-name, metadata-to-placeholder, move-files, passthrough, 
+   pitch-shift, pyfunc-filter, randomize-records, record-window, rename, 
+   resample, sample, set-metadata, set-placeholder, set-storage, 
+   split-records, stop, strip-annotations, sub-process, tee, 
+   time-stretch, trigger, trim-silence
 writers (19):
    console, delete-files, send-email, to-adams-ac, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
@@ -103,7 +103,7 @@ Tool for executing a pipeline multiple times, each time with a different set
 of variables expanded. A variable is surrounded by curly quotes (e.g.,
 variable 'i' gets referenced with '{i}'). When supplying multiple generators,
 then these get treated as nested executions. Available generators: csv-file,
-dirs, list, null, prompt, range, text-file
+dirs, files, list, null, prompt, range, text-file
 
 positional arguments:
   pipeline              The pipeline template with variables to expand and
@@ -130,8 +130,9 @@ options:
                         This file format allows spreading the pipeline
                         arguments over multiple lines: it simply joins all
                         lines into a single command-line before splitting it
-                        into individual arguments for execution. (default:
-                        cmdline)
+                        into individual arguments for execution; any line
+                        starting with # is interpreted as commend and removed
+                        before joining. (default: cmdline)
   --exec_logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
                         The logging level to use. (default: WARN)
 ```

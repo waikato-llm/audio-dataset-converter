@@ -23,10 +23,14 @@ options:
   --skip                Disables the plugin, removing it from the pipeline.
                         (default: False)
   -f FIELD, --field FIELD
-                        The meta-data field to use in the comparison (default:
-                        None)
+                        The meta-data field to set (default: None)
   -v VALUE, --value VALUE
-                        The value to use in the comparison (default: None)
+                        The value to store in the meta-data; in case of type
+                        string, placeholders in the value get automatically
+                        expanded; Supported placeholders: {HOME}, {CWD},
+                        {TMP}, {INPUT_PATH}, {INPUT_NAMEEXT},
+                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
+                        {INPUT_PARENT_NAME} (default: None)
   -t {string,bool,numeric}, --as_type {string,bool,numeric}
                         How to interpret the value (default: string)
   -u, --use_current     Whether to use the data passing through instead of the

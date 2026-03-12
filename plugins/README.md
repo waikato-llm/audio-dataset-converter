@@ -1,5 +1,6 @@
 # audio-dataset-converter plugins
 ## Readers
+* [cron](cron.md)
 * [from-adams-ac](from-adams-ac.md)
 * [from-adams-sp](from-adams-sp.md)
 * [from-commonvoice-sp](from-commonvoice-sp.md)
@@ -17,6 +18,7 @@
 * [get-email](get-email.md)
 * [list-files](list-files.md)
 * [poll-dir](poll-dir.md)
+* [shell-exec](shell-exec.md)
 * [start](start.md)
 * [watch-dir](watch-dir.md)
 
@@ -29,10 +31,12 @@
 * [convert-to-mono](convert-to-mono.md)
 * [convert-to-wav](convert-to-wav.md)
 * [copy-files](copy-files.md)
+* [count-data](count-data.md)
 * [delete-storage](delete-storage.md)
 * [discard-by-name](discard-by-name.md)
 * [discard-negatives](discard-negatives.md)
 * [list-to-sequence](list-to-sequence.md)
+* [log-data](log-data.md)
 * [max-records](max-records.md)
 * [metadata](metadata.md)
 * [metadata-from-name](metadata-from-name.md)

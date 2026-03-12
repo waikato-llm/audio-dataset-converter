@@ -1,0 +1,44 @@
+# log-data
+
+* accepts: seppl.AnyData
+* generates: seppl.AnyData
+
+Logs information about the data passing through, either storing it in the specified file or outputting it on stdout.
+
+```
+usage: log-data [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-N LOGGER_NAME]
+                [--skip] [-f FORMAT] [-o FILE] [-d]
+
+Logs information about the data passing through, either storing it in the
+specified file or outputting it on stdout.
+
+options:
+  -h, --help            show this help message and exit
+  -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
+                        The logging level to use. (default: WARN)
+  -N LOGGER_NAME, --logger_name LOGGER_NAME
+                        The custom name to use for the logger, uses the plugin
+                        name by default (default: None)
+  --skip                Disables the plugin, removing it from the pipeline.
+                        (default: False)
+  -f FORMAT, --log_format FORMAT
+                        The format to use for logging; {DATE}: for the current
+                        data (YYYY-MM-DD), {TIME}: for the current time
+                        (HH:MM:SS.SSSSSS), {TS}: for the current date/time
+                        (YYYY-MM-DD HH:MM:SS.SSSSSS), {NAME}: for
+                        NameSupporter data, {SOURCE}: for SourceSupporter
+                        data, {HAS_ANNOTATION}/{ANNOTATION}: for
+                        AnnotationHandler data, {META.<key>}: for
+                        MetaDataHandler data (<key> is the key in the meta-
+                        data); use \t for tab and \n for new-line (default:
+                        {TS}: {NAME})
+  -o FILE, --output_file FILE
+                        The file to write the logging data to; Supported
+                        placeholders: {HOME}, {CWD}, {TMP}, {INPUT_PATH},
+                        {INPUT_NAMEEXT}, {INPUT_NAMENOEXT}, {INPUT_EXT},
+                        {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME} (default:
+                        None)
+  -d, --delete_on_initialize
+                        Whether to remove any existing file when initializing
+                        the writer. (default: False)
+```
