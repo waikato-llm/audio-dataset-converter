@@ -113,6 +113,7 @@ class GenerateChunks(BatchFilter):
             if item.duration <= self.length:
                 result.append(item)
             else:
+                subset = []
                 self.logger().info("Generating chunks of length %f: %s" % (self.length, item.audio_name))
 
                 # get number of samples for "length" seconds
@@ -134,9 +135,12 @@ class GenerateChunks(BatchFilter):
                     item_new = type(item)(audio_name=audio_name_new, audio=block,
                                           audio_format=FORMAT_WAV, sample_rate=item.sample_rate,
                                           metadata=meta_new, annotation=item.annotation)
-                    result.append(item_new)
+                    subset.append(item_new)
                     counter += 1
                     time += self.length
                     samples_written += buffer
+
+                self.logger().info("# of chunks generated: %d" % len(subset))
+                result.extend(subset)
 
         return flatten_list(result)
