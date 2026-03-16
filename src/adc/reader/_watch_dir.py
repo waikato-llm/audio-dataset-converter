@@ -49,5 +49,5 @@ class WatchDir(KWatchDir):
         :return: the reader plugins
         :rtype: dict
         """
-        from idc.registry import available_readers
+        from adc.registry import available_readers
         return available_readers()

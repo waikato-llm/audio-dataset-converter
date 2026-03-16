@@ -43,7 +43,7 @@ class Trigger(KTrigger):
         :return: the filters
         :rtype: dict
         """
-        from idc.registry import available_readers
+        from adc.registry import available_readers
         return available_readers()
 
     def _available_filters(self) -> Dict[str, Plugin]:
@@ -53,7 +53,7 @@ class Trigger(KTrigger):
         :return: the filters
         :rtype: dict
         """
-        from idc.registry import available_filters
+        from adc.registry import available_filters
         return available_filters()
 
     def _available_writers(self) -> Dict[str, Plugin]:
@@ -63,5 +63,5 @@ class Trigger(KTrigger):
         :return: the writers
         :rtype: dict
         """
-        from idc.registry import available_writers
+        from adc.registry import available_writers
         return available_writers()
