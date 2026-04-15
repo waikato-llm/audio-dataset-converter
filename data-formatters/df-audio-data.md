@@ -17,7 +17,7 @@ options:
                         name by default (default: None)
   -f OUTPUT_FORMAT, --output_format OUTPUT_FORMAT
                         The format to use for the output, available
-                        placeholders: data, audio-name, audio-format, sample-
-                        rate, duration, has-annotations, annotations (default:
-                        data)
+                        placeholders: data, audio-name, audio-name-noext,
+                        audio-format, sample-rate, duration, has-annotations,
+                        annotations (default: {data})
 ```

@@ -1,4 +1,5 @@
 import argparse
+import os
 
 from kasperl.api import DataFormatter
 from wai.logging import LOGGING_WARNING
@@ -6,6 +7,7 @@ from wai.logging import LOGGING_WARNING
 
 PH_DATA = "data"
 PH_AUDIO_NAME = "audio-name"
+PH_AUDIO_NAME_NOEXT = "audio-name-noext"
 PH_AUDIO_FORMAT = "audio-format"
 PH_SAMPLE_RATE = "sample-rate"
 PH_DURATION = "duration"
@@ -14,6 +16,7 @@ PH_ANNOTATIONS = "annotations"
 PLACEHOLDERS = [
     PH_DATA,
     PH_AUDIO_NAME,
+    PH_AUDIO_NAME_NOEXT,
     PH_AUDIO_FORMAT,
     PH_SAMPLE_RATE,
     PH_DURATION,
@@ -96,6 +99,8 @@ class AudioDataFormatter(DataFormatter):
                     value = str(data)
                 elif ph == PH_AUDIO_NAME:
                     value = data.audio_name
+                elif ph == PH_AUDIO_NAME_NOEXT:
+                    value = os.path.splitext(data.audio_name)[0]
                 elif ph == PH_AUDIO_FORMAT:
                     value = data.audio_format
                 elif ph == PH_SAMPLE_RATE:
