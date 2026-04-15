@@ -60,15 +60,15 @@ readers (21):
    from-pyfunc, from-storage, from-subdir-cl, from-text-file, 
    from-txt-cl, from-txt-sp, get-email, list-files, poll-dir, 
    shell-exec, start, watch-dir
-filters (40):
+filters (43):
    annotations-from-storage, annotations-to-storage, attach-metadata, 
    block, change-volume, check-duplicate-filenames, convert-to-mono, 
    convert-to-wav, copy-files, count-data, delete-storage, 
-   discard-by-name, discard-negatives, generate-chunks, 
-   list-to-sequence, log-data, max-records, metadata, 
+   discard-by-name, discard-negatives, generate-chunks, get-metadata, 
+   list-to-sequence, log-data, log-placeholder, max-records, metadata, 
    metadata-from-name, metadata-to-placeholder, move-files, passthrough, 
    pitch-shift, pyfunc-filter, randomize-records, record-window, rename, 
-   resample, sample, set-metadata, set-placeholder, set-storage, 
+   resample, sample, set-metadata, set-placeholder, set-storage, sleep, 
    split-records, stop, strip-annotations, sub-process, tee, 
    time-stretch, trigger, trim-silence
 writers (19):
@@ -274,6 +274,7 @@ You can find help screens for the plugins here:
 
 * [Pipeline plugins](plugins/README.md) (reades/filters/writers)
 * [Generator plugins](generators/README.md) (used by `adc-exec`)
+* [Data formatter plugins](data-formatters/README.md)
 
 
 ## Command-line examples

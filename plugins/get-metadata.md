@@ -1,14 +1,15 @@
-# console
+# get-metadata
 
 * accepts: seppl.AnyData
+* generates: seppl.AnyData
 
-Prints the data to stdout using the supplied data formatter.
+Returns the value of the specified key from the meta-data.
 
 ```
-usage: console [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-N LOGGER_NAME]
-               [--skip] [-f DATA_FORMATTER]
+usage: get-metadata [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                    [-N LOGGER_NAME] [--skip] -f FIELD
 
-Prints the data to stdout using the supplied data formatter.
+Returns the value of the specified key from the meta-data.
 
 options:
   -h, --help            show this help message and exit
@@ -19,7 +20,6 @@ options:
                         name by default (default: None)
   --skip                Disables the plugin, removing it from the pipeline.
                         (default: False)
-  -f DATA_FORMATTER, --data_formatter DATA_FORMATTER
-                        The data formatter to apply (default: df-simple-
-                        string)
+  -f FIELD, --field FIELD
+                        The meta-data field to set (default: None)
 ```

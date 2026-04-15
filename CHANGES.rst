@@ -15,6 +15,7 @@ Changelog
 - the `to-txt-sp` and `to-txt-cl` writers now call the correct method to see whether annotation data is present
 - the `convert-to-mono` filter now has a `-f/--force` flag to enforce the conversion
 - added the `change-volume` filter
+- added support for data-formatters with `df-audio-data` specifically for audio data
 
 
 0.1.0 (2025-10-31)

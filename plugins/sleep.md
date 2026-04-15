@@ -1,14 +1,16 @@
-# console
+# sleep
 
 * accepts: seppl.AnyData
+* generates: seppl.AnyData
 
-Prints the data to stdout using the supplied data formatter.
+Waits the specified number of seconds before forwarding the data. A time of 0 means no waiting.
 
 ```
-usage: console [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-N LOGGER_NAME]
-               [--skip] [-f DATA_FORMATTER]
+usage: sleep [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-N LOGGER_NAME]
+             [--skip] [-w SEC]
 
-Prints the data to stdout using the supplied data formatter.
+Waits the specified number of seconds before forwarding the data. A time of 0
+means no waiting.
 
 options:
   -h, --help            show this help message and exit
@@ -19,7 +21,6 @@ options:
                         name by default (default: None)
   --skip                Disables the plugin, removing it from the pipeline.
                         (default: False)
-  -f DATA_FORMATTER, --data_formatter DATA_FORMATTER
-                        The data formatter to apply (default: df-simple-
-                        string)
+  -w SEC, --wait_time SEC
+                        The time in seconds to wait. (default: 0.0)
 ```
