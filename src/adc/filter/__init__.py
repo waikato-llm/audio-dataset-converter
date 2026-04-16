@@ -7,6 +7,7 @@ from ._discard_negatives import DiscardNegatives
 from ._generate_chunks import GenerateChunks
 from ._pitch_shift import PitchShift
 from ._pyfunc_filter import PythonFunctionFilter
+from ._rename import Rename
 from ._resample import Resample, RESAMPLE_TYPES
 from ._strip_annotations import StripAnnotations
 from ._sub_process import SubProcess
