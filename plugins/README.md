@@ -54,6 +54,7 @@
 * [rename](rename.md)
 * [resample](resample.md)
 * [sample](sample.md)
+* [sanitize-name](sanitize-name.md)
 * [set-metadata](set-metadata.md)
 * [set-placeholder](set-placeholder.md)
 * [set-storage](set-storage.md)

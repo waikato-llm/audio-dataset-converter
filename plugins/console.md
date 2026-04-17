@@ -2,13 +2,14 @@
 
 * accepts: seppl.AnyData
 
-Prints the data to stdout using the supplied data formatter.
+Prints the data to stdout using the supplied data formatter. Any other placeholders will get expanded as well.
 
 ```
 usage: console [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-N LOGGER_NAME]
                [--skip] [-f DATA_FORMATTER]
 
-Prints the data to stdout using the supplied data formatter.
+Prints the data to stdout using the supplied data formatter. Any other
+placeholders will get expanded as well.
 
 options:
   -h, --help            show this help message and exit
