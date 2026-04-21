@@ -17,6 +17,7 @@ Changelog
 - added the `change-volume` filter
 - added support for data-formatters with `df-audio-data` specifically for audio data
 - using `seppl.variables` now
+- requiring seppl>=0.3.1 now
 
 
 0.1.0 (2025-10-31)
