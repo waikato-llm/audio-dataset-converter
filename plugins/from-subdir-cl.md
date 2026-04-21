@@ -20,10 +20,10 @@ options:
                         name by default (default: None)
   -i [INPUT ...], --input [INPUT ...]
                         Path to the directory with the sub-directories
-                        containing the audio files; Supported placeholders:
+                        containing the audio files; Supported variables:
                         {HOME}, {CWD}, {TMP} (default: None)
   -I [INPUT_LIST ...], --input_list [INPUT_LIST ...]
                         Path to the text file(s) listing the directories to
-                        use; Supported placeholders: {HOME}, {CWD}, {TMP}
+                        use; Supported variables: {HOME}, {CWD}, {TMP}
                         (default: None)
 ```

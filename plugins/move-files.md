@@ -23,7 +23,7 @@ options:
                         (default: False)
   -t DIR, --target_dir DIR
                         The directory to move the files to. Supported
-                        placeholders: {HOME}, {CWD}, {TMP}, {INPUT_PATH},
+                        variables: {HOME}, {CWD}, {TMP}, {INPUT_PATH},
                         {INPUT_NAMEEXT}, {INPUT_NAMENOEXT}, {INPUT_EXT},
                         {INPUT_PARENT_PATH}, {INPUT_PARENT_NAME} (default:
                         None)

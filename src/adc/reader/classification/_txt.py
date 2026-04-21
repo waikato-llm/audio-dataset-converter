@@ -3,14 +3,14 @@ import os
 from typing import List, Iterable, Union
 
 from seppl.io import locate_files
-from seppl.placeholders import PlaceholderSupporter, placeholder_list
+from seppl.variables import VariableSupporter, variable_list
 from wai.logging import LOGGING_WARNING
 
 from kasperl.api import Reader
 from adc.api import AudioClassificationData, locate_audio
 
 
-class TxtAudioClassificationReader(Reader, PlaceholderSupporter):
+class TxtAudioClassificationReader(Reader, VariableSupporter):
 
     def __init__(self, source: Union[str, List[str]] = None, source_list: Union[str, List[str]] = None,
                  rel_path: str = None, speaker_suffix: str = None, speaker_key: str = None, resume_from: str = None,
@@ -71,8 +71,8 @@ class TxtAudioClassificationReader(Reader, PlaceholderSupporter):
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-i", "--input", type=str, help="Path to the .txt file(s) to read; glob syntax is supported; " + placeholder_list(obj=self), required=False, nargs="*")
-        parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the report files to use; " + placeholder_list(obj=self), required=False, nargs="*")
+        parser.add_argument("-i", "--input", type=str, help="Path to the .txt file(s) to read; glob syntax is supported; " + variable_list(obj=self), required=False, nargs="*")
+        parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the report files to use; " + variable_list(obj=self), required=False, nargs="*")
         parser.add_argument("--resume_from", type=str, help="Glob expression matching the file to resume from, e.g., '*/012345.txt'", required=False)
         parser.add_argument("--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
         parser.add_argument("--speaker_suffix", type=str, help="The file suffix for the companion files that contains the speaker, e.g., '.speaker'.", required=False, default=None)

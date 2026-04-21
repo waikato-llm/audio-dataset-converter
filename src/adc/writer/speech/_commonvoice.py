@@ -5,13 +5,13 @@ from typing import List, Iterable
 
 from wai.logging import LOGGING_WARNING
 
-from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
+from seppl.variables import InputBasedVariableSupporter, variable_list
 from kasperl.api import SplittableBatchWriter, AnnotationsOnlyWriter, add_annotations_only_writer_param
 from adc.api import SpeechData
 from adc.reader.speech import COMONVOICE_EXPECTED_HEADER, CommonVoiceDialect
 
 
-class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, InputBasedPlaceholderSupporter):
+class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, InputBasedVariableSupporter):
 
     def __init__(self, output_dir: str = None, rel_path: str = None, speaker_key: str = None, annotations_only: bool = None,
                  split_names: List[str] = None, split_ratios: List[int] = None, split_group: str = None,
@@ -71,7 +71,7 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, Inpu
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.txt files in. Any defined splits get added beneath there. " + placeholder_list(obj=self), required=True)
+        parser.add_argument("-o", "--output", type=str, help="The directory to store the audio/.txt files in. Any defined splits get added beneath there. " + variable_list(obj=self), required=True)
         parser.add_argument("--speaker_key", type=str, help="The key in the meta-data with the speaker name/ID (= client_id).", required=False, default=None)
         parser.add_argument("--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
         add_annotations_only_writer_param(parser)
@@ -119,7 +119,7 @@ class CommonVoiceSpeechWriter(SplittableBatchWriter, AnnotationsOnlyWriter, Inpu
         :type data: Iterable
         """
         for item in data:
-            sub_dir = self.session.expand_placeholders(self.output_dir)
+            sub_dir = self.session.expand_variables(self.output_dir)
             if self.splitter is not None:
                 split = self.splitter.next(item=item.audio_name)
                 sub_dir = os.path.join(sub_dir, split)

@@ -19,7 +19,7 @@ options:
                         name by default (default: None)
   -i DIR, --input_dir DIR
                         The directory to list the files in; Supported
-                        placeholders: {HOME}, {CWD}, {TMP} (default: None)
+                        variables: {HOME}, {CWD}, {TMP} (default: None)
   -r REGEXP, --regexp REGEXP
                         The regular expression that the files must match.
                         (default: .*)

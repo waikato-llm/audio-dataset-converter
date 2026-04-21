@@ -22,12 +22,12 @@ options:
                         The environment variable key=value pairs to use for
                         the execution. (default: None)
   -w DIR, --workdir DIR
-                        The working directory to use; Supported placeholders:
+                        The working directory to use; Supported variables:
                         {HOME}, {CWD}, {TMP} (default: None)
   -c CMD, --command CMD
-                        The command to execute; Supported placeholders:
-                        {HOME}, {CWD}, {TMP} (default: None)
+                        The command to execute; Supported variables: {HOME},
+                        {CWD}, {TMP} (default: None)
   -C PATH, --command_file PATH
                         The text file with the command to execute; Supported
-                        placeholders: {HOME}, {CWD}, {TMP} (default: None)
+                        variables: {HOME}, {CWD}, {TMP} (default: None)
 ```

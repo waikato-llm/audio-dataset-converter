@@ -49,7 +49,7 @@ The following dataset formats are supported:
 ```
 usage: adc-convert [-h] [--help-all] [--help-plugin NAME] [-u INTERVAL]
                    [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [-b]
-                   [--placeholders FILE] [--load_pipeline FILE]
+                   [--variables FILE] [--load_pipeline FILE]
                    [--dump_pipeline FILE]
 
 Tool for converting between audio dataset formats.
@@ -60,17 +60,18 @@ readers (21):
    from-pyfunc, from-storage, from-subdir-cl, from-text-file, 
    from-txt-cl, from-txt-sp, get-email, list-files, poll-dir, 
    shell-exec, start, watch-dir
-filters (43):
+filters (47):
    annotations-from-storage, annotations-to-storage, attach-metadata, 
    block, change-volume, check-duplicate-filenames, convert-to-mono, 
    convert-to-wav, copy-files, count-data, delete-storage, 
    discard-by-name, discard-negatives, generate-chunks, get-metadata, 
-   list-to-sequence, log-data, log-placeholder, max-records, metadata, 
-   metadata-from-name, metadata-to-placeholder, move-files, passthrough, 
-   pitch-shift, pyfunc-filter, randomize-records, record-window, rename, 
-   resample, sample, set-metadata, set-placeholder, set-storage, sleep, 
-   split-records, stop, strip-annotations, sub-process, tee, 
-   time-stretch, trigger, trim-silence
+   list-to-sequence, log-data, log-placeholder*, log-variable, 
+   max-records, metadata, metadata-from-name, metadata-to-placeholder*, 
+   metadata-to-variable, move-files, passthrough, pitch-shift, 
+   pyfunc-filter, randomize-records, record-window, rename, resample, 
+   sample, sanitize-name, set-metadata, set-placeholder*, set-storage, 
+   set-variable, sleep, split-records, stop, strip-annotations, 
+   sub-process, tee, time-stretch, trigger, trim-silence
 writers (19):
    console, delete-files, send-email, to-adams-cl, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
@@ -86,7 +87,7 @@ options:
   -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
                        The logging level to use (default: WARN).
   -b, --force_batch    Processes the data in batches.
-  --placeholders FILE  The file with custom placeholders to load (format: key=value).
+  --variables FILE     The file with custom variables to load (format: key=value).
   --load_pipeline FILE The file to load the pipeline command from.
   --dump_pipeline FILE The file to dump the pipeline command in.
 ```
@@ -95,7 +96,7 @@ options:
 
 ```
 usage: adc-exec [-h] --exec_generator GENERATOR [--exec_dry_run]
-                [--exec_prefix PREFIX] [--exec_placeholders FILE]
+                [--exec_prefix PREFIX] [--exec_variables FILE]
                 [--exec_format {cmdline,file}]
                 [--exec_logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                 ...
@@ -120,8 +121,8 @@ options:
                         only outputs it on stdout. (default: False)
   --exec_prefix PREFIX  The string to prefix the pipeline with when in dry-run
                         mode. (default: None)
-  --exec_placeholders FILE
-                        The file with custom placeholders to load (format:
+  --exec_variables FILE
+                        The file with custom variables to load (format:
                         key=value). (default: None)
   --exec_format {cmdline,file}
                         The format that the pipeline is in. The format
