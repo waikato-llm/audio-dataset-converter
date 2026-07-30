@@ -27,4 +27,7 @@ def list_classes() -> Dict[str, List[str]]:
         "kasperl.api.DataFormatter": [
             "adc.dataformatter",
         ],
+        "adc.api.Phonemizer": [
+            "adc.phonemizer",
+        ],
     }

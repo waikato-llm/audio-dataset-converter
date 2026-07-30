@@ -51,6 +51,7 @@ LIST_FILTERS = "filters"
 LIST_WRITERS = "writers"
 LIST_GENERATORS = "generators"
 LIST_DATA_FORMATTERS = "data-formatters"
+LIST_PHONEMIZERS = "phonemizers"
 LIST_CUSTOM_CLASS_LISTERS = "custom-class-listers"
 LIST_ENV_CLASS_LISTERS = "env-class-listers"
 LIST_TYPES = [
@@ -63,6 +64,7 @@ LIST_TYPES = [
     LIST_WRITERS,
     LIST_GENERATORS,
     LIST_DATA_FORMATTERS,
+    LIST_PHONEMIZERS,
 ]
 
 
@@ -137,10 +139,20 @@ def available_data_formatters() -> Dict[str, Plugin]:
     """
     Returns all available data formatters.
 
-    :return: the dict of generator objects
+    :return: the dict of data formatter objects
     :rtype: dict
     """
     return REGISTRY.plugins("kasperl.api.DataFormatter", fail_if_empty=False)
+
+
+def available_phonemizers() -> Dict[str, Plugin]:
+    """
+    Returns all available phonemizers.
+
+    :return: the dict of phonemizers objects
+    :rtype: dict
+    """
+    return REGISTRY.plugins("adc.api.Phonemizer", fail_if_empty=False)
 
 
 def available_plugins() -> Dict[str, Plugin]:
@@ -156,6 +168,7 @@ def available_plugins() -> Dict[str, Plugin]:
     result.update(available_writers())
     result.update(available_generators())
     result.update(available_data_formatters())
+    result.update(available_phonemizers())
     return result
 
 
@@ -201,6 +214,8 @@ def _list(list_type: str, custom_class_listers: Optional[List[str]] = None, excl
             plugins = available_generators()
         elif list_type == LIST_DATA_FORMATTERS:
             plugins = available_data_formatters()
+        elif list_type == LIST_PHONEMIZERS:
+            plugins = available_phonemizers()
         else:
             raise Exception("Unhandled type: %s" % list_type)
         print("name: class")

@@ -49,6 +49,7 @@
 * [metadata-to-variable](metadata-to-variable.md)
 * [move-files](move-files.md)
 * [passthrough](passthrough.md)
+* [phonemize](phonemize.md)
 * [pitch-shift](pitch-shift.md)
 * [pyfunc-filter](pyfunc-filter.md)
 * [randomize-records](randomize-records.md)

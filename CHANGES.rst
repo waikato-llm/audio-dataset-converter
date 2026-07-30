@@ -19,6 +19,8 @@ Changelog
 - using `seppl.variables` now
 - requires seppl>=0.3.1 now
 - requires kasperl>=0.0.2 now
+- added plugin hierarchy for `Phonemizer` plugins and `phonemize` filter that applies a phonemizer
+  to the text of speech data
 
 
 0.1.0 (2025-10-31)

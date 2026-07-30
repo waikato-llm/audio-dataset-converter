@@ -60,18 +60,19 @@ readers (21):
    from-pyfunc, from-storage, from-subdir-cl, from-text-file, 
    from-txt-cl, from-txt-sp, get-email, list-files, poll-dir, 
    shell-exec, start, watch-dir
-filters (47):
+filters (48):
    annotations-from-storage, annotations-to-storage, attach-metadata, 
    block, change-volume, check-duplicate-filenames, convert-to-mono, 
    convert-to-wav, copy-files, count-data, delete-storage, 
    discard-by-name, discard-negatives, generate-chunks, get-metadata, 
    list-to-sequence, log-data, log-placeholder*, log-variable, 
    max-records, metadata, metadata-from-name, metadata-to-placeholder*, 
-   metadata-to-variable, move-files, passthrough, pitch-shift, 
-   pyfunc-filter, randomize-records, record-window, rename, resample, 
-   sample, sanitize-name, set-metadata, set-placeholder*, set-storage, 
-   set-variable, sleep, split-records, stop, strip-annotations, 
-   sub-process, tee, time-stretch, trigger, trim-silence
+   metadata-to-variable, move-files, passthrough, phonemize, 
+   pitch-shift, pyfunc-filter, randomize-records, record-window, rename, 
+   resample, sample, sanitize-name, set-metadata, set-placeholder*, 
+   set-storage, set-variable, sleep, split-records, stop, 
+   strip-annotations, sub-process, tee, time-stretch, trigger, 
+   trim-silence
 writers (19):
    console, delete-files, send-email, to-adams-cl, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
@@ -187,22 +188,22 @@ options:
 ### Generating help screens for plugins
 
 ```
-usage: adc-help [-h] [-c [PACKAGE [PACKAGE ...]]] [-e EXCLUDED_CLASS_LISTERS]
-                [-T {pipeline,generator}] [-p NAME] [-f {text,markdown}]
-                [-L INT] [-o PATH] [-i FILE] [-t TITLE]
+usage: adc-help [-h] [-c [PACKAGE ...]] [-e EXCLUDED_CLASS_LISTERS]
+                [-T {pipeline,generator,data-formatter,phonemizer}] [-p NAME]
+                [-f {text,markdown}] [-L INT] [-o PATH] [-i FILE] [-t TITLE]
                 [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
 
 Tool for outputting help for plugins in various formats.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
-  -c [PACKAGE [PACKAGE ...]], --custom_class_listers [PACKAGE [PACKAGE ...]]
+  -c [PACKAGE ...], --custom_class_listers [PACKAGE ...]
                         The custom class listers to use, uses the default ones
                         if not provided. (default: None)
   -e EXCLUDED_CLASS_LISTERS, --excluded_class_listers EXCLUDED_CLASS_LISTERS
                         The comma-separated list of class listers to exclude.
                         (default: None)
-  -T {pipeline,generator}, --plugin_type {pipeline,generator}
+  -T {pipeline,generator,data-formatter,phonemizer}, --plugin_type {pipeline,generator,data-formatter,phonemizer}
                         The types of plugins to generate the help for.
                         (default: pipeline)
   -p NAME, --plugin_name NAME
@@ -234,11 +235,11 @@ optional arguments:
 
 ```
 usage: adc-registry [-h] [-c CUSTOM_CLASS_LISTERS] [-e EXCLUDED_CLASS_LISTERS]
-                    [-l {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators}]
+                    [-l {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators,data-formatters,phonemizers}]
 
 For inspecting/querying the registry.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -c CUSTOM_CLASS_LISTERS, --custom_class_listers CUSTOM_CLASS_LISTERS
                         The comma-separated list of custom class listers to
@@ -246,7 +247,7 @@ optional arguments:
   -e EXCLUDED_CLASS_LISTERS, --excluded_class_listers EXCLUDED_CLASS_LISTERS
                         The comma-separated list of class listers to exclude.
                         (default: None)
-  -l {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators}, --list {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators}
+  -l {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators,data-formatters,phonemizers}, --list {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators,data-formatters,phonemizers}
                         For outputting various lists on stdout. (default:
                         None)
 ```
@@ -276,6 +277,7 @@ You can find help screens for the plugins here:
 * [Pipeline plugins](plugins/README.md) (reades/filters/writers)
 * [Generator plugins](generators/README.md) (used by `adc-exec`)
 * [Data formatter plugins](data-formatters/README.md)
+* [Phonemizer plugins](phonemizers/README.md)
 
 
 ## Command-line examples
