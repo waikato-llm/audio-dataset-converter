@@ -12,7 +12,7 @@ class Phonemizer(PluginWithLogging, Initializable, abc.ABC):
     def __init__(self, enabled: bool = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
-        Initializes the reader.
+        Initializes the phonemizer.
 
         :param enabled: whether the plugin is enabled
         :type enabled: bool
