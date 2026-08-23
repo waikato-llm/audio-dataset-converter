@@ -52,6 +52,7 @@ LIST_WRITERS = "writers"
 LIST_GENERATORS = "generators"
 LIST_DATA_FORMATTERS = "data-formatters"
 LIST_PHONEMIZERS = "phonemizers"
+LIST_WATERMARKERS = "watermarkers"
 LIST_CUSTOM_CLASS_LISTERS = "custom-class-listers"
 LIST_ENV_CLASS_LISTERS = "env-class-listers"
 LIST_TYPES = [
@@ -65,6 +66,7 @@ LIST_TYPES = [
     LIST_GENERATORS,
     LIST_DATA_FORMATTERS,
     LIST_PHONEMIZERS,
+    LIST_WATERMARKERS,
 ]
 
 
@@ -155,6 +157,16 @@ def available_phonemizers() -> Dict[str, Plugin]:
     return REGISTRY.plugins("adc.api.Phonemizer", fail_if_empty=False)
 
 
+def available_watermarkers() -> Dict[str, Plugin]:
+    """
+    Returns all available watermarkers.
+
+    :return: the dict of watermarkers objects
+    :rtype: dict
+    """
+    return REGISTRY.plugins("adc.api.Watermarker", fail_if_empty=False)
+
+
 def available_plugins() -> Dict[str, Plugin]:
     """
     Returns all available plugins (pipeline and generators).
@@ -169,6 +181,7 @@ def available_plugins() -> Dict[str, Plugin]:
     result.update(available_generators())
     result.update(available_data_formatters())
     result.update(available_phonemizers())
+    result.update(available_watermarkers())
     return result
 
 
@@ -216,6 +229,8 @@ def _list(list_type: str, custom_class_listers: Optional[List[str]] = None, excl
             plugins = available_data_formatters()
         elif list_type == LIST_PHONEMIZERS:
             plugins = available_phonemizers()
+        elif list_type == LIST_WATERMARKERS:
+            plugins = available_watermarkers()
         else:
             raise Exception("Unhandled type: %s" % list_type)
         print("name: class")

@@ -5,3 +5,4 @@ from ._classification import AudioClassificationData
 from ._phonemizer import Phonemizer
 from ._speech import SpeechData
 from ._utils import locate_audio, load_audio_from_bytes, load_audio_from_file
+from ._watermarker import Watermarker

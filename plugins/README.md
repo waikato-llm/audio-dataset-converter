@@ -71,6 +71,7 @@
 * [time-stretch](time-stretch.md)
 * [trigger](trigger.md)
 * [trim-silence](trim-silence.md)
+* [watermark](watermark.md)
 
 ## Writers
 * [console](console.md)
