@@ -147,7 +147,7 @@ class Phonemizer(PluginWithLogging, Initializable, abc.ABC):
         :param available_phonemizers: the phonemizers to use for parsing
         :type available_phonemizers: dict
         :return: the phonemizer plugin
-        :rtype: DataFormatter
+        :rtype: Phonemizer
         """
         result = cls.parse_phonemizers(cmdline, available_phonemizers)
         if len(result) != 1:
