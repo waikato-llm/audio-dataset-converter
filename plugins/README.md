@@ -72,6 +72,7 @@
 * [trigger](trigger.md)
 * [trim-silence](trim-silence.md)
 * [watermark](watermark.md)
+* [watermark-detector](watermark-detector.md)
 
 ## Writers
 * [console](console.md)

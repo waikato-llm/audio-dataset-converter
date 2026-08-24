@@ -53,6 +53,7 @@ LIST_GENERATORS = "generators"
 LIST_DATA_FORMATTERS = "data-formatters"
 LIST_PHONEMIZERS = "phonemizers"
 LIST_WATERMARKERS = "watermarkers"
+LIST_WATERMARK_DETECTORS = "watermark-detectors"
 LIST_CUSTOM_CLASS_LISTERS = "custom-class-listers"
 LIST_ENV_CLASS_LISTERS = "env-class-listers"
 LIST_TYPES = [
@@ -67,6 +68,7 @@ LIST_TYPES = [
     LIST_DATA_FORMATTERS,
     LIST_PHONEMIZERS,
     LIST_WATERMARKERS,
+    LIST_WATERMARK_DETECTORS,
 ]
 
 
@@ -167,6 +169,29 @@ def available_watermarkers() -> Dict[str, Plugin]:
     return REGISTRY.plugins("adc.api.Watermarker", fail_if_empty=False)
 
 
+def available_watermark_detectors() -> Dict[str, Plugin]:
+    """
+    Returns all available watermark detectors.
+
+    :return: the dict of watermark detector objects
+    :rtype: dict
+    """
+    return REGISTRY.plugins("adc.api.WatermarkDetector", fail_if_empty=False)
+
+
+def available_watermarks() -> Dict[str, Plugin]:
+    """
+    Returns all available plugins for watermarking.
+
+    :return: the dict of plugin objects
+    :rtype: dict
+    """
+    result = dict()
+    result.update(available_watermarkers())
+    result.update(available_watermark_detectors())
+    return result
+
+
 def available_plugins() -> Dict[str, Plugin]:
     """
     Returns all available plugins (pipeline and generators).
@@ -182,6 +207,7 @@ def available_plugins() -> Dict[str, Plugin]:
     result.update(available_data_formatters())
     result.update(available_phonemizers())
     result.update(available_watermarkers())
+    result.update(available_watermark_detectors())
     return result
 
 
@@ -212,7 +238,7 @@ def _list(list_type: str, custom_class_listers: Optional[List[str]] = None, excl
     """
     register_plugins(custom_class_listers=custom_class_listers, excluded_class_listers=excluded_class_listers)
 
-    if list_type in [LIST_PLUGINS, LIST_PIPELINE, LIST_READERS, LIST_FILTERS, LIST_WRITERS, LIST_GENERATORS, LIST_DATA_FORMATTERS]:
+    if list_type in [LIST_PLUGINS, LIST_PIPELINE, LIST_READERS, LIST_FILTERS, LIST_WRITERS, LIST_GENERATORS, LIST_DATA_FORMATTERS, LIST_PHONEMIZERS, LIST_WATERMARKERS, LIST_WATERMARK_DETECTORS]:
         if list_type == LIST_PLUGINS:
             plugins = available_plugins()
         elif list_type == LIST_PIPELINE:
@@ -231,6 +257,8 @@ def _list(list_type: str, custom_class_listers: Optional[List[str]] = None, excl
             plugins = available_phonemizers()
         elif list_type == LIST_WATERMARKERS:
             plugins = available_watermarkers()
+        elif list_type == LIST_WATERMARK_DETECTORS:
+            plugins = available_watermark_detectors()
         else:
             raise Exception("Unhandled type: %s" % list_type)
         print("name: class")

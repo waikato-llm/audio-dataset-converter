@@ -6,10 +6,12 @@ import traceback
 from typing import List, Optional
 
 from wai.logging import init_logging, set_logging_level, add_logging_level
+
 from adc.core import ENV_ADC_LOGLEVEL
 from adc.help import generate_plugin_usage, HELP_FORMATS, HELP_FORMAT_TEXT, HELP_FORMAT_MARKDOWN
-from adc.registry import register_plugins, available_plugins, available_pipeline_plugins, available_data_formatters, available_phonemizers, available_watermarkers
 from adc.registry import available_readers, available_filters, available_writers, available_generators
+from adc.registry import register_plugins, available_pipeline_plugins, available_data_formatters, available_phonemizers, \
+    available_watermarks, available_watermark_detectors, available_watermarkers
 
 HELP = "adc-help"
 
@@ -22,13 +24,13 @@ PLUGIN_TYPE_PIPELINE = "pipeline"
 PLUGIN_TYPE_GENERATOR = "generator"
 PLUGIN_TYPE_DATA_FORMATTER = "data-formatter"
 PLUGIN_TYPE_PHONEMIZER = "phonemizer"
-PLUGIN_TYPE_WATERMARKER = "watermarker"
+PLUGIN_TYPE_WATERMARKS = "watermarks"
 PLUGIN_TYPES = [
     PLUGIN_TYPE_PIPELINE,
     PLUGIN_TYPE_GENERATOR,
     PLUGIN_TYPE_DATA_FORMATTER,
     PLUGIN_TYPE_PHONEMIZER,
-    PLUGIN_TYPE_WATERMARKER,
+    PLUGIN_TYPE_WATERMARKS,
 ]
 
 
@@ -107,8 +109,8 @@ def output_help(custom_class_listers: List[str] = None, excluded_class_listers: 
         available = available_data_formatters()
     elif plugin_type == PLUGIN_TYPE_PHONEMIZER:
         available = available_phonemizers()
-    elif plugin_type == PLUGIN_TYPE_WATERMARKER:
-        available = available_watermarkers()
+    elif plugin_type == PLUGIN_TYPE_WATERMARKS:
+        available = available_watermarks()
     else:
         raise Exception("Unhandled plugin type: %s" % plugin_type)
 
@@ -146,8 +148,9 @@ def output_help(custom_class_listers: List[str] = None, excluded_class_listers: 
             _add_plugins_to_index("Data formatters", available_data_formatters(), help_format, plugin_lines)
         elif plugin_type == PLUGIN_TYPE_PHONEMIZER:
             _add_plugins_to_index("Phonemizers", available_phonemizers(), help_format, plugin_lines)
-        elif plugin_type == PLUGIN_TYPE_WATERMARKER:
+        elif plugin_type == PLUGIN_TYPE_WATERMARKS:
             _add_plugins_to_index("Watermarkers", available_watermarkers(), help_format, plugin_lines)
+            _add_plugins_to_index("Watermark Detectors", available_watermark_detectors(), help_format, plugin_lines)
         else:
             raise Exception("Unhandled plugin type: %s" % plugin_type)
 

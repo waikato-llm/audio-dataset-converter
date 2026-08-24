@@ -31,6 +31,9 @@ def list_classes() -> Dict[str, List[str]]:
             "adc.phonemizer",
         ],
         "adc.api.Watermarker": [
-            "adc.watermarker",
+            "adc.watermarks",
+        ],
+        "adc.api.WatermarkDetector": [
+            "adc.watermarks",
         ],
     }

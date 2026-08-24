@@ -23,6 +23,8 @@ Changelog
   to the text of speech data
 - added plugin hierarchy for `Watermarker` plugins and `watermark` filter that applies a watermark algorithm
   to the audio data passing through
+- added plugin hierarchy for `WatermarkDetector` plugins and `watermark-detector` filter that applies a watermark
+  detection algorithm to the audio data passing through
 
 
 0.1.0 (2025-10-31)

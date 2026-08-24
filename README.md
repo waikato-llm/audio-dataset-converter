@@ -189,9 +189,9 @@ options:
 
 ```
 usage: adc-help [-h] [-c [PACKAGE ...]] [-e EXCLUDED_CLASS_LISTERS]
-                [-T {pipeline,generator,data-formatter,phonemizer}] [-p NAME]
-                [-f {text,markdown}] [-L INT] [-o PATH] [-i FILE] [-t TITLE]
-                [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                [-T {pipeline,generator,data-formatter,phonemizer,watermarks}]
+                [-p NAME] [-f {text,markdown}] [-L INT] [-o PATH] [-i FILE]
+                [-t TITLE] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
 
 Tool for outputting help for plugins in various formats.
 
@@ -203,7 +203,7 @@ options:
   -e EXCLUDED_CLASS_LISTERS, --excluded_class_listers EXCLUDED_CLASS_LISTERS
                         The comma-separated list of class listers to exclude.
                         (default: None)
-  -T {pipeline,generator,data-formatter,phonemizer}, --plugin_type {pipeline,generator,data-formatter,phonemizer}
+  -T {pipeline,generator,data-formatter,phonemizer,watermarks}, --plugin_type {pipeline,generator,data-formatter,phonemizer,watermarks}
                         The types of plugins to generate the help for.
                         (default: pipeline)
   -p NAME, --plugin_name NAME
@@ -235,7 +235,7 @@ options:
 
 ```
 usage: adc-registry [-h] [-c CUSTOM_CLASS_LISTERS] [-e EXCLUDED_CLASS_LISTERS]
-                    [-l {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators,data-formatters,phonemizers}]
+                    [-l {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators,data-formatters,phonemizers,watermarkers,watermark-detectors}]
 
 For inspecting/querying the registry.
 
@@ -247,7 +247,7 @@ options:
   -e EXCLUDED_CLASS_LISTERS, --excluded_class_listers EXCLUDED_CLASS_LISTERS
                         The comma-separated list of class listers to exclude.
                         (default: None)
-  -l {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators,data-formatters,phonemizers}, --list {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators,data-formatters,phonemizers}
+  -l {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators,data-formatters,phonemizers,watermarkers,watermark-detectors}, --list {plugins,pipeline,custom-class-listers,env-class-listers,readers,filters,writers,generators,data-formatters,phonemizers,watermarkers,watermark-detectors}
                         For outputting various lists on stdout. (default:
                         None)
 ```
@@ -278,6 +278,7 @@ You can find help screens for the plugins here:
 * [Generator plugins](generators/README.md) (used by `adc-exec`)
 * [Data formatter plugins](data-formatters/README.md)
 * [Phonemizer plugins](phonemizers/README.md)
+* [Watermark plugins](watermark/README.md)
 
 
 ## Command-line examples

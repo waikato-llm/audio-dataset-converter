@@ -6,7 +6,7 @@ from seppl.io import BatchFilter
 from wai.logging import LOGGING_WARNING
 
 from adc.api import AudioData, Watermarker
-from adc.watermarker import PassThrough
+from adc.watermarks import PassThroughMarker, PassThroughDetector
 
 
 class Watermark(BatchFilter):
@@ -74,7 +74,7 @@ class Watermark(BatchFilter):
         :rtype: argparse.ArgumentParser
         """
         parser = super()._create_argparser()
-        parser.add_argument("-p", "--watermarker", type=str, help="The watermarker command to use.", default=PassThrough().name(), required=False)
+        parser.add_argument("-p", "--watermarker", type=str, help="The watermarker command to use.", default=PassThroughMarker().name(), required=False)
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -93,7 +93,7 @@ class Watermark(BatchFilter):
         """
         super().initialize()
         if self.watermarker is None:
-            self.watermarker = PassThrough().name()
+            self.watermarker = PassThroughMarker().name()
         from adc.registry import available_watermarkers
         self._watermarker = Watermarker.parse_watermarker(self.watermarker, available_watermarkers())
 
@@ -108,6 +108,110 @@ class Watermark(BatchFilter):
         for item in make_list(data):
             item_new = self._watermarker.watermark(item)
             self.logger().info("watermarked: %s" % item_new)
+            result.append(item_new)
+
+        return flatten_list(result)
+
+
+class WatermarkDetector(BatchFilter):
+    """
+    Applies the specified watermark detector plugin to the audio data.
+    """
+
+    def __init__(self, watermark_detector: str = None,
+                 logger_name: str = None, logging_level: str = LOGGING_WARNING):
+        """
+        Initializes the filter.
+
+        :param watermark_detector: the watermark detector command line
+        :type watermark_detector: str
+        :param logger_name: the name to use for the logger
+        :type logger_name: str
+        :param logging_level: the logging level to use
+        :type logging_level: str
+        """
+        super().__init__(logger_name=logger_name, logging_level=logging_level)
+        self.watermark_detector = watermark_detector
+        self._watermark_detector = None
+
+    def name(self) -> str:
+        """
+        Returns the name of the handler, used as sub-command.
+
+        :return: the name
+        :rtype: str
+        """
+        return "watermark-detector"
+
+    def description(self) -> str:
+        """
+        Returns a description of the handler.
+
+        :return: the description
+        :rtype: str
+        """
+        return "Applies the specified watermark detector plugin to the audio data."
+
+    def accepts(self) -> List:
+        """
+        Returns the list of classes that are accepted.
+
+        :return: the list of classes
+        :rtype: list
+        """
+        return [AudioData]
+
+    def generates(self) -> List:
+        """
+        Returns the list of classes that get produced.
+
+        :return: the list of classes
+        :rtype: list
+        """
+        return [AudioData]
+
+    def _create_argparser(self) -> argparse.ArgumentParser:
+        """
+        Creates an argument parser. Derived classes need to fill in the options.
+
+        :return: the parser
+        :rtype: argparse.ArgumentParser
+        """
+        parser = super()._create_argparser()
+        parser.add_argument("-p", "--watermark_detector", type=str, help="The watermark detector command to use.", default=PassThroughDetector().name(), required=False)
+        return parser
+
+    def _apply_args(self, ns: argparse.Namespace):
+        """
+        Initializes the object with the arguments of the parsed namespace.
+
+        :param ns: the parsed arguments
+        :type ns: argparse.Namespace
+        """
+        super()._apply_args(ns)
+        self.watermark_detector = ns.watermark_detector
+
+    def initialize(self):
+        """
+        Initializes the processing, e.g., for opening files or databases.
+        """
+        super().initialize()
+        if self.watermark_detector is None:
+            self.watermark_detector = PassThroughDetector().name()
+        from adc.registry import available_watermark_detectors
+        self._watermark_detector = Watermarker.parse_watermarker(self.watermark_detector, available_watermark_detectors())
+
+    def _do_process(self, data):
+        """
+        Processes the data record(s).
+
+        :param data: the record(s) to process
+        :return: the potentially updated record(s)
+        """
+        result = []
+        for item in make_list(data):
+            item_new = self._watermark_detector.watermark(item)
+            self.logger().info("watermark detection: %s" % item_new)
             result.append(item_new)
 
         return flatten_list(result)
