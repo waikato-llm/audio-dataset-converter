@@ -359,5 +359,7 @@ It supports the following options:
 ## Additional libraries
 
 * [Faster whisper](https://github.com/waikato-llm/audio-dataset-converter-faster-whisper)
+* [Goruut phonemizer](https://github.com/waikato-llm/audio-dataset-converter-goruut)
+* [Phonemizer integration](https://github.com/waikato-llm/audio-dataset-converter-phonemizer)
 * [Redis](https://github.com/waikato-llm/audio-dataset-converter-redis)
 * [Visualization](https://github.com/waikato-llm/audio-dataset-converter-visualization)
