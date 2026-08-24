@@ -9,7 +9,7 @@ class PassThrough(Phonemizer):
 
     def __init__(self, logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
-        Initializes the filter.
+        Initializes the phonemizer.
 
         :param logger_name: the name to use for the logger
         :type logger_name: str
@@ -29,7 +29,7 @@ class PassThrough(Phonemizer):
 
     def description(self) -> str:
         """
-        Returns a description of the handler.
+        Returns a description of the phonemizer.
 
         :return: the description
         :rtype: str
