@@ -36,11 +36,13 @@ class PassThrough(Phonemizer):
         """
         return "Dummy, just passes through the text, generates no phonemes."
 
-    def _do_process(self, data):
+    def _do_phonemize(self, text: str) -> str:
         """
-        Processes the data record(s).
+        Applies the phonemizer algorithm to the supplied string.
 
-        :param data: the record(s) to process
-        :return: the potentially updated record(s)
+        :param text: the string to process
+        :type text: str
+        :return: the processed string
+        :rtype: str
         """
-        return data
+        return text
