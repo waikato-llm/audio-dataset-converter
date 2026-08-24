@@ -96,6 +96,7 @@ class Phonemize(BatchFilter):
             self.phonemizer = PassThrough().name()
         from adc.registry import available_phonemizers
         self._phonemizer = Phonemizer.parse_phonemizer(self.phonemizer, available_phonemizers())
+        self._phonemizer.initialize()
 
     def _do_process(self, data):
         """
@@ -106,9 +107,18 @@ class Phonemize(BatchFilter):
         """
         result = []
         for item in make_list(data):
-            annotation_new = self._phonemizer.phenomize(item.annotation)
+            annotation_new = self._phonemizer.phonemize(item.annotation)
             self.logger().info("phonemized: %s -> %s" % (item.annotation, annotation_new))
             item_new = item.duplicate(annotation=annotation_new)
             result.append(item_new)
 
         return flatten_list(result)
+
+    def finalize(self):
+        """
+        Finishes the processing, e.g., for closing files or databases.
+        """
+        super().finalize()
+        if self._phonemizer is not None:
+            self._phonemizer.finalize()
+            self._phonemizer = None
