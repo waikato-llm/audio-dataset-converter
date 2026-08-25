@@ -183,16 +183,16 @@ class WatermarkDetector(PluginWithLogging, Initializable, abc.ABC):
         if self.enabled is None:
             self.enabled = True
 
-    def _can_detect(self, data: AudioData) -> bool:
+    def _can_detect(self, data: AudioData) -> str:
         """
         Checks whether the watermark detection can be performed.
 
         :param data: the audio data to check
         :type data: AudioData
-        :return: True if it can be processed
-        :rtype: bool
+        :return: None if it can be processed, otherwise error message
+        :rtype: str
         """
-        return self.enabled
+        return None if self.enabled else "Not enabled!"
 
     def _do_detect(self, data: AudioData) -> AudioData:
         """
@@ -214,15 +214,15 @@ class WatermarkDetector(PluginWithLogging, Initializable, abc.ABC):
         :return: the processed audio data
         :rtype: AudioData
         """
-        if self._can_detect(data):
+        msg = self._can_detect(data)
+        if msg is None:
             if self.logger().isEnabledFor(logging.INFO):
                 self.logger().info("Input: %s" % data.audio_name)
-
-            # watermark
+            # detect
             result = self._do_detect(data)
         else:
             if self.logger().isEnabledFor(logging.INFO):
-                self.logger().info("Cannot detect watermark: %s" % data.audio_name)
+                self.logger().info("Cannot detect watermark for '%s': %s" % (data.audio_name, msg))
             result = data
 
         return result
