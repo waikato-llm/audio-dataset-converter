@@ -1,4 +1,4 @@
-# watermark-detector
+# detect-watermark
 
 * accepts: adc.api.AudioData
 * generates: adc.api.AudioData
@@ -6,8 +6,8 @@
 Applies the specified watermark detector plugin to the audio data.
 
 ```
-usage: watermark-detector [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
-                          [-N LOGGER_NAME] [--skip] [-p WATERMARK_DETECTOR]
+usage: detect-watermark [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                        [-N LOGGER_NAME] [--skip] [-p WATERMARK_DETECTOR]
 
 Applies the specified watermark detector plugin to the audio data.
 

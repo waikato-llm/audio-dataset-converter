@@ -21,9 +21,9 @@ Changelog
 - requires kasperl>=0.0.2 now
 - added plugin hierarchy for `Phonemizer` plugins and `phonemize` filter that applies a phonemizer
   to the text of speech data
-- added plugin hierarchy for `Watermarker` plugins and `watermark` filter that applies a watermark algorithm
+- added plugin hierarchy for `WatermarkerApplicator` plugins and `embed-watermark` filter that applies a watermark algorithm
   to the audio data passing through
-- added plugin hierarchy for `WatermarkDetector` plugins and `watermark-detector` filter that applies a watermark
+- added plugin hierarchy for `WatermarkDetector` plugins and `detect-watermark` filter that applies a watermark
   detection algorithm to the audio data passing through
 - added `adc-phonemize` command-line tool for applying phonemizer to text or text files
 

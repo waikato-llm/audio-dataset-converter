@@ -1,4 +1,4 @@
-# watermark
+# embed-watermark
 
 * accepts: adc.api.AudioData
 * generates: adc.api.AudioData
@@ -6,8 +6,8 @@
 Applies the specified watermarker plugin to the audio data.
 
 ```
-usage: watermark [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
-                 [-N LOGGER_NAME] [--skip] [-p WATERMARKER]
+usage: embed-watermark [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                       [-N LOGGER_NAME] [--skip] [-p WATERMARKER]
 
 Applies the specified watermarker plugin to the audio data.
 

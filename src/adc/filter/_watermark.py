@@ -9,7 +9,7 @@ from adc.api import AudioData, Watermarker
 from adc.watermarks import PassThroughMarker, PassThroughDetector
 
 
-class Watermark(BatchFilter):
+class WatermarkApplicator(BatchFilter):
     """
     Applies the specified watermarker plugin to the audio data.
     """
@@ -37,7 +37,7 @@ class Watermark(BatchFilter):
         :return: the name
         :rtype: str
         """
-        return "watermark"
+        return "embed-watermark"
 
     def description(self) -> str:
         """
@@ -141,7 +141,7 @@ class WatermarkDetector(BatchFilter):
         :return: the name
         :rtype: str
         """
-        return "watermark-detector"
+        return "detect-watermark"
 
     def description(self) -> str:
         """

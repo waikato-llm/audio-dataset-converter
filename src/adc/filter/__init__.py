@@ -16,4 +16,4 @@ from ._tee import Tee
 from ._time_stretch import TimeStretch
 from ._trigger import Trigger
 from ._trim_silence import TrimSilence
-from ._watermark import Watermark, WatermarkDetector
+from ._watermark import WatermarkApplicator, WatermarkDetector

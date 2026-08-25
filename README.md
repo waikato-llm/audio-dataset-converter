@@ -60,19 +60,19 @@ readers (21):
    from-pyfunc, from-storage, from-subdir-cl, from-text-file, 
    from-txt-cl, from-txt-sp, get-email, list-files, poll-dir, 
    shell-exec, start, watch-dir
-filters (48):
+filters (50):
    annotations-from-storage, annotations-to-storage, attach-metadata, 
    block, change-volume, check-duplicate-filenames, convert-to-mono, 
    convert-to-wav, copy-files, count-data, delete-storage, 
-   discard-by-name, discard-negatives, generate-chunks, get-metadata, 
-   list-to-sequence, log-data, log-placeholder*, log-variable, 
-   max-records, metadata, metadata-from-name, metadata-to-placeholder*, 
-   metadata-to-variable, move-files, passthrough, phonemize, 
-   pitch-shift, pyfunc-filter, randomize-records, record-window, rename, 
-   resample, sample, sanitize-name, set-metadata, set-placeholder*, 
-   set-storage, set-variable, sleep, split-records, stop, 
-   strip-annotations, sub-process, tee, time-stretch, trigger, 
-   trim-silence
+   detect-watermark, discard-by-name, discard-negatives, 
+   embed-watermark, generate-chunks, get-metadata, list-to-sequence, 
+   log-data, log-placeholder*, log-variable, max-records, metadata, 
+   metadata-from-name, metadata-to-placeholder*, metadata-to-variable, 
+   move-files, passthrough, phonemize, pitch-shift, pyfunc-filter, 
+   randomize-records, record-window, rename, resample, sample, 
+   sanitize-name, set-metadata, set-placeholder*, set-storage, 
+   set-variable, sleep, split-records, stop, strip-annotations, 
+   sub-process, tee, time-stretch, trigger, trim-silence
 writers (19):
    console, delete-files, send-email, to-adams-cl, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
@@ -395,3 +395,4 @@ It supports the following options:
 * [Phonemizer integration](https://github.com/waikato-llm/audio-dataset-converter-phonemizer)
 * [Redis](https://github.com/waikato-llm/audio-dataset-converter-redis)
 * [Visualization](https://github.com/waikato-llm/audio-dataset-converter-visualization)
+* [WavMark watermarking](https://github.com/waikato-llm/audio-dataset-converter-wavmark)

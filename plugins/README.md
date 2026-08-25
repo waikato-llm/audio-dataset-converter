@@ -34,8 +34,10 @@
 * [copy-files](copy-files.md)
 * [count-data](count-data.md)
 * [delete-storage](delete-storage.md)
+* [detect-watermark](detect-watermark.md)
 * [discard-by-name](discard-by-name.md)
 * [discard-negatives](discard-negatives.md)
+* [embed-watermark](embed-watermark.md)
 * [generate-chunks](generate-chunks.md)
 * [get-metadata](get-metadata.md)
 * [list-to-sequence](list-to-sequence.md)
@@ -71,8 +73,6 @@
 * [time-stretch](time-stretch.md)
 * [trigger](trigger.md)
 * [trim-silence](trim-silence.md)
-* [watermark](watermark.md)
-* [watermark-detector](watermark-detector.md)
 
 ## Writers
 * [console](console.md)
