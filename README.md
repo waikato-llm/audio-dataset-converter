@@ -231,6 +231,37 @@ options:
 ```
 
 
+### Phonemize
+
+```
+usage: adc-phonemize [-h] [-t [TEXT ...]] [-i [FILE ...]] [-o DIR] -p
+                     PHONEMIZER [--variables FILE]
+                     [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+
+Tool for phonemizing text.
+
+options:
+  -h, --help            show this help message and exit
+  -t [TEXT ...], --text [TEXT ...]
+                        The text to process, outputs the result to stdout.
+                        (default: None)
+  -i [FILE ...], --input [FILE ...]
+                        The text files to process (requires -o/--output);
+                        supports glob syntax. Supported variables: {HOME},
+                        {CWD}, {TMP} (default: None)
+  -o DIR, --output DIR  The directory to store the phonemized text in.
+                        Supported variables: {HOME}, {CWD}, {TMP} (default:
+                        None)
+  -p PHONEMIZER, --phonemizer PHONEMIZER
+                        The phonemizer command-line to use. (default: None)
+  --variables FILE, --placeholders FILE
+                        The file with custom variables to load (format:
+                        key=value). (default: None)
+  -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
+                        The logging level to use. (default: WARN)
+```
+
+
 ### Plugin registry
 
 ```

@@ -50,6 +50,7 @@ setup(
             "adc-exec=adc.tool.exec:sys_main",
             "adc-find=adc.tool.find:sys_main",
             "adc-help=adc.tool.help:sys_main",
+            "adc-phonemize=adc.tool.phonemize:sys_main",
             "adc-registry=adc.registry:sys_main",
             "adc-test-generator=adc.tool.test_generator:sys_main",
         ],
