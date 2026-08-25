@@ -96,6 +96,7 @@ class WatermarkApplicator(BatchFilter):
             self.watermarker = PassThroughMarker().name()
         from adc.registry import available_watermarkers
         self._watermarker = Watermarker.parse_watermarker(self.watermarker, available_watermarkers())
+        self._watermarker.initialize()
 
     def _do_process(self, data):
         """
@@ -107,10 +108,18 @@ class WatermarkApplicator(BatchFilter):
         result = []
         for item in make_list(data):
             item_new = self._watermarker.watermark(item)
-            self.logger().info("watermarked: %s" % item_new)
             result.append(item_new)
 
         return flatten_list(result)
+
+    def finalize(self):
+        """
+        Finishes the processing, e.g., for closing files or databases.
+        """
+        super().finalize()
+        if self._watermarker is not None:
+            self._watermarker.finalize()
+            self._watermarker = None
 
 
 class WatermarkDetector(BatchFilter):
@@ -200,6 +209,7 @@ class WatermarkDetector(BatchFilter):
             self.watermark_detector = PassThroughDetector().name()
         from adc.registry import available_watermark_detectors
         self._watermark_detector = Watermarker.parse_watermarker(self.watermark_detector, available_watermark_detectors())
+        self._watermark_detector.initialize()
 
     def _do_process(self, data):
         """
@@ -211,7 +221,15 @@ class WatermarkDetector(BatchFilter):
         result = []
         for item in make_list(data):
             item_new = self._watermark_detector.watermark(item)
-            self.logger().info("watermark detection: %s" % item_new)
             result.append(item_new)
 
         return flatten_list(result)
+
+    def finalize(self):
+        """
+        Finishes the processing, e.g., for closing files or databases.
+        """
+        super().finalize()
+        if self._watermark_detector is not None:
+            self._watermark_detector.finalize()
+            self._watermark_detector = None

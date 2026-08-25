@@ -87,15 +87,13 @@ class Watermarker(PluginWithLogging, Initializable, abc.ABC):
         """
         if self._can_watermark(data):
             if self.logger().isEnabledFor(logging.INFO):
-                self.logger().info("Input: %s" % data)
+                self.logger().info("Input: %s" % data.audio_name)
 
             # watermark
             result = self._do_watermark(data)
-            if self.logger().isEnabledFor(logging.INFO):
-                self.logger().info("Watermarked: %s" % result)
         else:
             if self.logger().isEnabledFor(logging.INFO):
-                self.logger().info("Cannot watermark: %s" % data)
+                self.logger().info("Cannot embed watermark: %s" % data.audio_name)
             result = data
 
         return result
@@ -218,15 +216,13 @@ class WatermarkDetector(PluginWithLogging, Initializable, abc.ABC):
         """
         if self._can_detect(data):
             if self.logger().isEnabledFor(logging.INFO):
-                self.logger().info("Input: %s" % data)
+                self.logger().info("Input: %s" % data.audio_name)
 
             # watermark
             result = self._do_detect(data)
-            if self.logger().isEnabledFor(logging.INFO):
-                self.logger().info("Watermark detection output: %s" % result)
         else:
             if self.logger().isEnabledFor(logging.INFO):
-                self.logger().info("Cannot detect watermark: %s" % data)
+                self.logger().info("Cannot detect watermark: %s" % data.audio_name)
             result = data
 
         return result
