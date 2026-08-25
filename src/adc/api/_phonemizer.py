@@ -53,15 +53,15 @@ class Phonemizer(PluginWithLogging, Initializable, abc.ABC):
         if self.enabled is None:
             self.enabled = True
 
-    def _can_phonemize(self, text: str) -> bool:
+    def _can_phonemize(self, text: str) -> str:
         """
         Checks whether the text can be phonemized.
 
         :param text: the string to check
-        :return: True if it can be processed
-        :rtype: bool
+        :return: None if it can be processed, otherwise error message
+        :rtype: str
         """
-        return self.enabled
+        return None if self.enabled else "Not enabled!"
 
     def _preprocess(self, text: str) -> str:
         """
@@ -106,7 +106,8 @@ class Phonemizer(PluginWithLogging, Initializable, abc.ABC):
         :return: the processed string
         :rtype: str
         """
-        if self._can_phonemize(text):
+        msg = self._can_phonemize(text)
+        if msg is None:
             if self.logger().isEnabledFor(logging.INFO):
                 self.logger().info("Input: %s" % text)
 
@@ -126,7 +127,7 @@ class Phonemizer(PluginWithLogging, Initializable, abc.ABC):
                 self.logger().info("Post-processed phonemes: %s" % result)
         else:
             if self.logger().isEnabledFor(logging.INFO):
-                self.logger().info("Cannot phonemize: %s" % text)
+                self.logger().info("Cannot phonemize '%s': %s" % (text, msg))
             result = text
 
         return result
