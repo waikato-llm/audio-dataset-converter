@@ -19,5 +19,6 @@ options:
                         The format to use for the output, available
                         placeholders: data, audio-name, audio-name-noext,
                         audio-format, sample-rate, duration, has-annotations,
-                        annotations (default: {data})
+                        annotations, has-metadata; for metadata fields use
+                        metadata:<fieldname> (default: {data})
 ```
