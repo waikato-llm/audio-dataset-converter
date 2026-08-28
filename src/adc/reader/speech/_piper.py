@@ -157,7 +157,7 @@ class PiperSpeechReader(Reader, VariableSupporter):
                     self.logger().warning("Expected 2 or 3 column but got %d, skipping: %s" % (len(parts), row))
                     continue
 
-                audio = os.path.join(basedir, self.rel_path, id_ + ".wav")
+                audio = os.path.join(basedir, self.rel_path, os.path.splitext(id_)[0] + ".wav")
                 if not os.path.exists(audio):
                     self.logger().warning("Audio file not found: %s" % audio)
                     yield None
