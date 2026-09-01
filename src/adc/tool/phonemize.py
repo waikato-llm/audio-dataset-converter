@@ -6,7 +6,7 @@ import traceback
 from typing import List
 
 from seppl.io import locate_files
-from seppl.variables import load_user_defined_variables, variable_list
+from seppl.variables import load_user_defined_variables, variable_list, expand_variables
 from wai.logging import init_logging, set_logging_level, add_logging_level
 
 from adc.api import Phonemizer
@@ -38,7 +38,10 @@ def generate_phonemes(text: List[str] = None, paths: List[str] = None, output: s
     if paths is not None:
         if output is None:
             raise Exception("No output directory specified!")
-        all_paths = locate_files(paths, fail_if_empty=True, default_glob="*.txt")
+        all_paths = []
+        for path in paths:
+            path = expand_variables(path)
+            all_paths.extend(locate_files(path, fail_if_empty=True, default_glob="*.txt"))
         if len(all_paths) > 1:
             logger.info("Found %d input files" % len(all_paths))
 
@@ -57,7 +60,7 @@ def generate_phonemes(text: List[str] = None, paths: List[str] = None, output: s
         for path in all_paths:
             if logger is not None:
                 logger.info("Processing: %s" % path)
-            path_out = os.path.join(output, os.path.basename(path))
+            path_out = os.path.join(expand_variables(output), os.path.basename(path))
             with open(path, "r") as fp:
                 lines = fp.readlines()
 
