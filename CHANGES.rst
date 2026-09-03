@@ -27,6 +27,7 @@ Changelog
   detection algorithm to the audio data passing through
 - added `adc-phonemize` command-line tool for applying phonemizer to text or text files
 - the `from-piper-sp` reader now ensures that there is no extension in the ID when trying to locate the associated audio file
+- `AudioData` now implements `NameSupporter`
 
 
 0.1.0 (2025-10-31)

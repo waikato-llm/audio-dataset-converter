@@ -69,7 +69,7 @@ def determine_audio_format_from_bytes(b: bytes) -> Optional[str]:
     return None
 
 
-class AudioData(MetaDataHandler, AnnotationHandler, SourceSupporter, BytesSupporter, LoggingHandler):
+class AudioData(NameSupporter, MetaDataHandler, AnnotationHandler, SourceSupporter, BytesSupporter, LoggingHandler):
 
     def __init__(self, source: str = None, audio_name: str = None, data: bytes = None,
                  audio: np.ndarray = None, audio_format: str = None,
