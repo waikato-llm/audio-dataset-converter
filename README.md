@@ -73,11 +73,12 @@ filters (50):
    sanitize-name, set-metadata, set-placeholder*, set-storage, 
    set-variable, sleep, split-records, stop, strip-annotations, 
    sub-process, tee, time-stretch, trigger, trim-silence
-writers (19):
+writers (20):
    console, delete-files, send-email, to-adams-cl, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
-   to-hf-audiofolder-sp, to-metadata, to-multi, to-piper-sp, to-pyfunc, 
-   to-storage, to-subdir-cl, to-text-file, to-txt-cl, to-txt-sp
+   to-hf-audiofolder-sp, to-metadata, to-multi, to-phoneme-dist, 
+   to-piper-sp, to-pyfunc, to-storage, to-subdir-cl, to-text-file, 
+   to-txt-cl, to-txt-sp
 
 options:
   -h, --help           Show basic help message and exit.

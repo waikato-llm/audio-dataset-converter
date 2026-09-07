@@ -87,6 +87,7 @@
 * [to-hf-audiofolder-sp](to-hf-audiofolder-sp.md)
 * [to-metadata](to-metadata.md)
 * [to-multi](to-multi.md)
+* [to-phoneme-dist](to-phoneme-dist.md)
 * [to-piper-sp](to-piper-sp.md)
 * [to-pyfunc](to-pyfunc.md)
 * [to-storage](to-storage.md)
