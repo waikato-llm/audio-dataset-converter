@@ -12,7 +12,7 @@ from adc.api import AudioClassificationData
 class TxtAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter, InputBasedVariableSupporter):
 
     def __init__(self, output_dir: str = None, annotations_only: bool = None,
-                 speaker_suffix: str = None, speaker_key: str = None,
+                 speaker_suffix: str = None, speaker_key: str = None, file_ext: str = None,
                  split_names: List[str] = None, split_ratios: List[int] = None, split_group: str = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
@@ -26,6 +26,8 @@ class TxtAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter
         :type speaker_suffix: str
         :param speaker_key: the key for the speaker name/id in the meta-data
         :type speaker_key: str
+        :param file_ext: the file extension to use
+        :type file_ext: str
         :param split_names: the names of the splits, no splitting if None
         :type split_names: list
         :param split_ratios: the integer ratios of the splits (must sum up to 100)
@@ -42,6 +44,7 @@ class TxtAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter
         self.annotations_only = annotations_only
         self.speaker_suffix = speaker_suffix
         self.speaker_key = speaker_key
+        self.file_ext = file_ext
 
     def name(self) -> str:
         """
@@ -73,6 +76,7 @@ class TxtAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter
         add_annotations_only_writer_param(parser)
         parser.add_argument("--speaker_suffix", type=str, help="The file suffix for the companion files to store the speaker in, e.g., '.speaker'.", required=False, default=None)
         parser.add_argument("--speaker_key", type=str, help="The key in the meta-data with the speaker name/ID.", required=False, default="speaker")
+        parser.add_argument("--file_ext", type=str, help="The file extension to use (incl dot).", required=False, default=".txt")
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -87,6 +91,7 @@ class TxtAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter
         self.annotations_only = ns.annotations_only
         self.speaker_suffix = ns.speaker_suffix
         self.speaker_key = ns.speaker_key
+        self.file_ext = ns.file_ext
 
     def accepts(self) -> List:
         """
@@ -106,6 +111,8 @@ class TxtAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter
             self.annotations_only = False
         if self.speaker_key is None:
             self.speaker_key = "speaker"
+        if self.file_ext is None:
+            self.file_ext = ".txt"
 
     def write_stream(self, data):
         """
@@ -128,7 +135,7 @@ class TxtAudioClassificationWriter(SplittableStreamWriter, AnnotationsOnlyWriter
                 item.save_audio(path)
 
             if item.has_annotation():
-                path = os.path.splitext(path)[0] + ".txt"
+                path = os.path.splitext(path)[0] + self.file_ext
                 self.logger().info("Writing classification label to: %s" % path)
                 with open(path, "w") as fp:
                     fp.write(item.annotation)

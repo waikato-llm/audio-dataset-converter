@@ -11,6 +11,7 @@ usage: to-txt-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                  [--split_names SPLIT_NAMES [SPLIT_NAMES ...]]
                  [--split_group SPLIT_GROUP] -o OUTPUT [--annotations_only]
                  [--speaker_suffix SPEAKER_SUFFIX] [--speaker_key SPEAKER_KEY]
+                 [--file_ext FILE_EXT]
 
 Saves the transcript in a .txt file alongside the audio file. If a speaker
 suffix is defined, then available speaker information gets stored in an
@@ -50,4 +51,5 @@ options:
   --speaker_key SPEAKER_KEY
                         The key in the meta-data with the speaker name/ID.
                         (default: speaker)
+  --file_ext FILE_EXT   The file extension to use (incl dot). (default: .txt)
 ```
