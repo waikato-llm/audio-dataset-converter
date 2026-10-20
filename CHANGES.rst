@@ -30,6 +30,7 @@ Changelog
 - `AudioData` now implements `NameSupporter`
 - added the `to-phoneme-dist` writer for outputting phoneme distribution statistics
 - the `to-txt-cl` and `to-txt-sp` writers now allow specifying the file extension for the output
+- added the `normalize-peak` filter that normalizes the peak to the specified target dBFS
 
 
 0.1.0 (2025-10-31)
