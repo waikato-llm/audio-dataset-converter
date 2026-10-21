@@ -1,5 +1,4 @@
 import argparse
-import csv
 import os
 from typing import List, Iterable, Union
 
@@ -9,22 +8,6 @@ from wai.logging import LOGGING_WARNING
 
 from kasperl.api import Reader
 from adc.api import SpeechData
-
-COMONVOICE_EXPECTED_HEADER = "client_id	path	sentence	up_votes	down_votes	age	gender	accents	locale	segment"
-COMONVOICE_EXPECTED_HEADER_OLD = "client_id	path	sentence	up_votes	down_votes	age	gender	accent	locale	segment"
-
-
-class CommonVoiceDialect(csv.Dialect):
-    """
-    The dialect of Common-Voice TSV files.
-    """
-    delimiter = '\t'
-    quotechar = None
-    escapechar = None
-    doublequote = None
-    skipinitialspace = False
-    lineterminator = '\n'
-    quoting = csv.QUOTE_NONE
 
 
 class PiperSpeechReader(Reader, VariableSupporter):
