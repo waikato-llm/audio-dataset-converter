@@ -89,6 +89,7 @@
 * [to-festvox-sp](to-festvox-sp.md)
 * [to-hf-audiofolder-sp](to-hf-audiofolder-sp.md)
 * [to-loudness](to-loudness.md)
+* [to-merged](to-merged.md)
 * [to-metadata](to-metadata.md)
 * [to-multi](to-multi.md)
 * [to-phoneme-dist](to-phoneme-dist.md)
