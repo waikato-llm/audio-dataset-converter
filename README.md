@@ -60,7 +60,7 @@ readers (21):
    from-pyfunc, from-storage, from-subdir-cl, from-text-file, 
    from-txt-cl, from-txt-sp, get-email, list-files, poll-dir, 
    shell-exec, start, watch-dir
-filters (50):
+filters (51):
    annotations-from-storage, annotations-to-storage, attach-metadata, 
    block, change-volume, check-duplicate-filenames, convert-to-mono, 
    convert-to-wav, copy-files, count-data, delete-storage, 
@@ -68,17 +68,17 @@ filters (50):
    embed-watermark, generate-chunks, get-metadata, list-to-sequence, 
    log-data, log-placeholder*, log-variable, max-records, metadata, 
    metadata-from-name, metadata-to-placeholder*, metadata-to-variable, 
-   move-files, passthrough, phonemize, pitch-shift, pyfunc-filter, 
-   randomize-records, record-window, rename, resample, sample, 
-   sanitize-name, set-metadata, set-placeholder*, set-storage, 
+   move-files, normalize-peak, passthrough, phonemize, pitch-shift, 
+   pyfunc-filter, randomize-records, record-window, rename, resample, 
+   sample, sanitize-name, set-metadata, set-placeholder*, set-storage, 
    set-variable, sleep, split-records, stop, strip-annotations, 
    sub-process, tee, time-stretch, trigger, trim-silence
-writers (20):
+writers (21):
    console, delete-files, send-email, to-adams-cl, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
-   to-hf-audiofolder-sp, to-metadata, to-multi, to-phoneme-dist, 
-   to-piper-sp, to-pyfunc, to-storage, to-subdir-cl, to-text-file, 
-   to-txt-cl, to-txt-sp
+   to-hf-audiofolder-sp, to-loudness, to-metadata, to-multi, 
+   to-phoneme-dist, to-piper-sp, to-pyfunc, to-storage, to-subdir-cl, 
+   to-text-file, to-txt-cl, to-txt-sp
 
 options:
   -h, --help           Show basic help message and exit.

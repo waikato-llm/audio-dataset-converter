@@ -40,6 +40,7 @@ setup(
         "resampy",
         "soundfile",
         "tinytag",
+        "pyloudnorm",
     ],
     version="0.1.0",
     author='Peter Reutemann',
