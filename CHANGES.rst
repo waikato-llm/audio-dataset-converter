@@ -33,6 +33,7 @@ Changelog
 - added the `normalize-peak` filter that normalizes the peak to the specified target dBFS
 - added the `to-loudness` writer that determines the loudness of audio clips and stores them in a CSV file
 - added the `normalize-loudness` filter that normalizes the audio clips to have the same loudness
+- added the `from-styletts2-sp` reader ad `to-styletts2-sp` writer for the StyleTTS2 file format (https://github.com/yl4579/StyleTTS2#training)
 
 
 0.1.0 (2025-10-31)

@@ -3,4 +3,5 @@ from ._commonvoice import CommonVoiceSpeechReader, COMONVOICE_EXPECTED_HEADER, C
 from ._festvox import FestVoxSpeechReader
 from ._hf_audiofolder import HuggingFaceAudioFolderSpeechReader, HF_AUDIOFOLDER_EXPECTED_HEADER
 from ._piper import PiperSpeechReader
+from ._styletts2 import StyleTTS2Reader
 from ._txt import TxtSpeechReader

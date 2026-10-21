@@ -54,12 +54,12 @@ usage: adc-convert [-h] [--help-all] [--help-plugin NAME] [-u INTERVAL]
 
 Tool for converting between audio dataset formats.
 
-readers (21):
+readers (22):
    cron, from-adams-cl, from-adams-sp, from-commonvoice-sp, from-data, 
    from-festvox-sp, from-hf-audiofolder-sp, from-multi, from-piper-sp, 
-   from-pyfunc, from-storage, from-subdir-cl, from-text-file, 
-   from-txt-cl, from-txt-sp, get-email, list-files, poll-dir, 
-   shell-exec, start, watch-dir
+   from-pyfunc, from-storage, from-styletts2-sp, from-subdir-cl, 
+   from-text-file, from-txt-cl, from-txt-sp, get-email, list-files, 
+   poll-dir, shell-exec, start, watch-dir
 filters (52):
    annotations-from-storage, annotations-to-storage, attach-metadata, 
    block, change-volume, check-duplicate-filenames, convert-to-mono, 
@@ -74,12 +74,12 @@ filters (52):
    set-placeholder*, set-storage, set-variable, sleep, split-records, 
    stop, strip-annotations, sub-process, tee, time-stretch, trigger, 
    trim-silence
-writers (21):
+writers (22):
    console, delete-files, send-email, to-adams-cl, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
    to-hf-audiofolder-sp, to-loudness, to-metadata, to-multi, 
-   to-phoneme-dist, to-piper-sp, to-pyfunc, to-storage, to-subdir-cl, 
-   to-text-file, to-txt-cl, to-txt-sp
+   to-phoneme-dist, to-piper-sp, to-pyfunc, to-storage, to-styletts2-sp, 
+   to-subdir-cl, to-text-file, to-txt-cl, to-txt-sp
 
 options:
   -h, --help           Show basic help message and exit.
