@@ -1,7 +1,7 @@
 from ._audioinfo import AudioInfoWriter
 from ._console import ConsoleWriter
 from ._data import DataWriter
-from ._loudness import LoudnessWriter
+from ._loudness import LoudnessWriter, OUTPUT_TYE_LOUDNESS, OUTPUT_TYE_LOUDNESS_RANGE, OUTPUT_TYPES
 from ._metadata import MetaDataWriter
 from ._multi import MultiWriter
 from ._pyfunc import PythonFunctionWriter

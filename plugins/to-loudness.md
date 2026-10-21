@@ -2,7 +2,7 @@
 
 * accepts: adc.api.AudioData
 
-Determines the loudness of the audio clips and saves them to the specified CSV file.
+Determines the loudness or loudness range of the audio clips and saves them to the specified CSV file.
 
 ```
 usage: to-loudness [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
@@ -10,9 +10,10 @@ usage: to-loudness [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    [--split_ratios SPLIT_RATIOS [SPLIT_RATIOS ...]]
                    [--split_names SPLIT_NAMES [SPLIT_NAMES ...]]
                    [--split_group SPLIT_GROUP] -o OUTPUT
+                   [-t {loudness,loudness-range}]
 
-Determines the loudness of the audio clips and saves them to the specified CSV
-file.
+Determines the loudness or loudness range of the audio clips and saves them to
+the specified CSV file.
 
 options:
   -h, --help            show this help message and exit
@@ -40,4 +41,6 @@ options:
                         {HOME}, {CWD}, {TMP}, {INPUT_PATH}, {INPUT_NAMEEXT},
                         {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
                         {INPUT_PARENT_NAME} (default: None)
+  -t {loudness,loudness-range}, --output_type {loudness,loudness-range}
+                        What to calculate and output. (default: loudness)
 ```

@@ -11,9 +11,17 @@ from kasperl.api import SplittableStreamWriter, make_list
 from adc.api import AudioData
 
 
+OUTPUT_TYE_LOUDNESS = "loudness"
+OUTPUT_TYE_LOUDNESS_RANGE = "loudness-range"
+OUTPUT_TYPES = [
+    OUTPUT_TYE_LOUDNESS,
+    OUTPUT_TYE_LOUDNESS_RANGE,
+]
+
+
 class LoudnessWriter(SplittableStreamWriter, InputBasedVariableSupporter):
 
-    def __init__(self, output_file: str = None,
+    def __init__(self, output_file: str = None, output_type: str = None,
                  split_names: List[str] = None, split_ratios: List[int] = None, split_group: str = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
@@ -21,6 +29,8 @@ class LoudnessWriter(SplittableStreamWriter, InputBasedVariableSupporter):
 
         :param output_file: the output file to store the loudness in
         :type output_file: str
+        :param output_type: the type of output to calculate
+        :type output_type: str
         :param split_names: the names of the splits, no splitting if None
         :type split_names: list
         :param split_ratios: the integer ratios of the splits (must sum up to 100)
@@ -34,6 +44,7 @@ class LoudnessWriter(SplittableStreamWriter, InputBasedVariableSupporter):
         """
         super().__init__(split_names=split_names, split_ratios=split_ratios, split_group=split_group, logger_name=logger_name, logging_level=logging_level)
         self.output_file = output_file
+        self.output_type = output_type
         self._loudness = None
 
     def name(self) -> str:
@@ -52,7 +63,7 @@ class LoudnessWriter(SplittableStreamWriter, InputBasedVariableSupporter):
         :return: the description
         :rtype: str
         """
-        return "Determines the loudness of the audio clips and saves them to the specified CSV file."
+        return "Determines the loudness or loudness range of the audio clips and saves them to the specified CSV file."
 
     def _create_argparser(self) -> argparse.ArgumentParser:
         """
@@ -63,6 +74,7 @@ class LoudnessWriter(SplittableStreamWriter, InputBasedVariableSupporter):
         """
         parser = super()._create_argparser()
         parser.add_argument("-o", "--output", type=str, help="The CSV file to store the loudness in. Any defined splits get added above the file. " + variable_list(obj=self), required=True)
+        parser.add_argument("-t", "--output_type", choices=OUTPUT_TYPES, help="What to calculate and output.", required=False, default=OUTPUT_TYE_LOUDNESS)
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -74,6 +86,7 @@ class LoudnessWriter(SplittableStreamWriter, InputBasedVariableSupporter):
         """
         super()._apply_args(ns)
         self.output_file = ns.output
+        self.output_type = ns.output_type
 
     def accepts(self) -> List:
         """
@@ -90,6 +103,8 @@ class LoudnessWriter(SplittableStreamWriter, InputBasedVariableSupporter):
         """
         super().initialize()
         self._loudness = dict()
+        if self.output_type is None:
+            self.output_type = OUTPUT_TYE_LOUDNESS
 
     def write_stream(self, data):
         """
@@ -107,11 +122,25 @@ class LoudnessWriter(SplittableStreamWriter, InputBasedVariableSupporter):
                 self.logger().info("Creating dir: %s" % out_dir)
                 os.makedirs(out_dir)
 
+            # init output
             if out_file not in self._loudness:
-                self._loudness[out_file] = [["file", "loudness"]]
+                if self.output_type == OUTPUT_TYE_LOUDNESS:
+                    self._loudness[out_file] = [["file", "loudness"]]
+                elif self.output_type == OUTPUT_TYE_LOUDNESS_RANGE:
+                    self._loudness[out_file] = [["file", "loudness-range"]]
+                else:
+                    raise Exception("Unhandled output type: %s" % self.output_type)
+
+            # calculate
             meter = pyln.Meter(item.sample_rate)
-            loudness = meter.integrated_loudness(item.audio)
-            self._loudness[out_file].append([item.audio_name, loudness])
+            if self.output_type == OUTPUT_TYE_LOUDNESS:
+                loudness = meter.integrated_loudness(item.audio)
+                self._loudness[out_file].append([item.audio_name, loudness])
+            elif self.output_type == OUTPUT_TYE_LOUDNESS_RANGE:
+                lra = meter.loudness_range(item.audio)
+                self._loudness[out_file].append([item.audio_name, lra])
+            else:
+                raise Exception("Unhandled output type: %s" % self.output_type)
 
     def finalize(self):
         """
