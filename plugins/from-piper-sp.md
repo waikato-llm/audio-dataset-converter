@@ -2,7 +2,7 @@
 
 * generates: adc.api.SpeechData
 
-Reads the speech data in Piper format (https://github.com/rhasspy/piper/blob/master/TRAINING.md#dataset-format). When encountering 
+Reads the speech data in Piper format (https://github.com/rhasspy/piper/blob/master/TRAINING.md#dataset-format).
 
 ```
 usage: from-piper-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
@@ -12,7 +12,6 @@ usage: from-piper-sp [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
 
 Reads the speech data in Piper format
 (https://github.com/rhasspy/piper/blob/master/TRAINING.md#dataset-format).
-When encountering
 
 options:
   -h, --help            show this help message and exit

@@ -56,7 +56,7 @@ class PiperSpeechReader(Reader, VariableSupporter):
         :return: the description
         :rtype: str
         """
-        return "Reads the speech data in Piper format (https://github.com/rhasspy/piper/blob/master/TRAINING.md#dataset-format). When encountering "
+        return "Reads the speech data in Piper format (https://github.com/rhasspy/piper/blob/master/TRAINING.md#dataset-format)."
 
     def _create_argparser(self) -> argparse.ArgumentParser:
         """
