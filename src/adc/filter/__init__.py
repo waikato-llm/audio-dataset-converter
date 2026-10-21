@@ -6,6 +6,7 @@ from ._convert_to_wav import ConvertToWav
 from ._discard_negatives import DiscardNegatives
 from ._generate_chunks import GenerateChunks
 from ._normalize_peak import NormalizePeak
+from ._normalize_loudness import NormalizeLoudness
 from ._pitch_shift import PitchShift
 from ._pyfunc_filter import PythonFunctionFilter
 from ._rename import Rename

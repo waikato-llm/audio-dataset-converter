@@ -32,6 +32,7 @@ Changelog
 - the `to-txt-cl` and `to-txt-sp` writers now allow specifying the file extension for the output
 - added the `normalize-peak` filter that normalizes the peak to the specified target dBFS
 - added the `to-loudness` writer that determines the loudness of audio clips and stores them in a CSV file
+- added the `normalize-loudness` filter that normalizes the audio clips to have the same loudness
 
 
 0.1.0 (2025-10-31)

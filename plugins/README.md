@@ -50,6 +50,7 @@
 * [metadata-to-placeholder](metadata-to-placeholder.md)
 * [metadata-to-variable](metadata-to-variable.md)
 * [move-files](move-files.md)
+* [normalize-loudness](normalize-loudness.md)
 * [normalize-peak](normalize-peak.md)
 * [passthrough](passthrough.md)
 * [phonemize](phonemize.md)
