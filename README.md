@@ -74,12 +74,13 @@ filters (52):
    set-placeholder*, set-storage, set-variable, sleep, split-records, 
    stop, strip-annotations, sub-process, tee, time-stretch, trigger, 
    trim-silence
-writers (23):
+writers (24):
    console, delete-files, send-email, to-adams-cl, to-adams-sp, 
    to-audioinfo, to-commonvoice-sp, to-data, to-festvox-sp, 
    to-hf-audiofolder-sp, to-loudness, to-merged, to-metadata, to-multi, 
-   to-phoneme-dist, to-piper-sp, to-pyfunc, to-storage, to-styletts2-sp, 
-   to-subdir-cl, to-text-file, to-txt-cl, to-txt-sp
+   to-phoneme-dist, to-phoneme-vocab, to-piper-sp, to-pyfunc, 
+   to-storage, to-styletts2-sp, to-subdir-cl, to-text-file, to-txt-cl, 
+   to-txt-sp
 
 options:
   -h, --help           Show basic help message and exit.

@@ -35,6 +35,7 @@ Changelog
 - added the `normalize-loudness` filter that normalizes the audio clips to have the same loudness
 - added the `from-styletts2-sp` reader and `to-styletts2-sp` writer for the StyleTTS2 file format (https://github.com/yl4579/StyleTTS2#training)
 - added the `to-merged` writer that combines the audio (and optionally the annotations) and saves them as WAV file
+- added the `to-phoneme-vocab` writer that generates a JSON file from the collected phonemes
 
 
 0.1.0 (2025-10-31)
