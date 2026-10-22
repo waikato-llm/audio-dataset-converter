@@ -151,7 +151,7 @@ class StyleTTS2Writer(SplittableBatchWriter, AnnotationsOnlyWriter, InputBasedVa
                         speaker = item.get_metadata()[self.speaker_key]
                     else:
                         self.logger().warning("Failed to locate speaker using key '%s' in meta-data: %s" % item.audio_name)
-                row = item.audio_name + "|" + item.annotation + "|" + str(speaker)
+                row = os.path.join(self.rel_path, item.audio_name) + "|" + item.annotation + "|" + str(speaker)
                 self._splits[sub_dir].append(row)
 
     def finalize(self):
