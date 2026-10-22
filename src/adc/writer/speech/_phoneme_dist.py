@@ -31,6 +31,7 @@ OUTPUT_TYPES = [
 class PhonemeDistributionWriter(StreamWriter, VariableSupporter):
 
     def __init__(self, output_file: str = None, output_format: str = OUTPUT_FORMAT_TEXT, output_type: str = None,
+                 space_separated: bool = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
         Initializes the writer.
@@ -41,6 +42,8 @@ class PhonemeDistributionWriter(StreamWriter, VariableSupporter):
         :type output_format: str
         :param output_type: how to output the distribution
         :type output_type: str
+        :param space_separated: whether the phonemes are separated with single-space and words with double-space or treated as single-character
+        :type space_separated: bool
         :param logger_name: the name to use for the logger
         :type logger_name: str
         :param logging_level: the logging level to use
@@ -50,6 +53,7 @@ class PhonemeDistributionWriter(StreamWriter, VariableSupporter):
         self.output_file = output_file
         self.output_format = output_format
         self.output_type = output_type
+        self.space_separated = space_separated
         self._phonemes = None
 
     def name(self) -> str:
@@ -81,6 +85,7 @@ class PhonemeDistributionWriter(StreamWriter, VariableSupporter):
         parser.add_argument("-o", "--output_file", type=str, help="The file to write the statistics to; uses stdout if omitted. " + variable_list(obj=self), required=False, default=None)
         parser.add_argument("-f", "--output_format", choices=OUTPUT_FORMATS, help="The format to use for the output.", required=False, default=OUTPUT_FORMAT_TEXT)
         parser.add_argument("-t", "--output_type", choices=OUTPUT_TYPES, help="How to output the distribution.", required=False, default=OUTPUT_TYPE_COUNTS)
+        parser.add_argument("-s", "--space_separated", action="store_true", help="Whether the phonemes are separated with single-space and words with double-space or treated as single-character.")
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -94,6 +99,7 @@ class PhonemeDistributionWriter(StreamWriter, VariableSupporter):
         self.output_file = ns.output_file
         self.output_format = ns.output_format
         self.output_type = ns.output_type
+        self.space_separated = ns.space_separated
 
     def accepts(self) -> List:
         """
@@ -113,13 +119,19 @@ class PhonemeDistributionWriter(StreamWriter, VariableSupporter):
             self.output_format = OUTPUT_FORMAT_TEXT
         if self.output_type is None:
             self.output_type = OUTPUT_TYPE_COUNTS
+        if self.space_separated is None:
+            self.space_separated = False
         self._phonemes = dict()
 
     def add_phonemes(self, text: str):
         """
         Increments the count for the phonemes in the text.
         """
-        for char in text:
+        if self.space_separated:
+            chars = text.split()
+        else:
+            chars = text
+        for char in chars:
             if char not in self._phonemes:
                 self._phonemes[char] = 0
             self._phonemes[char] = self._phonemes[char] + 1

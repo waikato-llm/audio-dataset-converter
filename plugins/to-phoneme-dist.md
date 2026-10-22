@@ -7,7 +7,7 @@ Records the phoneme distribution and saves the statistics to the specified file.
 ```
 usage: to-phoneme-dist [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                        [-N LOGGER_NAME] [--skip] [-o OUTPUT_FILE]
-                       [-f {text,csv,json}] [-t {counts,percentages}]
+                       [-f {text,csv,json}] [-t {counts,percentages}] [-s]
 
 Records the phoneme distribution and saves the statistics to the specified
 file.
@@ -29,4 +29,8 @@ options:
                         The format to use for the output. (default: text)
   -t {counts,percentages}, --output_type {counts,percentages}
                         How to output the distribution. (default: counts)
+  -s, --space_separated
+                        Whether the phonemes are separated with single-space
+                        and words with double-space or treated as single-
+                        character. (default: False)
 ```
