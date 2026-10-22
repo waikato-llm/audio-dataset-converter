@@ -113,36 +113,39 @@ class NormalizeLoudness(BatchFilter):
         result = []
         max_allowed_amp = 10.0 ** (self.max_peak_dbfs / 20.0)
         for item in make_list(data):
-            if not item.is_mono:
-                self.logger().info("Converting to mono: %s" % item.audio_name)
-                audio_new = librosa.to_mono(item.audio)
-            else:
-                audio_new = item.audio
+            try:
+                if not item.is_mono:
+                    self.logger().info("Converting to mono: %s" % item.audio_name)
+                    audio_new = librosa.to_mono(item.audio)
+                else:
+                    audio_new = item.audio
 
-            # determine loudness
-            meter = pyln.Meter(item.sample_rate)
-            loudness = meter.integrated_loudness(audio_new)
-            # silent?
-            if np.isinf(loudness):
-                result.append(item)
-                continue
+                # determine loudness
+                meter = pyln.Meter(item.sample_rate)
+                loudness = meter.integrated_loudness(audio_new)
+                # silent?
+                if np.isinf(loudness):
+                    result.append(item)
+                    continue
 
-            # normalize
-            self.logger().info("Normalizing loudness %f to %f LUFS" % (loudness, self.target_lufs))
-            audio_new = pyln.normalize.loudness(audio_new, loudness, self.target_lufs)
+                # normalize
+                self.logger().info("Normalizing loudness %f to %f LUFS" % (loudness, self.target_lufs))
+                audio_new = pyln.normalize.loudness(audio_new, loudness, self.target_lufs)
 
-            # check peak
-            current_peak = np.max(np.abs(audio_new))
-            if current_peak > max_allowed_amp:
-                # Scale back to prevent clipping
-                audio_new = audio_new * (max_allowed_amp / current_peak)
-                self.logger().info("Peak scaled down to %f dBFS to prevent clipping." % self.max_peak_dbfs)
+                # check peak
+                current_peak = np.max(np.abs(audio_new))
+                if current_peak > max_allowed_amp:
+                    # Scale back to prevent clipping
+                    audio_new = audio_new * (max_allowed_amp / current_peak)
+                    self.logger().info("Peak scaled down to %f dBFS to prevent clipping." % self.max_peak_dbfs)
 
-            audio_name_new = os.path.splitext(item.audio_name)[0] + FORMAT_EXTENSIONS[FORMAT_WAV]
-            item_new = type(item)(audio_name=audio_name_new, audio=audio_new,
-                                  audio_format=FORMAT_WAV, duration=item.duration,
-                                  sample_rate=item.sample_rate, metadata=item.get_metadata(),
-                                  annotation=item.annotation)
-            result.append(item_new)
+                audio_name_new = os.path.splitext(item.audio_name)[0] + FORMAT_EXTENSIONS[FORMAT_WAV]
+                item_new = type(item)(audio_name=audio_name_new, audio=audio_new,
+                                      audio_format=FORMAT_WAV, duration=item.duration,
+                                      sample_rate=item.sample_rate, metadata=item.get_metadata(),
+                                      annotation=item.annotation)
+                result.append(item_new)
+            except:
+                self.logger().exception("Failed to process: %s" % item.audio_name)
 
         return flatten_list(result)

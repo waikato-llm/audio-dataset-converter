@@ -106,18 +106,21 @@ class NormalizePeak(BatchFilter):
         # convert logarithmic decibel scale to linear scale
         target_amplitude = 10.0 ** (self.target_dbfs / 20.0)
         for item in make_list(data):
-            if not item.is_mono:
-                self.logger().info("Converting to mono: %s" % item.audio_name)
-                audio_new = librosa.to_mono(item.audio)
-            else:
-                audio_new = item.audio
-            self.logger().info("Normalizing to %f: %s" % (self.target_dbfs, item.audio_name))
-            audio_new = librosa.util.normalize(audio_new, norm=np.inf) * target_amplitude
-            audio_name_new = os.path.splitext(item.audio_name)[0] + FORMAT_EXTENSIONS[FORMAT_WAV]
-            item_new = type(item)(audio_name=audio_name_new, audio=audio_new,
-                                  audio_format=FORMAT_WAV, duration=item.duration,
-                                  sample_rate=item.sample_rate, metadata=item.get_metadata(),
-                                  annotation=item.annotation)
-            result.append(item_new)
+            try:
+                if not item.is_mono:
+                    self.logger().info("Converting to mono: %s" % item.audio_name)
+                    audio_new = librosa.to_mono(item.audio)
+                else:
+                    audio_new = item.audio
+                self.logger().info("Normalizing to %f: %s" % (self.target_dbfs, item.audio_name))
+                audio_new = librosa.util.normalize(audio_new, norm=np.inf) * target_amplitude
+                audio_name_new = os.path.splitext(item.audio_name)[0] + FORMAT_EXTENSIONS[FORMAT_WAV]
+                item_new = type(item)(audio_name=audio_name_new, audio=audio_new,
+                                      audio_format=FORMAT_WAV, duration=item.duration,
+                                      sample_rate=item.sample_rate, metadata=item.get_metadata(),
+                                      annotation=item.annotation)
+                result.append(item_new)
+            except:
+                self.logger().exception("Failed to process: %s" % item.audio_name)
 
         return flatten_list(result)
