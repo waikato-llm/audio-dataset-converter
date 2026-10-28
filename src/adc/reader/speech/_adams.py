@@ -1,18 +1,19 @@
 import argparse
+import os
 from typing import List, Iterable, Union
 
 from wai.logging import LOGGING_WARNING
 from wai.common.file.report import loadf
 from seppl.io import locate_files
 from seppl.variables import VariableSupporter, variable_list
-from kasperl.api import Reader
+from kasperl.api import Reader, AnnotationsOnlyReader, add_annotations_only_reader_param
 from adc.api import SpeechData, locate_audio
 
 
-class AdamsSpeechReader(Reader, VariableSupporter):
+class AdamsSpeechReader(Reader, VariableSupporter, AnnotationsOnlyReader):
 
     def __init__(self, source: Union[str, List[str]] = None, source_list: Union[str, List[str]] = None,
-                 transcript_field: str = None, resume_from: str = None,
+                 transcript_field: str = None, resume_from: str = None, annotations_only: bool = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
         Initializes the reader.
@@ -23,6 +24,8 @@ class AdamsSpeechReader(Reader, VariableSupporter):
         :type transcript_field: str
         :param resume_from: the file to resume from (glob)
         :type resume_from: str
+        :param annotations_only: whether to only read the annotations and use dummy audio
+        :type annotations_only: bool
         :param logger_name: the name to use for the logger
         :type logger_name: str
         :param logging_level: the logging level to use
@@ -33,6 +36,7 @@ class AdamsSpeechReader(Reader, VariableSupporter):
         self.source_list = source_list
         self.transcript_field = transcript_field
         self.resume_from = resume_from
+        self.annotations_only = annotations_only
         self._inputs = None
         self._current_input = None
 
@@ -66,6 +70,7 @@ class AdamsSpeechReader(Reader, VariableSupporter):
         parser.add_argument("-I", "--input_list", type=str, help="Path to the text file(s) listing the report files to use; " + variable_list(obj=self), required=False, nargs="*")
         parser.add_argument("--resume_from", type=str, help="Glob expression matching the file to resume from, e.g., '*/012345.report'", required=False)
         parser.add_argument("-t", "--transcript_field", metavar="FIELD", type=str, default=None, help="The report field containing the audio transcription", required=True)
+        add_annotations_only_reader_param(parser)
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -80,6 +85,7 @@ class AdamsSpeechReader(Reader, VariableSupporter):
         self.source_list = ns.input_list
         self.transcript_field = ns.transcript_field
         self.resume_from = ns.resume_from
+        self.annotations_only = ns.annotations_only
 
     def generates(self) -> List:
         """
@@ -97,6 +103,8 @@ class AdamsSpeechReader(Reader, VariableSupporter):
         super().initialize()
         if self.transcript_field is None:
             raise Exception("No transcript field defined!")
+        if self.annotations_only is None:
+            self.annotations_only = False
         self._inputs = None
 
     def read(self) -> Iterable:
@@ -119,15 +127,20 @@ class AdamsSpeechReader(Reader, VariableSupporter):
         if len(meta) == 0:
             meta = None
 
-        audio = locate_audio(self._current_input)
-        if audio is None:
-            self.logger().warning("No associated audio file found: %s" % self._current_input)
-            yield None
+        if self.annotations_only:
+            audio = None
+            audio_name = os.path.splitext(os.path.basename(self.session.current_input))[0] + ".wav"
+        else:
+            audio = locate_audio(self._current_input)
+            if audio is None:
+                self.logger().warning("No associated audio file found: %s" % self._current_input)
+                yield None
+            audio_name = os.path.splitext(os.path.basename(audio))[0] + ".wav"
 
         if report.has_value(self.transcript_field):
-            yield SpeechData(source=audio, annotation=report.get_string_value(self.transcript_field), metadata=meta)
+            yield SpeechData(source=audio, audio_name=audio_name, annotation=report.get_string_value(self.transcript_field), metadata=meta)
         else:
-            yield SpeechData(source=audio, metadata=meta)
+            yield SpeechData(source=audio, audio_name=audio_name, metadata=meta)
 
     def has_finished(self) -> bool:
         """

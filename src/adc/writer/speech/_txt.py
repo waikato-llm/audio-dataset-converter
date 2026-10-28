@@ -20,7 +20,7 @@ class TxtSpeechWriter(SplittableStreamWriter, AnnotationsOnlyWriter, InputBasedV
 
         :param output_dir: the output directory to save the audio file/txt in
         :type output_dir: str
-        :param annotations_only: whether to output only the annotations and not the images
+        :param annotations_only: whether to output only the annotations and not the audio
         :type annotations_only: bool
         :param speaker_suffix: the file suffix for the files containing the speaker name (incl dot)
         :type speaker_suffix: str

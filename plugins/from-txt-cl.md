@@ -9,7 +9,7 @@ usage: from-txt-cl [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                    [-N LOGGER_NAME] [-i [INPUT ...]] [-I [INPUT_LIST ...]]
                    [--resume_from RESUME_FROM] [--rel_path REL_PATH]
                    [--speaker_suffix SPEAKER_SUFFIX]
-                   [--speaker_key SPEAKER_KEY]
+                   [--speaker_key SPEAKER_KEY] [--annotations_only]
 
 Loads the audio classification from the associated .txt file. Speaker
 information can be loaded from a companion file by supplying a speaker suffix.
@@ -39,4 +39,5 @@ options:
   --speaker_key SPEAKER_KEY
                         The key in the meta-data with the speaker name/ID.
                         (default: speaker)
+  --annotations_only    Reads only the annotations. (default: False)
 ```

@@ -6,14 +6,15 @@ from seppl.io import locate_files
 from seppl.variables import VariableSupporter, variable_list
 from wai.logging import LOGGING_WARNING
 
-from kasperl.api import Reader
+from kasperl.api import Reader, AnnotationsOnlyReader, add_annotations_only_reader_param
 from adc.api import SpeechData, locate_audio
 
 
-class TxtSpeechReader(Reader, VariableSupporter):
+class TxtSpeechReader(Reader, VariableSupporter, AnnotationsOnlyReader):
 
     def __init__(self, source: Union[str, List[str]] = None, source_list: Union[str, List[str]] = None,
                  rel_path: str = None, speaker_suffix: str = None, speaker_key: str = None, resume_from: str = None,
+                 annotations_only: bool = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
         Initializes the reader.
@@ -28,6 +29,8 @@ class TxtSpeechReader(Reader, VariableSupporter):
         :type speaker_key: str
         :param resume_from: the file to resume from (glob)
         :type resume_from: str
+        :param annotations_only: whether to only read the annotations and use dummy audio
+        :type annotations_only: bool
         :param logger_name: the name to use for the logger
         :type logger_name: str
         :param logging_level: the logging level to use
@@ -40,6 +43,7 @@ class TxtSpeechReader(Reader, VariableSupporter):
         self.speaker_suffix = speaker_suffix
         self.speaker_key = speaker_key
         self.resume_from = resume_from
+        self.annotations_only = annotations_only
         self._inputs = None
         self._current_input = None
 
@@ -75,6 +79,7 @@ class TxtSpeechReader(Reader, VariableSupporter):
         parser.add_argument("--rel_path", type=str, help="The relative path to the audio files.", required=False, default=".")
         parser.add_argument("--speaker_suffix", type=str, help="The file suffix for the companion files that contains the speaker, e.g., '.speaker'.", required=False, default=None)
         parser.add_argument("--speaker_key", type=str, help="The key in the meta-data with the speaker name/ID.", required=False, default="speaker")
+        add_annotations_only_reader_param(parser)
         return parser
 
     def _apply_args(self, ns: argparse.Namespace):
@@ -91,6 +96,7 @@ class TxtSpeechReader(Reader, VariableSupporter):
         self.speaker_suffix = ns.speaker_suffix
         self.speaker_key = ns.speaker_key
         self.resume_from = ns.resume_from
+        self.annotations_only = ns.annotations_only
 
     def generates(self) -> List:
         """
@@ -111,6 +117,8 @@ class TxtSpeechReader(Reader, VariableSupporter):
             self.rel_path = "."
         if self.speaker_key is None:
             self.speaker_key = "speaker"
+        if self.annotations_only is None:
+            self.annotations_only = False
 
     def read(self) -> Iterable:
         """
@@ -127,10 +135,15 @@ class TxtSpeechReader(Reader, VariableSupporter):
         with open(self.session.current_input, "r") as fp:
             transcript = "".join(fp.readlines()).strip()
 
-        audio = locate_audio(self._current_input, rel_path=self.rel_path)
-        if audio is None:
-            self.logger().warning("No associated audio file found: %s" % self._current_input)
-            yield None
+        if self.annotations_only:
+            audio = None
+            audio_name = os.path.splitext(os.path.basename(self.session.current_input))[0] + ".wav"
+        else:
+            audio = locate_audio(self._current_input, rel_path=self.rel_path)
+            if audio is None:
+                self.logger().warning("No associated audio file found: %s" % self._current_input)
+                yield None
+            audio_name = os.path.splitext(os.path.basename(audio))[0] + ".wav"
 
         # speaker present?
         speaker = None
@@ -143,7 +156,7 @@ class TxtSpeechReader(Reader, VariableSupporter):
             else:
                 self.logger().warning("Speaker file not found: %s" % path)
 
-        result = SpeechData(source=audio, annotation=transcript)
+        result = SpeechData(source=audio, audio_name=audio_name, annotation=transcript)
         if speaker is not None:
             result.set_metadata({
                 self.speaker_key: speaker

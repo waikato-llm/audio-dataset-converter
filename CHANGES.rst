@@ -36,6 +36,7 @@ Changelog
 - added the `from-styletts2-sp` reader and `to-styletts2-sp` writer for the StyleTTS2 file format (https://github.com/yl4579/StyleTTS2#training)
 - added the `to-merged` writer that combines the audio (and optionally the annotations) and saves them as WAV file
 - added the `to-phoneme-vocab` writer that generates a JSON file from the collected phonemes
+- the readers `from-adams-sp/-cl` and `from-txt-sp/-cl` now support reading just the annotations (speech or classification)
 
 
 0.1.0 (2025-10-31)

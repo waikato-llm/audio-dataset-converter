@@ -7,7 +7,7 @@ Loads the audio classification from the specified class field in the associated 
 ```
 usage: from-adams-cl [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
                      [-N LOGGER_NAME] [-i [INPUT ...]] [-I [INPUT_LIST ...]]
-                     [--resume_from RESUME_FROM] -c FIELD
+                     [--resume_from RESUME_FROM] -c FIELD [--annotations_only]
 
 Loads the audio classification from the specified class field in the
 associated .report file.
@@ -33,4 +33,5 @@ options:
   -c FIELD, --class_field FIELD
                         The report field containing the audio classification
                         label (default: None)
+  --annotations_only    Reads only the annotations. (default: False)
 ```
