@@ -37,6 +37,7 @@ Changelog
 - added the `to-merged` writer that combines the audio (and optionally the annotations) and saves them as WAV file
 - added the `to-phoneme-vocab` writer that generates a JSON file from the collected phonemes
 - the readers `from-adams-sp/-cl` and `from-txt-sp/-cl` now support reading just the annotations (speech or classification)
+- fixed duplication of data for filters `rename` and `sanitize-name` to handle in-memory items
 
 
 0.1.0 (2025-10-31)
